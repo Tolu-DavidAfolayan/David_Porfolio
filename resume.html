@@ -23,34 +23,96 @@
 </head> 
 
 <body>    
-	<header id="header" class="header fixed-top">
-  <div class="branding">
-    <div class="container-fluid">
-      <nav class="main-nav navbar d-flex justify-content-end">
-        <ul class="nav navbar-nav d-flex flex-row">
-          <li class="nav-item px-2">
-            <a class="nav-link scrollto" href="index.html">About</a>
-          </li>
-          <li class="nav-item px-2">
-            <a class="nav-link scrollto" href="Portfolio.html">Portfolio</a>
-          </li>
-          <li class="nav-item px-2">
-            <a class="nav-link scrollto" href="blog-home.html">Blog</a>
-          </li>
-          <li class="nav-item px-2">
-            <a class="nav-link scrollto" href="blog-post.html">Blog Post</a>
-          </li>
-          <li class="nav-item px-2">
-            <a class="nav-link scrollto active" href="resume.html">Resume</a>
-          </li>
-          <li class="nav-item px-2">
-            <a class="nav-link scrollto" href="case-study.html">Case Study</a>
-          </li>
-        </ul>
-      </nav>
+	
+	<style>
+    /* Style for nav box container */
+    .nav-box {
+      background-color: #f8f9fa;
+      border-radius: 10px;
+      padding: 10px 20px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      margin-top: 10px;
+    }
+
+    /* Style for each nav link */
+    .nav-box .nav-link {
+      color: #333;
+      font-weight: 500;
+      border-radius: 6px;
+      padding: 8px 14px;
+      text-decoration: none;
+      transition: background 0.3s ease, color 0.3s ease;
+      display: inline-block;
+    }
+
+    /* Hover state */
+    .nav-box .nav-link:hover {
+      background-color: #e2e6ea;
+      color: #000;
+    }
+
+    /* Active tab */
+    .nav-box .nav-link.active {
+      background-color: #007bff;
+      color: #fff !important;
+    }
+
+    /* Basic layout fixes */
+    .navbar {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .nav-item {
+      list-style: none;
+    }
+
+    .nav-item + .nav-item {
+      margin-left: 10px;
+    }
+
+    .branding {
+      padding: 10px 0;
+    }
+
+    .container-fluid {
+      padding: 0 30px;
+    }
+
+    .header {
+      background-color: #ffffff;
+      border-bottom: 1px solid #eee;
+    }
+  </style>
+
+  <header id="header" class="header fixed-top">
+    <div class="branding">
+      <div class="container-fluid">
+        <nav class="main-nav navbar">
+          <ul class="nav navbar-nav d-flex flex-row nav-box">
+            <li class="nav-item">
+              <a class="nav-link scrollto" href="index.html">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link scrollto" href="Portfolio.html">Portfolio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link scrollto" href="blog-home.html">Blog</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link scrollto" href="blog-post.html">Blog Post</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link scrollto active" href="resume.html">Resume</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link scrollto" href="case-study.html">Case Study</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </div>
-  </div>
-</header>
+  </header>
 
 
 	<div class="main-wrapper">
