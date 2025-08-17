@@ -23,46 +23,117 @@
 </head> 
 
 <body>    
-	<header id="header" class="header fixed-top">
-  <div class="branding">
-    <div class="container-fluid">
-      <nav class="main-nav navbar d-flex justify-content-end">
-        <ul class="nav navbar-nav d-flex flex-row">
-          <li class="nav-item px-2">
-            <a class="nav-link scrollto" href="index.html">About</a>
-          </li>
-          <li class="nav-item px-2">
-            <a class="nav-link scrollto" href="Portfolio.html">Portfolio</a>
-          </li>
-          <li class="nav-item px-2">
-            <a class="nav-link scrollto" href="blog-home.html">Blog</a>
-          </li>
-          <li class="nav-item px-2">
-            <a class="nav-link scrollto" href="blog-post.html">Blog Post</a>
-          </li>
-          <li class="nav-item px-2">
-            <a class="nav-link scrollto active" href="resume.html">Resume</a>
-          </li>
-          <li class="nav-item px-2">
-            <a class="nav-link scrollto" href="case-study.html">Case Study</a>
-          </li>
-        </ul>
-      </nav>
+	
+	<style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+    }
+
+    /* Transparent header */
+    .header {
+      background-color: transparent;
+      border-bottom: none;
+      padding: 5px 0;
+      position: fixed;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    .container-fluid {
+      padding: 0 15px;
+    }
+
+    /* Nav box styling with transparency */
+    .nav-box {
+      background-color: rgba(255, 255, 255, 0.6); /* light transparent white */
+      border-radius: 8px;
+      padding: 6px 12px;
+      backdrop-filter: blur(6px); /* adds nice glass effect */
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      margin: 0;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .nav-item {
+      list-style: none;
+      margin-left: 6px;
+    }
+
+    .nav-box .nav-link {
+      color: #222;
+      font-weight: 500;
+      border-radius: 5px;
+      padding: 6px 12px;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .nav-box .nav-link:hover {
+      background-color: rgba(0, 0, 0, 0.07);
+      color: #000;
+    }
+
+    .nav-box .nav-link.active {
+      background-color: #007bff;
+      color: #fff !important;
+    }
+
+    /* Sample content to test scrolling */
+    .content {
+      margin-top: 80px;
+      padding: 20px;
+      line-height: 1.6;
+    }
+  </style>
+	
+  <header id="header" class="header fixed-top">
+    <div class="branding">
+      <div class="container-fluid">
+        <nav class="main-nav navbar">
+          <ul class="nav navbar-nav d-flex flex-row nav-box">
+            <li class="nav-item">
+              <a class="nav-link scrollto" href="index.html">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link scrollto" href="Portfolio.html">Portfolio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link scrollto" href="blog-home.html">Blog</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link scrollto" href="blog-post.html">Blog Post</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link scrollto active" href="resume.html">Resume</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link scrollto" href="case-study.html">Case Study</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </div>
-  </div>
-</header>
+  </header>
 
 
 	<div class="main-wrapper">
-		<section class="cta-section theme-bg-light py-5">
-			<div class="container text-center single-col-max-width">
-				<h2 class="heading mb-3">Online Resume</h2>
-				<a class="btn btn-primary" href="https://themes.3rdwavemedia.com/resources/sketch-template/resume-sketch-sketch-resume-template-for-software-developers/" target="_blank"><i class="fas fa-file-pdf me-2"></i>Download PDF Version</a>
-				
-				
-			</div><!--//container-->
-		</section>
-		<div class="container-fluid sections-wrapper py-4">
+		<section class="cta-section theme-bg-light py-5" style="margin-top: 30px; margin-bottom: 0;">
+  <div class="container text-center single-col-max-width">
+    <h2 class="heading mb-3">Online Resume</h2>
+    <a class="btn btn-primary" href="https://themes.3rdwavemedia.com/resources/sketch-template/resume-sketch-sketch-resume-template-for-software-developers/" target="_blank">
+      <i class="fas fa-file-pdf me-2"></i>Download PDF Version
+    </a>
+  </div><!--//container-->
+</section>
+
+		<div class="container-fluid sections-wrapper py-4" style="padding-top: 10px; margin-top: -50px;">
 			<article class="resume-wrapper mx-auto theme-bg-light p-5 mb-5 my-5 shadow-lg">
 				
 				<div class="resume-header">
@@ -73,10 +144,10 @@
 						</div><!--//resume-title-->
 						<div class="resume-contact col-12 col-md-6 col-lg-4 col-xl-3">
 							<ul class="list-unstyled mb-0">
-								<li class="mb-2"><i class="fas fa-phone-square fa-fw fa-lg me-2 "></i><a class="resume-link" href="tel:#">0123 4567 890</a></li>
-								<li class="mb-2"><i class="fas fa-envelope-square fa-fw fa-lg me-2"></i><a class="resume-link" href="mailto:#">simon@yourwebsite.com</a></li>
+								<li class="mb-2"><i class="fas fa-phone-square fa-fw fa-lg me-2 "></i><a class="resume-link" href="tel:#">+234 706 508 0990</a></li>
+								<li class="mb-2"><i class="fas fa-envelope-square fa-fw fa-lg me-2"></i><a class="resume-link" href="mailto:#">david4afolayan@gmail.com</a></li>
 								<li class="mb-2"><i class="fas fa-globe fa-fw fa-lg me-2"></i><a class="resume-link" href="#">www.yourwebsite.com</a></li>
-								<li class="mb-0"><i class="fas fa-map-marker-alt fa-fw fa-lg me-2"></i>New York</li>
+								<li class="mb-0"><i class="fas fa-map-marker-alt fa-fw fa-lg me-2"></i>Nigeria</li>
 							</ul>
 						</div><!--//resume-contact-->
 					</div><!--//row-->
@@ -90,7 +161,8 @@
 						</div>
 						
 						<div class="col text-start">
-							<p class="mb-0">Summarise your career here. <a class="theme-link" href="https://themes.3rdwavemedia.com/resources/sketch-template/resume-sketch-sketch-resume-template-for-software-developers/" target="_blank">You can make a PDF version of your resume using our free Sketch template here</a>. Donec quam felis, ultricies nec, pellentesque eu. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.  Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. </p>
+							<p class="mb-0">Versatile and results-driven professional with over 4 years of experience spanning data analytics, machine learning, SEO content strategy, manual software testing, and customer service. Adept at turning complex data into clear insights, optimizing systems through hands-on testing, enhancing user satisfaction, and driving business growth through strategic content and automation. Demonstrated success in boosting sales performance, reducing churn, and streamlining operations using dashboards and process improvements.Recognized for effectively bridging the gap between technical teams, business stakeholders, and customers. Delivered clarity, collaboration, and measurable results. Brings strong communication skills, analytical thinking, and a solution-focused mindset to every project, from data modeling and QA testing to support interactions and content optimization.
+ </p>
 						</div><!--//col-->
 					</div>
 				</div><!--//resume-intro-->
@@ -99,187 +171,237 @@
 					<div class="row">
 						<div class="resume-main col-md-8">
 							<section class="work-section py-3">
-								<h3 class="text-uppercase resume-section-heading mb-4">Work Experiences</h3>
-								<div class="item mb-3">
-									<div class="item-heading row align-items-center mb-2">
-										<h4 class="item-title col-12 col-md-6 col-lg-8 mb-2 mb-md-0">Senior Software Engineer</h4>
-										<div class="item-meta col-12 col-md-6 col-lg-4 text-muted text-start text-md-end">Google | 2023 - Present</div>
-										
-									</div>
-									<div class="item-content">
-										<p>Role description goes here ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Donec pede justo, fringilla vel. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis.</p>
-										<ul class="resume-list">
-											<li>Lorem ipsum dolor sit amet, consectetuer.</li>
-											<li>Aenean commodo ligula eget dolor.</li>
-											<li>Etiam ultricies nisi vel augue.</li>
-										</ul>
-									</div>
-								</div><!--//item-->
-								<div class="item mb-3">
-									<div class="item-heading row align-items-center mb-2">
-										<h4 class="item-title col-12 col-md-6 col-lg-8 mb-2 mb-md-0">Lead Software Developer</h4>
-										<div class="item-meta col-12 col-md-6 col-lg-4 text-muted text-start text-md-end">Apple | 2022 - 2023</div>
-										
-									</div>
-									<div class="item-content">
-										<p>Role description goes here ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Donec pede justo, fringilla vel.</p>
-										<ul class="resume-list">
-											<li>Lorem ipsum dolor sit amet, consectetuer.</li>
-											<li>Aenean commodo ligula eget dolor.</li>
-										</ul>
-									</div>
-								</div><!--//item-->
-								<div class="item mb-3">
-									<div class="item-heading row align-items-center mb-2">
-										<h4 class="item-title col-12 col-md-6 col-lg-8 mb-2 mb-md-0">Senior Software Developer</h4>
-										<div class="item-meta col-12 col-md-6 col-lg-4 text-muted text-start text-md-end">Dropbox | 2020 - 2022</div>
-										
-									</div>
-									<div class="item-content">
-										<p>Role description goes here ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-									</div>
-								</div><!--//item-->
-								<div class="item">
-									<div class="item-heading row align-items-center mb-2">
-										<h4 class="item-title col-12 col-md-6 col-lg-8 mb-2 mb-md-0">Senior Developer</h4>
-										<div class="item-meta col-12 col-md-6 col-lg-4 text-muted text-start text-md-end">Uber | 2019 - 2020</div>
-										
-									</div>
-									<div class="item-content">
-										<p>Role description goes here ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus. </p>
-									</div>
-								</div><!--//item-->
-								<div class="item">
-									<div class="item-heading row align-items-center mb-2">
-										<h4 class="item-title col-12 col-md-6 col-lg-8 mb-2 mb-md-0">Backend Developer</h4>
-										<div class="item-meta col-12 col-md-6 col-lg-4 text-muted text-start text-md-end">Amazon | 2018 - 2019</div>
-										
-									</div>
-									<div class="item-content">
-										<p>Role description goes here ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-									</div>
-								</div><!--//item-->
-								<div class="item">
-									<div class="item-heading row align-items-center mb-2">
-										<h4 class="item-title col-12 col-md-6 col-lg-8 mb-2 mb-md-0">Frontend Developer</h4>
-										<div class="item-meta col-12 col-md-6 col-lg-4 text-muted text-start text-md-end">Startup | 2017 - 2018</div>
-										
-									</div>
-									<div class="item-content">
-										<p>Role description goes here ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus. </p>
-									</div>
-								</div><!--//item-->
-								
-							</section><!--//work-section-->
+	<h3 class="text-uppercase resume-section-heading mb-4">Work Experiences</h3>
+
+	<!-- Tech Ops Lead -->
+	<div class="item mb-3">
+		<div class="item-heading row align-items-center mb-2">
+			<h4 class="item-title col-12 col-md-6 col-lg-8 mb-2 mb-md-0">Tech Ops Lead</h4>
+			<div class="item-meta col-12 col-md-6 col-lg-4 text-muted text-start text-md-end">Code Buddy Africa | Mar 2024 – Present</div>
+		</div>
+		<div class="item-content">
+			<p>Lead the development and optimization of Code Buddy Africa’s learning platforms. Responsible for improving tech infrastructure, automating workflows, and ensuring smooth delivery of web-based training tools for students across Africa.</p>
+			<ul class="resume-list">
+				<li>Launched Code Buddy’s main web application, improving student access and increasing platform engagement by 45%.</li>
+				<li>Integrated email automation for streamlined communication, reducing admin time and enhancing student follow-up.</li>
+				<li>Resolved critical data issues in the student learning portal, ensuring 99.9% uptime and platform reliability.</li>
+			</ul>
+		</div>
+	</div><!--//item-->
+
+	<!-- Data Research Specialist -->
+	<div class="item mb-3">
+		<div class="item-heading row align-items-center mb-2">
+			<h4 class="item-title col-12 col-md-6 col-lg-8 mb-2 mb-md-0">Data Research Specialist</h4>
+			<div class="item-meta col-12 col-md-6 col-lg-4 text-muted text-start text-md-end">Uche Okechukwu | Mar 2025 – Jun 2025</div>
+		</div>
+		<div class="item-content">
+			<p>Provided research support for data-driven projects, translating raw datasets into actionable insights across media and consumer industries. Collaborated on large-scale survey analysis and comparative market studies.</p>
+			<ul class="resume-list">
+				<li>Led survey analysis for the 2025 AMVCA viewer satisfaction study, using Excel to visualize feedback and recommend improvements.</li>
+				<li>Conducted comparative market analysis of QSR brands, uncovering trends in customer satisfaction and service delivery.</li>
+				<li>Produced reports that guided client strategy based on insights from both qualitative and quantitative research.</li>
+			</ul>
+		</div>
+	</div><!--//item-->
+
+	<!-- Data & Insights Lead -->
+	<div class="item mb-3">
+		<div class="item-heading row align-items-center mb-2">
+			<h4 class="item-title col-12 col-md-6 col-lg-8 mb-2 mb-md-0">Data & Insights Lead</h4>
+			<div class="item-meta col-12 col-md-6 col-lg-4 text-muted text-start text-md-end">Nova Creators | Feb 2023 – Present</div>
+		</div>
+		<div class="item-content">
+			<p>Own the design, development, and delivery of business intelligence solutions for marketing and sales teams. Drive decision-making by transforming data into actionable insights using Power BI, SQL, and Excel.</p>
+			<ul class="resume-list">
+				<li>Built automated dashboards to track CRM conversion rates, BD metrics, and territory performance.</li>
+				<li>Collaborated with sales leadership to reduce lead-to-close time by 20%, improving sales cycle efficiency.</li>
+				<li>Delivered weekly business review reports with insights and corrective actions to address underperformance.</li>
+			</ul>
+		</div>
+	</div><!--//item-->
+
+	<!-- Customer Relations & Credit Recovery Specialist -->
+	<div class="item mb-3">
+		<div class="item-heading row align-items-center mb-2">
+			<h4 class="item-title col-12 col-md-6 col-lg-8 mb-2 mb-md-0">Customer Relations & Credit Recovery Specialist</h4>
+			<div class="item-meta col-12 col-md-6 col-lg-4 text-muted text-start text-md-end">Weshare Group | Dec 2021 – Mar 2024</div>
+		</div>
+		<div class="item-content">
+			<p>Managed customer relationship operations and recovery strategy for a digital lending platform. Focused on resolving support tickets, improving team productivity, and maximizing credit recovery rates.</p>
+			<ul class="resume-list">
+				<li>Handled 50+ support tickets/day with a 98% first-response resolution rate while supporting 15+ agents.</li>
+				<li>Created Excel performance dashboards that reduced unresolved queries by 30%.</li>
+				<li>Launched SMS/email campaign trackers that improved loan recoveries by 40% in 60 days.</li>
+			</ul>
+		</div>
+	</div><!--//item-->
+
+	<!-- Executive Virtual Assistant -->
+	<div class="item mb-3">
+		<div class="item-heading row align-items-center mb-2">
+			<h4 class="item-title col-12 col-md-6 col-lg-8 mb-2 mb-md-0">Executive Virtual Assistant – Data Entry Focus</h4>
+			<div class="item-meta col-12 col-md-6 col-lg-4 text-muted text-start text-md-end">Upwork | Feb 2021 – Jul 2023</div>
+		</div>
+		<div class="item-content">
+			<p>Provided virtual assistance with a focus on data entry and basic analytics for global clients in fintech and edtech. Handled cleaning, analysis, and reporting of campaign and business data.</p>
+			<ul class="resume-list">
+				<li>Cleaned and formatted large datasets for analysis and business reporting.</li>
+				<li>Performed trend analysis using regression to support marketing and operational decisions.</li>
+				<li>Created simple strategy decks and insights reports for client presentation.</li>
+			</ul>
+		</div>
+	</div><!--//item-->
+
+</section><!--//work-section-->
+
 
 							
 							<section class="project-section py-3">
-								<h3 class="text-uppercase resume-section-heading mb-4">Projects</h3>
-								<div class="item mb-3">
-									<div class="item-heading row align-items-center mb-2">
-										<h4 class="item-title col-12 col-md-6 col-lg-8 mb-2 mb-md-0">Project Lorem Ipsum</h4>
-										<div class="item-meta col-12 col-md-6 col-lg-4 text-muted text-start text-md-end">Open Source</div>
-										
-									</div>
-									<div class="item-content">
-										<p>You can use this section for your side projects. You can <a href="#" class="theme-link">provide a project link here</a> as well. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-										
-										
-									</div>
-								</div><!--//item-->
-								<div class="item">
-									<div class="item-heading row align-items-center mb-2">
-										<h4 class="item-title col-12 col-md-6 col-lg-8 mb-2 mb-md-0">Project Sed Fringilla</h4>
-										<div class="item-meta col-12 col-md-6 col-lg-4 text-muted text-start text-md-end">Open Source</div>
-										
-									</div>
-									<div class="item-content">
-										<p>You can use this section for your side projects. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim.</p>
-										
-									</div>
-								</div><!--//item-->
-								<div class="item">
-									<div class="item-heading row align-items-center mb-2">
-										<h4 class="item-title col-12 col-md-6 col-lg-8 mb-2 mb-md-0">Project Praesent </h4>
-										<div class="item-meta col-12 col-md-6 col-lg-4 text-muted text-start text-md-end">Open Source</div>
-										
-									</div>
-									<div class="item-content">
-										<p>You can use this section for your side projects. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim.</p>
-										
-									</div>
-								</div><!--//item-->
-							</section><!--//project-section-->	
+	<h3 class="text-uppercase resume-section-heading mb-4">Projects</h3>
+
+	<div class="item mb-3">
+		<div class="item-heading row align-items-center mb-2">
+			<h4 class="item-title col-12 col-md-6 col-lg-8 mb-2 mb-md-0">Sales Operations & Funnel Efficiency</h4>
+			<div class="item-meta col-12 col-md-6 col-lg-4 text-muted text-start text-md-end">Internal Strategy</div>
+		</div>
+		<div class="item-content">
+			<p>I streamlined the end-to-end sales reporting process using SQL and Excel automation, cutting reporting time by 25% and enabling faster decision-making. Through in-depth data audits, I uncovered funnel inefficiencies and aligned marketing with sales to improve the MQL-to-SQL conversion rate by 15%.</p>
+		</div>
+	</div><!--//item-->
+
+	<div class="item mb-3">
+		<div class="item-heading row align-items-center mb-2">
+			<h4 class="item-title col-12 col-md-6 col-lg-8 mb-2 mb-md-0">Team Productivity & Performance Tracking</h4>
+			<div class="item-meta col-12 col-md-6 col-lg-4 text-muted text-start text-md-end">Data Enablement</div>
+		</div>
+		<div class="item-content">
+			<p>I designed a territory-based performance tracker to monitor sales rep output, budget use, and conversion rates, helping business leads enhance coaching and strategy. Additionally, I created interactive Power BI dashboards to improve visibility of KPIs and drive accountability across teams.</p>
+		</div>
+	</div><!--//item-->
+
+	<div class="item mb-3">
+		<div class="item-heading row align-items-center mb-2">
+			<h4 class="item-title col-12 col-md-6 col-lg-8 mb-2 mb-md-0">Customer Retention & Risk Prediction</h4>
+			<div class="item-meta col-12 col-md-6 col-lg-4 text-muted text-start text-md-end">Predictive Analytics</div>
+		</div>
+		<div class="item-content">
+			<p>By building a predictive model using tenure, engagement, and payment behavior, I enabled early identification of high-risk customers, improving retention planning. The resulting risk insights were shared with customer service and growth teams, reducing preventable churn.</p>
+		</div>
+	</div><!--//item-->
+
+	<div class="item mb-3">
+		<div class="item-heading row align-items-center mb-2">
+			<h4 class="item-title col-12 col-md-6 col-lg-8 mb-2 mb-md-0">Inventory Planning & Demand Forecasting</h4>
+			<div class="item-meta col-12 col-md-6 col-lg-4 text-muted text-start text-md-end">Operational Analytics</div>
+		</div>
+		<div class="item-content">
+			<p>I analyzed sales trends to create more accurate demand forecasts, optimizing stock levels and reducing supply chain costs. My insights into regional buying patterns and peak periods supported better procurement and inventory planning decisions.</p>
+		</div>
+	</div><!--//item-->
+
+	<div class="item mb-3">
+		<div class="item-heading row align-items-center mb-2">
+			<h4 class="item-title col-12 col-md-6 col-lg-8 mb-2 mb-md-0">Marketing ROI & Spend Optimization</h4>
+			<div class="item-meta col-12 col-md-6 col-lg-4 text-muted text-start text-md-end">Campaign Analysis</div>
+		</div>
+		<div class="item-content">
+			<p>I evaluated multi-channel marketing performance to flag underperforming spend, recommending smarter budget allocation for improved acquisition. My reports provided the marketing team with channel-wise ROI metrics to refine their campaign strategies.</p>
+		</div>
+	</div><!--//item-->
+
+	<div class="item">
+		<div class="item-heading row align-items-center mb-2">
+			<h4 class="item-title col-12 col-md-6 col-lg-8 mb-2 mb-md-0">Cross-Functional Collaboration & Data Access</h4>
+			<div class="item-meta col-12 col-md-6 col-lg-4 text-muted text-start text-md-end">Data Enablement</div>
+		</div>
+		<div class="item-content">
+			<p>I served as a data resource for sales, marketing, and product teams, maintaining reliable dashboards and self-service reports. My timely delivery of insights supported leadership in strategic planning and decision-making during high-stakes cycles.</p>
+		</div>
+	</div><!--//item-->
+
+</section><!--//project-section-->
+	
 						</div><!--//resume-main-->
 						<aside class="resume-aside col-md-4">
 							<section class="skills-section py-3">
-								<h3 class="text-uppercase resume-section-heading mb-4">Skills</h3>
-								<div class="item">
-									<h4 class="item-title">Technical</h4>
-									<ul class="list-unstyled resume-skills-list">
-										<li class="mb-2">JavaScript/Angular/React/Vue</li>
-										<li class="mb-2">Python/Ruby/PHP<li>
-											<li class="mb-2">Node.js/ASP.NET</li>
-											<li class="mb-2">PostgreSQL/MySQL</li>
-											<li class="mb-2">Object-oriented design</li>
-											<li class="mb-2">Design and implement database structures</li>
-											<li>Lead and deliver complex software systems</li>
-										</ul>
-									</div><!--//item-->
-									<div class="item">
-										<h4 class="item-title">Professional</h4>
-										<ul class="list-unstyled resume-skills-list">
-											<li class="mb-2">Effective communication</li>
-											<li class="mb-2">Team player<li>
-												<li class="mb-2">Strong problem solver</li>
-												<li>Good time management</li>
-											</ul>
-										</div><!--//item-->
-									</section><!--//skills-section-->
+	<h3 class="text-uppercase resume-section-heading mb-4">Skills</h3>
+
+	<div class="item">
+		<h4 class="item-title">Technical</h4>
+		<ul class="list-unstyled resume-skills-list">
+			<li class="mb-2">Power BI / Tableau</li>
+			<li class="mb-2">Microsoft Excel (Advanced)</li>
+			<li class="mb-2">SQL / MongoDB / Postgres</li>
+			<li class="mb-2">Python (Pandas, NumPy, Matplotlib)</li>
+			<li class="mb-2">Selenium (Scripted QA)</li>
+			<li class="mb-2">Postman / API Testing</li>
+			<li class="mb-2">Jira / Salesforce / Asana / WeCom</li>
+			<li class="mb-2">CRM & Business Tools Proficiency</li>
+			<li class="mb-2">KPI Dashboarding & Data Modeling</li>
+			<li class="mb-2">Web App Functionality Testing</li>
+			<li class="mb-2">Automation & Workflow Optimization</li>
+			<li>Forecasting & Market Trend Analysis</li>
+		</ul>
+	</div><!--//item-->
+
+	<div class="item">
+		<h4 class="item-title">Professional</h4>
+		<ul class="list-unstyled resume-skills-list">
+			<li class="mb-2">Sales & Revenue Analytics</li>
+			<li class="mb-2">Target Tracking & Performance Insights</li>
+			<li class="mb-2">Strategic Data Planning</li>
+			<li class="mb-2">Performance Gap Analysis</li>
+			<li class="mb-2">Team & Process Enablement</li>
+			<li class="mb-2">Cross-functional Collaboration</li>
+			<li class="mb-2">Agile Process & Sprint Reviews</li>
+			<li class="mb-2">Strong Communication Skills</li>
+			<li class="mb-2">Problem Solving & Critical Thinking</li>
+			<li>Time Management</li>
+		</ul>
+	</div><!--//item-->
+</section><!--//skills-section-->
+
+									<section class="education-section py-3"> 
+	<h3 class="text-uppercase resume-section-heading mb-4">Education</h3>
+	<ul class="list-unstyled resume-education-list">
+		<li class="mb-3">
+			<div class="resume-degree font-weight-bold">B.Ed. in English</div>
+			<div class="resume-degree-org text-muted">Obafemi Awolowo University</div>
+			<div class="resume-degree-time text-muted">June 2015 – December 2020</div>
+		</li>
+	</ul>
+</section><!--//education-section-->
+
 									<section class="education-section py-3">
-										<h3 class="text-uppercase resume-section-heading mb-4">Education</h3>
-										<ul class="list-unstyled resume-education-list">
-											<li class="mb-3">
-												<div class="resume-degree font-weight-bold">MSc in Computer Science</div>
-												<div class="resume-degree-org text-muted">University College London</div>
-												<div class="resume-degree-time text-muted">2012 - 2016</div>
-											</li>
-											<li>
-												<div class="resume-degree font-weight-bold">BSc Maths and Physics</div>
-												<div class="resume-degree-org text-muted">Imperial College London</div>
-												<div class="resume-degree-time text-muted">2016 - 2017</div>
-											</li>
-										</ul>
-									</section><!--//education-section-->
-									<section class="education-section py-3">
-										<h3 class="text-uppercase resume-section-heading mb-4">Awards</h3>
-										<ul class="list-unstyled resume-awards-list">
-											<li class="mb-3">
-												<div class="font-weight-bold">Award Lorem Ipsum</div>
-												<div class="text-muted">Microsoft lorem ipsum (2023)</div>
-											</li>
-											<li>
-												<div class="font-weight-bold">Award Donec Sodales</div>
-												<div class="text-muted">Oracle Aenean (2020)</div>
-											</li>
-										</ul>
-									</section><!--//education-section-->
-									<section class="skills-section py-3">
-										<h3 class="text-uppercase resume-section-heading mb-4">Languages</h3>
-										<ul class="list-unstyled resume-lang-list">
-											<li class="mb-2">English <span class="text-muted">(Native)</span></li>
-											<li>Spanish <span class="text-muted">(Professional)</span></li>
-										</ul>
-									</section><!--//certificates-section-->
-									<section class="skills-section py-3">
-										<h3 class="text-uppercase resume-section-heading mb-4">Interests</h3>
-										<ul class="list-unstyled resume-interests-list mb-0">
-											<li class="mb-2">Climbing</li>
-											<li class="mb-2">Snowboarding</li>
-											<li class="mb-2">Photography</li>
-											<li>Travelling</li>
-										</ul>
-									</section><!--//certificates-section-->
+	<h3 class="text-uppercase resume-section-heading mb-4">Certifications</h3>
+	<ul class="list-unstyled resume-awards-list">
+		<li class="mb-3">
+			<div class="font-weight-bold">Applied Data Science Lab</div>
+			<div class="text-muted">WorldQuant University (July 2025)</div>
+		</li>
+		<li class="mb-3">
+			<div class="font-weight-bold">The Bits and Bytes of Computer Networking</div>
+			<div class="text-muted">Google (January 2025)</div>
+		</li>
+		<li class="mb-3">
+			<div class="font-weight-bold">Google Technical Support Fundamentals</div>
+			<div class="text-muted">Google (January 2025)</div>
+		</li>
+		<li class="mb-3">
+			<div class="font-weight-bold">Supervised Machine Learning</div>
+			<div class="text-muted">DeepLearningAI (January 2025)</div>
+		</li>
+		<li class="mb-3">
+			<div class="font-weight-bold">Career Essentials in Generative AI</div>
+			<div class="text-muted">Microsoft (November 2024)</div>
+		</li>
+		<li>
+			<div class="font-weight-bold">IBM Data Analytics Essentials</div>
+			<div class="text-muted">IBM (February 2024)</div>
+		</li>
+	</ul>
+</section><!--//education-section-->
 									
 								</aside><!--//resume-aside-->
 							</div><!--//row-->
