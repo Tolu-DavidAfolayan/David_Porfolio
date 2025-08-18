@@ -14,17 +14,31 @@
 
 .social-list {
   display: flex;
-  justify-content: center;   /* center all icons horizontally */
-  gap: 20px;                 /* space between icons */
+  justify-content: center;   /* center horizontally */
+  align-items: center;       /* center vertically */
+  gap: 20px;                 /* spacing between icons */
 }
 
-.social-list li {
+.social-list li a {
   display: flex;
-  justify-content: center;   /* center icon inside li */
-  align-items: center;
+  justify-content: center;  
+  align-items: center;      
+  width: 30px;               /* box size */
+  height: 30px;
+  border-radius: 50%;        /* circular background */
+  background: #f5f5f5;       /* light background */
+  transition: all 0.3s ease;
 }
 
 .social-list li a i {
-  font-size: 36px;           /* increase icon size only */
-  color: #333;               /* adjust icon color if needed */
+  font-size: 28px;           /* increase icon size */
+  color: #333;               /* icon color */
+}
+
+.social-list li a:hover {
+  background: #ff6600;       /* hover background */
+}
+
+.social-list li a:hover i {
+  color: #fff;               /* hover icon color */
 }
