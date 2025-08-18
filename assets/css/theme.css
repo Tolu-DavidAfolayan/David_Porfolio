@@ -23,8 +23,8 @@
   display: flex;
   justify-content: center;  
   align-items: center;      
-  width: 20px;               /* box size */
-  height: 20px;
+  width: 28px;               /* box size */
+  height: 28px;
   border-radius: 50%;        /* circular background */
   background: #f5f5f5;       /* light background */
   transition: all 0.3s ease;
