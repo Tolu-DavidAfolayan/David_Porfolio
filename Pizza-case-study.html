@@ -83,11 +83,11 @@
 	<div class="main-wrapper"> 
 	<section class="cta-section theme-bg-light py-5">
 		<div class="container single-col-max-width">
-			<h2 class="heading text-center">Case Study: BMW Car Sales Analysis (2019–2023)</h2>
+			<h2 class="heading text-center">Case Study: Pizza Sales Analysis Dashboard</h2>
 			<div class="project-intro text-center">
 				<p class="mb-0 lead">
-					Analyzing BMW car sales data from 2019–2023 to uncover growth drivers, regional opportunities, and customer trends. 
-					Revenue grew from <strong>$0.90bn</strong> to <strong>$1.13bn</strong> in 2023 — a <strong>+24.7% increase</strong>.
+					Comprehensive pizza sales analysis dashboard built with SQL and Power BI. 
+					Total revenue of <strong>$817,860</strong> across <strong>21,350 orders</strong> with detailed insights into customer behavior, product performance, and sales trends.
 				</p>
 			</div>
 		</div><!--//container-->
@@ -99,8 +99,8 @@
 				<div class="row g-4 g-lg-5">
 					<div class="col-md-12 text-center">
 						<img class="project-thumb img-fluid rounded" 
-						     src="assets/images/blog/bmw port full.png" 
-						     alt="BMW Dashboard" 
+						     src="assets/images/blog/pizza-dashboard.png" 
+						     alt="Pizza Sales Dashboard" 
 						     style="max-width:100%; height:auto; border-radius:12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
 					</div><!--//col-->
 				</div><!--//row-->
@@ -110,40 +110,37 @@
 				<div class="project-section mb-5">
 					<h3 class="project-section-title mb-3">Project Overview</h3>
 					<p>
-						This project explored BMW’s global car sales performance, focusing on revenue growth, model-level demand, 
-						and market opportunities. We transformed raw sales data into actionable insights through Power BI dashboards, 
-						data storytelling, and KPI tracking. 
+						This project involved creating a comprehensive pizza sales analytics dashboard using SQL for data extraction and Power BI for visualization. 
+						The analysis covered revenue performance, customer ordering patterns, product popularity, and time-based sales trends. 
 					</p>
 					<p>
-						In 2023, BMW achieved <strong>$1.13bn in revenue</strong>, compared to <strong>$0.90bn</strong> in 2022 — 
-						a <strong>+24.7% year-on-year growth</strong>. Flagship models like the <strong>BMW Z4, 8 Series, and M4</strong> 
-						drove the surge, supported by stronger demand in <strong>North America and Latin America</strong>.
+						Key metrics revealed <strong>$817,860 total revenue</strong> from <strong>21,350 orders</strong>, with an average order value of <strong>$38.31</strong>. 
+						The dashboard provides actionable insights for inventory management, marketing strategies, and operational optimization.
 					</p>
 				</div><!--//project-section-->
 
 				<div class="project-section mb-3">
 					<h3 class="project-section-title">The Challenge</h3>
-					<p>Despite strong demand, BMW faced several strategic challenges:</p>
+					<p>The pizza restaurant needed to understand:</p>
 					<ul>
-						<li>Monitoring revenue growth across multiple years and regions.</li>
-						<li>Identifying which <strong>models</strong> and <strong>markets</strong> were driving the most impact.</li>
-						<li>Aligning <strong>sales channels</strong> (wholesale, dealerships, online) to customer preferences.</li>
-						<li>Communicating insights visually to executives instead of through raw spreadsheets.</li>
-						<li>Spotting growth opportunities in the <strong>premium & electric segments</strong>.</li>
+						<li>Overall sales performance and revenue trends</li>
+						<li>Which pizza types and sizes generate the most revenue</li>
+						<li>Customer ordering patterns throughout different time periods</li>
+						<li>Top and bottom-performing products for inventory optimization</li>
+						<li>Sales distribution across different categories and sizes</li>
 					</ul>
 				</div><!--//project-section-->
 
 				<div class="project-section mb-4">
 					<h3 class="project-section-title">The Approach &amp; Solution</h3>
 					<p>
-						Our solution blended <strong>data engineering</strong>, <strong>analytics</strong>, and 
-						<strong>visual storytelling</strong>:
+						The solution combined <strong>SQL data analysis</strong> with <strong>Power BI visualization</strong>:
 					</p>
 					<ul>
-						<li><strong>Data Preparation</strong> → Cleaned raw data, standardized revenue values, and validated channels.</li>
-						<li><strong>Exploratory Analysis</strong> → Compared sales across <strong>models, countries, and time periods</strong>.</li>
-						<li><strong>Visualization</strong> → Designed an executive Power BI dashboard with revenue growth KPIs.</li>
-						<li><strong>Business Insights</strong> → Highlighted premium model performance, emerging EV growth, and regional shifts.</li>
+						<li><strong>Data Extraction</strong> → Used SQL Server to query pizza sales database with complex aggregations</li>
+						<li><strong>KPI Development</strong> → Created key performance indicators for revenue, orders, and customer metrics</li>
+						<li><strong>Trend Analysis</strong> → Analyzed daily and monthly patterns using date functions</li>
+						<li><strong>Dashboard Design</strong> → Built interactive Power BI dashboard with pizza-themed color palette</li>
 					</ul>
 					
 					<div class="text-center mb-4">
@@ -153,52 +150,181 @@
 		</div>
 				</div><!--//project-section-->
 
+				<div class="project-section mb-4">
+					<h3 class="project-section-title mb-3">SQL Queries & Analysis</h3>
+					<p>Here are the key SQL queries used to extract insights from the pizza sales data:</p>
+
+					<div class="code-section mb-4">
+						<h5>1. Key Performance Indicators (KPIs)</h5>
+						<div class="mb-3">
+							<h6>Total Revenue</h6>
+							<pre style="background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto;"><code>SELECT 
+    FORMAT(SUM(total_price), 'N2') AS Total_Revenue
+FROM [Pizza Sales].[dbo].[pizza_sales];</code></pre>
+						</div>
+
+						<div class="mb-3">
+							<h6>Average Order Value</h6>
+							<pre style="background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto;"><code>SELECT 
+    Format(SUM(total_price) / COUNT(DISTINCT order_id), 'N2') AS Avg_order_Value 
+FROM pizza_sales;</code></pre>
+						</div>
+
+						<div class="mb-3">
+							<h6>Total Pizza Sold</h6>
+							<pre style="background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto;"><code>SELECT 
+    SUM(quantity) AS Total_pizza_sold 
+FROM pizza_sales;</code></pre>
+						</div>
+
+						<div class="mb-3">
+							<h6>Total Orders</h6>
+							<pre style="background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto;"><code>SELECT 
+    COUNT(DISTINCT order_id) AS Total_Orders 
+FROM pizza_sales;</code></pre>
+						</div>
+
+						<div class="mb-3">
+							<h6>Average Pizzas per Order</h6>
+							<pre style="background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto;"><code>SELECT 
+    CAST(CAST(SUM(quantity) AS DECIMAL(10,2)) /
+    CAST(COUNT(DISTINCT order_id) AS DECIMAL(10,2)) AS DECIMAL(10,2))
+    AS Avg_Pizzas_per_order
+FROM pizza_sales;</code></pre>
+						</div>
+					</div>
+
+					<div class="code-section mb-4">
+						<h5>2. Daily and Monthly Trends</h5>
+						<div class="mb-3">
+							<h6>Daily Trends for Orders and Revenue</h6>
+							<pre style="background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto;"><code>SELECT 
+    DATENAME(WEEKDAY, order_date) AS order_day,
+    COUNT(DISTINCT order_id) AS total_orders,
+    Format(SUM(total_price), 'N2') AS total_revenue
+FROM pizza_sales
+GROUP BY DATENAME(WEEKDAY, order_date), DATEPART(WEEKDAY, order_date)
+ORDER BY DATEPART(WEEKDAY, order_date);</code></pre>
+						</div>
+
+						<div class="mb-3">
+							<h6>Monthly Trends for Orders and Revenue</h6>
+							<pre style="background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto;"><code>SELECT 
+    DATENAME(MONTH, order_date) AS Month_Name,
+    COUNT(DISTINCT order_id) AS total_orders,
+    Format(SUM(total_price), 'N2') AS total_revenue
+FROM pizza_sales
+GROUP BY DATENAME(MONTH, order_date), DATEPART(MONTH, order_date)
+ORDER BY DATEPART(MONTH, order_date);</code></pre>
+						</div>
+					</div>
+
+					<div class="code-section mb-4">
+						<h5>3. Category and Size Analysis</h5>
+						<div class="mb-3">
+							<h6>Revenue Percentage by Pizza Category</h6>
+							<pre style="background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto;"><code>SELECT 
+    pizza_category, 
+    CAST(SUM(total_price) AS DECIMAL(10,2)) as total_revenue,
+    CAST(SUM(total_price) * 100 / (SELECT SUM(total_price) from pizza_sales) AS DECIMAL(10,2)) AS PCT
+FROM pizza_sales
+GROUP BY pizza_category;</code></pre>
+						</div>
+
+						<div class="mb-3">
+							<h6>Revenue Percentage by Pizza Size</h6>
+							<pre style="background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto;"><code>SELECT 
+    pizza_size, 
+    CAST(SUM(total_price) AS DECIMAL(10,2)) as total_revenue,
+    CAST(SUM(total_price) * 100 / (SELECT SUM(total_price) from pizza_sales) AS DECIMAL(10,2)) AS PCT
+FROM pizza_sales
+GROUP BY pizza_size
+ORDER BY pizza_size;</code></pre>
+						</div>
+					</div>
+
+					<div class="code-section mb-4">
+						<h5>4. Product Performance Analysis</h5>
+						<div class="mb-3">
+							<h6>Top 5 Pizzas by Revenue</h6>
+							<pre style="background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto;"><code>SELECT TOP 5 
+    pizza_name, 
+    Format(SUM(total_price),'N2') AS Total_Revenue
+FROM pizza_sales
+GROUP BY pizza_name
+ORDER BY Total_Revenue DESC;</code></pre>
+						</div>
+
+						<div class="mb-3">
+							<h6>Top 5 Pizzas by Quantity</h6>
+							<pre style="background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto;"><code>SELECT TOP 5 
+    pizza_name, 
+    SUM(quantity) AS Total_Pizza_Sold
+FROM pizza_sales
+GROUP BY pizza_name
+ORDER BY Total_Pizza_Sold DESC;</code></pre>
+						</div>
+
+						<div class="mb-3">
+							<h6>Top 5 Pizzas by Total Orders</h6>
+							<pre style="background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto;"><code>SELECT TOP 5 
+    pizza_name, 
+    COUNT(DISTINCT order_id) AS Total_Orders
+FROM pizza_sales
+GROUP BY pizza_name
+ORDER BY Total_Orders DESC;</code></pre>
+						</div>
+					</div>
+				</div><!--//project-section-->
+
 				<div class="project-section mb-2">
 					<h3 class="project-section-title mb-3">The Results</h3>
 					<div class="metrics mb-4">
 						<div class="row">
 							<div class="metric col-6 col-xl-3 mb-3">
 								<div class="inner p-3 theme-bg-light">
-									<div class="metric-name">Revenue Growth</div>
-									<div class="metric-data mb-2">+24.7%</div>
-									<div class="metric-desc">From $0.90bn (2022) to $1.13bn (2023).</div>
+									<div class="metric-name">Total Revenue</div>
+									<div class="metric-data mb-2">$817,860</div>
+									<div class="metric-desc">Comprehensive sales performance</div>
 								</div>
 							</div>
 							<div class="metric col-6 col-xl-3 mb-3">
 								<div class="inner p-3 theme-bg-light">
-									<div class="metric-name">Top Models</div>
-									<div class="metric-data mb-2">Z4, 8 Series, M4</div>
-									<div class="metric-desc">Accounted for 40%+ of sales revenue.</div>
+									<div class="metric-name">Total Orders</div>
+									<div class="metric-data mb-2">21,350</div>
+									<div class="metric-desc">Customer transactions analyzed</div>
 								</div>
 							</div>
 							<div class="metric col-6 col-xl-3 mb-3">
 								<div class="inner p-3 theme-bg-light">
-									<div class="metric-name">Top Regions</div>
-									<div class="metric-data mb-2">US, Mexico, Colombia</div>
-									<div class="metric-desc">Leading countries in revenue and growth.</div>
+									<div class="metric-name">Avg Order Value</div>
+									<div class="metric-data mb-2">$38.31</div>
+									<div class="metric-desc">Customer spending per order</div>
 								</div>
 							</div>
 							<div class="metric col-6 col-xl-3 mb-3">
 								<div class="inner p-3 theme-bg-light">
-									<div class="metric-name">Sales Channels</div>
-									<div class="metric-data mb-2">Wholesale 45% | Dealership 33% | Online 22%</div>
-									<div class="metric-desc">Balanced distribution improved global reach.</div>
+									<div class="metric-name">Total Pizzas</div>
+									<div class="metric-data mb-2">49,574</div>
+									<div class="metric-desc">Individual pizzas sold</div>
 								</div>
 							</div>
 						</div><!--//row-->
 					</div><!--//metrics-->
 					<p>
-						The analysis revealed:
+						Key insights discovered through the analysis:
 					</p>
 					<ul>
-						<li><strong>Electric & hybrid sales</strong> are rapidly expanding in <strong>urban regions</strong>.</li>
-						<li><strong>Returning customers</strong> are spending more on premium BMW models.</li>
-						<li><strong>South Africa</strong> showed exceptional growth (+67.3%), a major expansion opportunity.</li>
-						<li><strong>Online sales</strong> continue to grow, signaling a shift in customer buying behavior.</li>
+						<li><strong>Classic category</strong> drives 47% of total revenue</li>
+						<li><strong>Large pizzas</strong> generate the highest revenue per unit</li>
+						<li><strong>Friday</strong> shows peak daily performance</li>
+						<li><strong>Thai Chicken Pizza</strong> leads in revenue generation</li>
+						<li><strong>July</strong> recorded the highest monthly sales</li>
 					</ul>
 					<p>
-						By aligning inventory and marketing with these insights, BMW is better positioned to accelerate growth, 
-						optimize supply chains, and capture demand in high-growth markets.
+						The dashboard enables data-driven decisions for menu optimization, inventory management, 
+						staff scheduling, and marketing campaign targeting. The SQL queries provide a reusable 
+						framework for ongoing business intelligence and performance monitoring.
 					</p>
 				</div><!--//project-section-->
 			</div>
@@ -259,5 +385,4 @@
     
 
 </body>
-</html> 
-
+</html>
