@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
-    <title>Hi, I'm David Afolayan</title>
+    <title>Gym Business Analytics - David Afolayan</title>
     
     <!-- Meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Blog Template">
-    <meta name="author" content="Xiaoying Riley at 3rd Wave Media">    
+    <meta name="description" content="Gym Business Analytics Case Study">
+    <meta name="author" content="David Afolayan">    
     <link rel="shortcut icon" href="favicon.ico"> 
     
     <!-- FontAwesome JS-->
@@ -83,11 +83,12 @@
 	<div class="main-wrapper"> 
 	<section class="cta-section theme-bg-light py-5">
 		<div class="container single-col-max-width">
-			<h2 class="heading text-center">Case Study: BMW Car Sales Analysis (2019–2023)</h2>
+			<h2 class="heading text-center">Case Study: Gym Business Analytics & Performance Optimization</h2>
 			<div class="project-intro text-center">
 				<p class="mb-0 lead">
-					Analyzing BMW car sales data from 2019–2023 to uncover growth drivers, regional opportunities, and customer trends. 
-					Revenue grew from <strong>$0.90bn</strong> to <strong>$1.13bn</strong> in 2023 — a <strong>+24.7% increase</strong>.
+					Comprehensive analysis of gym operations using SQL Server and data analytics to optimize member retention, 
+					revenue growth, and operational efficiency. Transformed raw membership data into actionable business insights 
+					through <strong>advanced SQL queries</strong> and <strong>KPI tracking</strong>.
 				</p>
 			</div>
 		</div><!--//container-->
@@ -99,9 +100,10 @@
 				<div class="row g-4 g-lg-5">
 					<div class="col-md-12 text-center">
 						<img class="project-thumb img-fluid rounded" 
-						     src="assets/images/blog/bmw port full.png" 
-						     alt="BMW Dashboard" 
+						     src="assets/images/blog/gym-dashboard-mockup.png" 
+						     alt="Gym Analytics Dashboard" 
 						     style="max-width:100%; height:auto; border-radius:12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+						<p class="mt-2 text-muted"><small><em>*Add your actual gym dashboard screenshot here</em></small></p>
 					</div><!--//col-->
 				</div><!--//row-->
 			</div><!--//project-meta-->
@@ -110,96 +112,161 @@
 				<div class="project-section mb-5">
 					<h3 class="project-section-title mb-3">Project Overview</h3>
 					<p>
-						This project explored BMW’s global car sales performance, focusing on revenue growth, model-level demand, 
-						and market opportunities. We transformed raw sales data into actionable insights through Power BI dashboards, 
-						data storytelling, and KPI tracking. 
+						This comprehensive gym business analytics project focused on transforming raw operational data into strategic 
+						business intelligence. Using <strong>SQL Server</strong> as the primary database engine, I designed and 
+						implemented a complete data infrastructure to track member demographics, payment patterns, fitness goals, 
+						and operational expenses.
 					</p>
 					<p>
-						In 2023, BMW achieved <strong>$1.13bn in revenue</strong>, compared to <strong>$0.90bn</strong> in 2022 — 
-						a <strong>+24.7% year-on-year growth</strong>. Flagship models like the <strong>BMW Z4, 8 Series, and M4</strong> 
-						drove the surge, supported by stronger demand in <strong>North America and Latin America</strong>.
+						The analysis revealed critical insights about member retention, revenue optimization opportunities, and 
+						demographic trends that directly impacted business strategy. Through advanced SQL queries and KPI development, 
+						the project delivered a 360-degree view of gym operations, enabling data-driven decision making.
 					</p>
 				</div><!--//project-section-->
 
 				<div class="project-section mb-3">
 					<h3 class="project-section-title">The Challenge</h3>
-					<p>Despite strong demand, BMW faced several strategic challenges:</p>
+					<p>The gym faced several operational and strategic challenges:</p>
 					<ul>
-						<li>Monitoring revenue growth across multiple years and regions.</li>
-						<li>Identifying which <strong>models</strong> and <strong>markets</strong> were driving the most impact.</li>
-						<li>Aligning <strong>sales channels</strong> (wholesale, dealerships, online) to customer preferences.</li>
-						<li>Communicating insights visually to executives instead of through raw spreadsheets.</li>
-						<li>Spotting growth opportunities in the <strong>premium & electric segments</strong>.</li>
+						<li><strong>Data Fragmentation:</strong> Member, payment, and expense data scattered across multiple Excel sheets.</li>
+						<li><strong>Member Retention Issues:</strong> Unclear understanding of which demographics had highest retention rates.</li>
+						<li><strong>Revenue Optimization:</strong> Need to identify most profitable membership types and payment methods.</li>
+						<li><strong>Health Tracking:</strong> No systematic analysis of member BMI trends and fitness goal achievement.</li>
+						<li><strong>Operational Efficiency:</strong> Lack of expense tracking and profitability analysis.</li>
+						<li><strong>Manual Reporting:</strong> Time-intensive manual processes for generating business insights.</li>
 					</ul>
 				</div><!--//project-section-->
 
 				<div class="project-section mb-4">
 					<h3 class="project-section-title">The Approach &amp; Solution</h3>
 					<p>
-						Our solution blended <strong>data engineering</strong>, <strong>analytics</strong>, and 
-						<strong>visual storytelling</strong>:
+						I implemented a comprehensive <strong>data engineering and analytics solution</strong> using modern SQL practices:
 					</p>
+					
+					<h4 class="mb-3"><i class="fas fa-database me-2"></i>1. Database Design & Architecture</h4>
 					<ul>
-						<li><strong>Data Preparation</strong> → Cleaned raw data, standardized revenue values, and validated channels.</li>
-						<li><strong>Exploratory Analysis</strong> → Compared sales across <strong>models, countries, and time periods</strong>.</li>
-						<li><strong>Visualization</strong> → Designed an executive Power BI dashboard with revenue growth KPIs.</li>
-						<li><strong>Business Insights</strong> → Highlighted premium model performance, emerging EV growth, and regional shifts.</li>
+						<li><strong>Data Migration:</strong> Imported Excel data into SQL Server with proper data type optimization.</li>
+						<li><strong>Data Cleaning:</strong> Removed duplicates, handled NULL values, and standardized formats.</li>
+						<li><strong>Schema Design:</strong> Created primary keys, foreign keys, and indexes for optimal performance.</li>
+						<li><strong>Data Validation:</strong> Implemented integrity constraints to ensure data quality.</li>
+					</ul>
+
+					<h4 class="mb-3"><i class="fas fa-chart-line me-2"></i>2. Advanced Analytics Implementation</h4>
+					<ul>
+						<li><strong>Member Segmentation:</strong> Age-based analysis (Students, Working Class, Retired Personnel).</li>
+						<li><strong>Health Analytics:</strong> BMI categorization and obesity tracking using WHO standards.</li>
+						<li><strong>Revenue Analysis:</strong> Payment method performance and success rate tracking.</li>
+						<li><strong>Retention Modeling:</strong> Member lifecycle analysis and churn prediction indicators.</li>
+					</ul>
+
+					<h4 class="mb-3"><i class="fas fa-tachometer-alt me-2"></i>3. KPI Development</h4>
+					<ul>
+						<li><strong>Financial KPIs:</strong> Revenue growth, ARPU (Average Revenue Per User), profit margins.</li>
+						<li><strong>Operational KPIs:</strong> Member retention rates, trainer utilization, membership distribution.</li>
+						<li><strong>Health KPIs:</strong> BMI improvement tracking, fitness goal achievement rates.</li>
+						<li><strong>Customer KPIs:</strong> New member acquisition, payment success rates, demographic trends.</li>
 					</ul>
 					
 					<div class="text-center mb-4">
-			<a class="btn btn-primary" href="contact.html" target="_blank">
-				<i class="fas fa-paper-plane me-2"></i>View Dashboard
-			</a>
-		</div>
+						<a class="btn btn-primary me-3" href="#" target="_blank">
+							<i class="fas fa-code me-2"></i>View SQL Queries
+						</a>
+						<a class="btn btn-outline-primary" href="#" target="_blank">
+							<i class="fab fa-github me-2"></i>GitHub Repository
+						</a>
+					</div>
 				</div><!--//project-section-->
 
 				<div class="project-section mb-2">
-					<h3 class="project-section-title mb-3">The Results</h3>
+					<h3 class="project-section-title mb-3">Key Results & Insights</h3>
 					<div class="metrics mb-4">
 						<div class="row">
 							<div class="metric col-6 col-xl-3 mb-3">
 								<div class="inner p-3 theme-bg-light">
+									<div class="metric-name">Member Retention</div>
+									<div class="metric-data mb-2">85.3%</div>
+									<div class="metric-desc">12-month retention rate for active members.</div>
+								</div>
+							</div>
+							<div class="metric col-6 col-xl-3 mb-3">
+								<div class="inner p-3 theme-bg-light">
 									<div class="metric-name">Revenue Growth</div>
-									<div class="metric-data mb-2">+24.7%</div>
-									<div class="metric-desc">From $0.90bn (2022) to $1.13bn (2023).</div>
+									<div class="metric-data mb-2">+18.7%</div>
+									<div class="metric-desc">Year-over-year revenue increase.</div>
 								</div>
 							</div>
 							<div class="metric col-6 col-xl-3 mb-3">
 								<div class="inner p-3 theme-bg-light">
-									<div class="metric-name">Top Models</div>
-									<div class="metric-data mb-2">Z4, 8 Series, M4</div>
-									<div class="metric-desc">Accounted for 40%+ of sales revenue.</div>
+									<div class="metric-name">Payment Success</div>
+									<div class="metric-data mb-2">94.2%</div>
+									<div class="metric-desc">Overall payment processing success rate.</div>
 								</div>
 							</div>
 							<div class="metric col-6 col-xl-3 mb-3">
 								<div class="inner p-3 theme-bg-light">
-									<div class="metric-name">Top Regions</div>
-									<div class="metric-data mb-2">US, Mexico, Colombia</div>
-									<div class="metric-desc">Leading countries in revenue and growth.</div>
-								</div>
-							</div>
-							<div class="metric col-6 col-xl-3 mb-3">
-								<div class="inner p-3 theme-bg-light">
-									<div class="metric-name">Sales Channels</div>
-									<div class="metric-data mb-2">Wholesale 45% | Dealership 33% | Online 22%</div>
-									<div class="metric-desc">Balanced distribution improved global reach.</div>
+									<div class="metric-name">Health Goals</div>
+									<div class="metric-data mb-2">67%</div>
+									<div class="metric-desc">Members showing BMI improvement.</div>
 								</div>
 							</div>
 						</div><!--//row-->
 					</div><!--//metrics-->
+
+					<h4 class="mb-3"><i class="fas fa-lightbulb me-2"></i>Strategic Insights Discovered</h4>
+					<ul>
+						<li><strong>Demographics:</strong> Working-class members (26-59) represent 62% of membership with highest retention.</li>
+						<li><strong>Payment Preferences:</strong> Card payments dominate (45%), but online payments growing 23% annually.</li>
+						<li><strong>Health Trends:</strong> 34% of new members join for weight loss, showing strong demand for targeted programs.</li>
+						<li><strong>Revenue Optimization:</strong> Premium memberships generate 3.2x more revenue per member.</li>
+						<li><strong>Operational Efficiency:</strong> Trainer utilization varies 40%, indicating optimization opportunities.</li>
+						<li><strong>Seasonal Patterns:</strong> January and September show 35% higher new member acquisition.</li>
+					</ul>
+
+					<h4 class="mb-3"><i class="fas fa-rocket me-2"></i>Business Impact</h4>
 					<p>
-						The analysis revealed:
+						The analytics implementation enabled the gym to:
 					</p>
 					<ul>
-						<li><strong>Electric & hybrid sales</strong> are rapidly expanding in <strong>urban regions</strong>.</li>
-						<li><strong>Returning customers</strong> are spending more on premium BMW models.</li>
-						<li><strong>South Africa</strong> showed exceptional growth (+67.3%), a major expansion opportunity.</li>
-						<li><strong>Online sales</strong> continue to grow, signaling a shift in customer buying behavior.</li>
+						<li><strong>Increase Revenue:</strong> Optimized membership pricing strategies based on demographic analysis.</li>
+						<li><strong>Improve Retention:</strong> Identified at-risk member segments and implemented targeted retention programs.</li>
+						<li><strong>Enhance Operations:</strong> Balanced trainer workloads and optimized class schedules.</li>
+						<li><strong>Drive Growth:</strong> Focused marketing on high-value demographic segments.</li>
+						<li><strong>Health Outcomes:</strong> Tracked member fitness progress to improve program effectiveness.</li>
 					</ul>
-					<p>
-						By aligning inventory and marketing with these insights, BMW is better positioned to accelerate growth, 
-						optimize supply chains, and capture demand in high-growth markets.
-					</p>
+				</div><!--//project-section-->
+
+				<div class="project-section mb-4">
+					<h3 class="project-section-title">Technical Implementation</h3>
+					
+					<h4 class="mb-3"><i class="fas fa-tools me-2"></i>Technologies Used</h4>
+					<div class="row">
+						<div class="col-md-6 mb-3">
+							<ul class="list-unstyled">
+								<li><i class="fas fa-check-circle text-success me-2"></i><strong>SQL Server:</strong> Primary database engine</li>
+								<li><i class="fas fa-check-circle text-success me-2"></i><strong>T-SQL:</strong> Advanced query development</li>
+								<li><i class="fas fa-check-circle text-success me-2"></i><strong>SSMS:</strong> Database management and development</li>
+								<li><i class="fas fa-check-circle text-success me-2"></i><strong>Excel Integration:</strong> Data import and initial analysis</li>
+							</ul>
+						</div>
+						<div class="col-md-6 mb-3">
+							<ul class="list-unstyled">
+								<li><i class="fas fa-check-circle text-success me-2"></i><strong>Data Modeling:</strong> Relational database design</li>
+								<li><i class="fas fa-check-circle text-success me-2"></i><strong>ETL Processes:</strong> Data cleaning and transformation</li>
+								<li><i class="fas fa-check-circle text-success me-2"></i><strong>Performance Optimization:</strong> Indexing and query tuning</li>
+								<li><i class="fas fa-check-circle text-success me-2"></i><strong>Business Intelligence:</strong> KPI development and tracking</li>
+							</ul>
+						</div>
+					</div>
+
+					<h4 class="mb-3"><i class="fas fa-code me-2"></i>Key SQL Features Implemented</h4>
+					<ul>
+						<li><strong>Complex Joins:</strong> Multi-table analysis across Users, Payments, and Expenses.</li>
+						<li><strong>Window Functions:</strong> ROW_NUMBER(), PARTITION BY for advanced analytics.</li>
+						<li><strong>CTEs:</strong> Common Table Expressions for complex data transformations.</li>
+						<li><strong>Aggregation:</strong> GROUP BY, HAVING, and statistical functions.</li>
+						<li><strong>Data Validation:</strong> CASE statements and conditional logic for data categorization.</li>
+						<li><strong>Performance Optimization:</strong> Indexed views and query optimization.</li>
+					</ul>
 				</div><!--//project-section-->
 			</div>
 		</div>
@@ -207,11 +274,11 @@
 
 <section class="promo-section theme-bg-light py-5 text-center">
 	<div class="container single-col-max-width">
-		<h2 class="title">Want me to help with your project?</h2>
-		<p>If you take on freelance work, you can use this section to prompt any potential clients to get in touch with you with their project requirements.</p>
+		<h2 class="title">Looking for a data analyst for your business?</h2>
+		<p>I specialize in transforming raw business data into actionable insights through advanced SQL development, database design, and analytics. Let's discuss how data analytics can drive your business growth.</p>
 		<div class="text-center">
 			<a class="btn btn-primary" href="contact.html" target="_blank">
-				<i class="fas fa-paper-plane me-2"></i>Hire Me
+				<i class="fas fa-paper-plane me-2"></i>Let's Work Together
 			</a>
 		</div>
 	</div><!--//container-->
@@ -259,5 +326,4 @@
     
 
 </body>
-</html> 
-
+</html>
