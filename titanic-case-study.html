@@ -1,253 +1,557 @@
 <!DOCTYPE html>
-<html lang="en"> 
+<html lang="en">
 <head>
-    <title>Hi, I'm David Afolayan</title>
+    <title>Titanic Survival Prediction Analytics - David Afolayan</title>
     
     <!-- Meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Blog Template">
-    <meta name="author" content="Xiaoying Riley at 3rd Wave Media">    
-    <link rel="shortcut icon" href="favicon.ico"> 
+    <meta name="description" content="Titanic Survival Prediction Machine Learning Case Study">
+    <meta name="author" content="David Afolayan">
+    
+    <link rel="shortcut icon" href="favicon.ico">
     
     <!-- FontAwesome JS-->
-	<script defer src="assets/fontawesome/js/all.min.js"></script>
+    <script defer src="assets/fontawesome/js/all.min.js"></script>
     
     <!-- Plugin CSS -->
     <link rel="stylesheet" href="assets/plugins/highlight/styles/monokai-sublime.css">
     
-    <!-- Theme CSS -->  
+    <!-- Theme CSS -->
     <link id="theme-style" rel="stylesheet" href="assets/css/theme.css">
     
-
-</head> 
+    <style>
+        .metric-data {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #2c5aa0;
+        }
+        .insight-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .survival-card {
+            padding: 20px;
+            border-radius: 12px;
+            margin: 10px 0;
+            text-align: center;
+            font-weight: bold;
+            color: white;
+        }
+        .survived { background: linear-gradient(135deg, #2ecc71, #27ae60); }
+        .not-survived { background: linear-gradient(135deg, #e74c3c, #c0392b); }
+        .model-comparison {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 5px 0;
+        }
+        .correlation-highlight {
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            height: 6px;
+            border-radius: 3px;
+            margin: 8px 0;
+        }
+        .feature-importance {
+            background: linear-gradient(90deg, #ff6b6b, #ee5a24, #ffeaa7, #00b894);
+            height: 8px;
+            border-radius: 4px;
+            margin: 5px 0;
+        }
+    </style>
+</head>
 
 <body>
-    
-    <header class="header text-center">	    
-	    <h1 class="blog-name pt-lg-4 mb-0"><a class="no-text-decoration" href="index.html">Da'insight Space</a></h1>
+    <header class="header text-center">
+        <h1 class="blog-name pt-lg-4 mb-0"><a class="no-text-decoration" href="index.html">Da'insight Space</a></h1>
         
-	    <nav class="navbar navbar-expand-lg navbar-dark" >
-           
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-			<div id="navigation" class="collapse navbar-collapse flex-column" >
-				<div class="profile-section pt-3 pt-lg-0">
-				    <img class="profile-image mb-3 rounded-circle mx-auto" src="assets/images/blog/headshotImg.png" alt="image" >			
-					
-					<div class="bio mb-3">Hi, my name is Afolayan David Tolulope, a data analyst and machine learning expert.<br><a href="about.html">Find out more about me</a></div><!--//bio-->
-					<ul class="social-list list-inline py-3 mx-auto">
-			            <li class="list-inline-item"><a href="#"><i class="fa-brands fa-x-twitter fa-fw"></i></a></li>
-			            <li class="list-inline-item"><a href="#"><i class="fa-brands fa-linkedin-in fa-fw"></i></a></li>
-			            <li class="list-inline-item"><a href="#"><i class="fa-brands fa-github-alt fa-fw"></i></a></li>
-			            <li class="list-inline-item"><a href="#"><i class="fa-brands fa-stack-overflow fa-fw"></i></a></li>
-			            <li class="list-inline-item"><a href="#"><i class="fa-brands fa-codepen fa-fw"></i></a></li>
-			        </ul><!--//social-list-->
-			        <hr> 
-				</div><!--//profile-section-->
-				
-				<ul class="navbar-nav flex-column text-start">
-						<li class="nav-item">
-							<a class="nav-link" href="index.html"><i class="fas fa-user fa-fw me-2"></i>About</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="Portfolio.html"><i class="fas fa-laptop-code fa-fw me-2"></i>Portfolio</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="resume.html"><i class="fas fa-file-alt fa-fw me-2"></i>Resume</a> 
-						</li>
-						<li class="nav-item">
-							<a class="nav-link active" href="case-study.html"><i class="fas fa-envelope-open-text fa-fw me-2"></i>Case Study</a>
-						</li>
-					</ul>
+            <div id="navigation" class="collapse navbar-collapse flex-column">
+                <div class="profile-section pt-3 pt-lg-0">
+                    <img class="profile-image mb-3 rounded-circle mx-auto" src="assets/images/blog/headshotImg.png" alt="image">
+                    
+                    <div class="bio mb-3">Hi, my name is Afolayan David Tolulope, a data analyst and machine learning expert.<br><a href="about.html">Find out more about me</a></div>
+                    <ul class="social-list list-inline py-3 mx-auto text-center" style="font-size:15px;">
+                        <li class="list-inline-item"><a href="https://x.com/Da_vid_AFO?t=COoXOfQ8KQDKOSzQ4nBHuw&s=09"><i class="fab fa-twitter"></i></a></li>
+                        <li class="list-inline-item"><a href="https://www.linkedin.com/in/afolayan-tolulope/"><i class="fab fa-linkedin-in"></i></a></li>
+                        <li class="list-inline-item"><a href="https://github.com/Tolu-DavidAfolayan/"><i class="fab fa-github-alt"></i></a></li>
+                        <li class="list-inline-item"><a href="https://wa.me/2347065080990"><i class="fab fa-whatsapp"></i></a></li>
+                        <li class="list-inline-item last-item"><a href="https://www.kaggle.com/davidafolayan"><i class="fab fa-kaggle"></i></a></li>
+                        <li class="list-inline-item last-item"><a href="https://www.instagram.com/td_afolayan/profilecard/?igsh=MTdzeWZtemJwZWoyaQ=="><i class="fab fa-instagram"></i></a></li>
+                    </ul>
+                    <hr>
+                </div>
+                
+                <ul class="navbar-nav flex-column text-start">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html"><i class="fas fa-user fa-fw me-2"></i>About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Portfolio.html"><i class="fas fa-laptop-code fa-fw me-2"></i>Portfolio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="resume.html"><i class="fas fa-file-alt fa-fw me-2"></i>Resume</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="case-study.html"><i class="fas fa-envelope-open-text fa-fw me-2"></i>Case Study</a>
+                    </li>
+                </ul>
 
-				<div class="my-2">
-                        <a class="btn btn-primary" href="contact.html" target="_blank"><i class="fas fa-paper-plane me-2"></i>Hire Me</a>
-                    </div>
-				<div class="dark-mode-toggle text-center w-100">
-						<hr class="mb-4">
-					    <h4 class="toggle-name mb-3 "><i class="fas fa-adjust me-1"></i>Dark Mode</h4>
-					    
-					    <input class="toggle" id="darkmode" type="checkbox">
-					    <label class="toggle-btn mx-auto mb-0" for="darkmode"></label>
-					    
-					</div><!--//dark-mode-toggle-->
-			</div>
-		</nav>
+                <div class="my-2">
+                    <a class="btn btn-primary" href="contact.html" target="_blank"><i class="fas fa-paper-plane me-2"></i>Hire Me</a>
+                </div>
+                <div class="dark-mode-toggle text-center w-100">
+                    <hr class="mb-4">
+                    <h4 class="toggle-name mb-3"><i class="fas fa-adjust me-1"></i>Dark Mode</h4>
+                    <input class="toggle" id="darkmode" type="checkbox">
+                    <label class="toggle-btn mx-auto mb-0" for="darkmode"></label>
+                </div>
+            </div>
+        </nav>
     </header>
-	    
-    <div class="main-wrapper"> 
-	<section class="cta-section theme-bg-light py-5">
-		<div class="container single-col-max-width">
-			<h2 class="heading text-center">Case Study: Titanic Survival Prediction</h2>
-			<div class="project-intro text-center">
-				<p class="mb-0 lead">
-					This project applied machine learning to the classic Titanic dataset to predict passenger survival. 
-					The aim was to explore the relationship between socio-demographic factors, ticket class, and 
-					other attributes in determining survival likelihood.
-				</p>
-			</div>
-		</div><!--//container-->
-	</section>
 
-	<section class="project px-3 py-5 p-md-5">
-		<div class="container">
-			<div class="project-meta theme-bg-light p-4">
-				<div class="row g-4 g-lg-5">
-					<div class="col-md-12 text-center">
-						<img class="project-thumb img-fluid rounded" 
-						     src="assets/images/blog/titanic-dashboard.png" 
-						     alt="Titanic Survival Prediction Dashboard" 
-						     style="max-width:100%; height:auto; border-radius:12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
-					</div><!--//col-->
-				</div><!--//row-->
-			</div><!--//project-meta-->
+    <div class="main-wrapper">
+        <section class="cta-section theme-bg-light py-5">
+            <div class="container single-col-max-width">
+                <h2 class="heading text-center">Case Study: Titanic Survival Prediction & Historical Data Analytics</h2>
+                <div class="project-intro text-center">
+                    <p class="mb-0 lead">
+                        Machine learning analysis of Titanic passenger data using Python and ensemble methods.
+                        Built classification models achieving <strong>83.2% accuracy</strong> to predict survival outcomes
+                        and uncover historical insights through <strong>feature engineering</strong> and <strong>multi-algorithm comparison</strong>.
+                    </p>
+                </div>
+            </div>
+        </section>
 
-			<div class="project-sections py-5">
-				<div class="project-section mb-5">
-					<h3 class="project-section-title mb-3">Project Overview</h3>
-					<p>
-						The Titanic dataset is one of the most well-known datasets in data science, 
-						containing information about the passengers aboard the ship during its tragic voyage in 1912.  
-						The goal was to build models that predict whether a passenger survived based on 
-						features such as <strong>age, sex, class, family size, and fare</strong>.
-					</p>
-					<p>
-						Using Python (Pandas, Scikit-learn, Matplotlib), several models were trained and compared.  
-						The analysis provided insights into <strong>survival patterns</strong> and demonstrated 
-						how machine learning can extract meaningful signals from historical data.
-					</p>
-				</div><!--//project-section-->
+        <section class="project px-3 py-5 p-md-5">
+            <div class="container">
+                <div class="project-meta theme-bg-light p-4">
+                    <div class="row g-4 g-lg-5">
+                        <div class="col-md-12 text-center">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="survival-card not-survived">
+                                        <div><i class="fas fa-times-circle me-2"></i>Did Not Survive</div>
+                                        <div style="font-size: 2rem;">61.6%</div>
+                                        <small>549 passengers (historical tragedy)</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="survival-card survived">
+                                        <div><i class="fas fa-check-circle me-2"></i>Survived</div>
+                                        <div style="font-size: 2rem;">38.4%</div>
+                                        <small>342 passengers (against the odds)</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="mt-3 text-muted"><small><em>Historical Titanic Survival Distribution - 891 Passengers</em></small></p>
+                        </div>
+                    </div>
+                </div>
 
-				<div class="project-section mb-5">
-					<h3 class="project-section-title">The Challenge</h3>
-					<p>
-						Key challenges of the Titanic dataset included:
-					</p>
-					<ul>
-						<li>Handling missing values in <strong>Age</strong> and <strong>Cabin</strong> features.</li>
-						<li>Encoding categorical variables like <strong>Sex</strong> and <strong>Embarked</strong>.</li>
-						<li>Dealing with class imbalance (more passengers did not survive than survived).</li>
-						<li>Selecting the best-performing machine learning model for accuracy and generalization.</li>
-					</ul>
-				</div><!--//project-section-->
+                <div class="project-sections py-5">
+                    <div class="project-section mb-5">
+                        <h3 class="project-section-title mb-3">Project Overview</h3>
+                        <p>
+                            This comprehensive Titanic survival prediction project leveraged machine learning to analyze the
+                            tragic maritime disaster and identify patterns that determined passenger survival. Using the famous
+                            <strong>Kaggle Titanic dataset</strong> with 891 training records and 418 test cases, I developed
+                            multiple classification models to predict survival outcomes based on passenger characteristics.
+                        </p>
+                        <p>
+                            The analysis combined historical data science with modern machine learning techniques, featuring
+                            advanced feature engineering, multiple algorithm comparison, and statistical correlation analysis.
+                            Through careful data preprocessing and model optimization, the project achieved strong predictive
+                            performance while uncovering the social and economic factors that influenced survival during this
+                            historic tragedy.
+                        </p>
+                    </div>
 
-				<div class="project-section mb-5">
-					<h3 class="project-section-title">The Approach &amp; Solution</h3>
-					<p>
-						The project pipeline included:
-					</p>
-					<ul>
-						<li><strong>Data Cleaning</strong> → Filled missing values, dropped irrelevant columns, and engineered new features like <em>FamilySize</em> and <em>IsAlone</em>.</li>
-						<li><strong>Exploratory Data Analysis</strong> → Explored survival rates by passenger class, gender, and age groups.</li>
-						<li><strong>Feature Engineering</strong> → Converted categorical variables to numeric and scaled continuous features.</li>
-						<li><strong>Model Development</strong> → Trained Logistic Regression, Decision Tree, Random Forest, and Support Vector Machine.</li>
-						<li><strong>Evaluation</strong> → Compared models using accuracy, precision, recall, and F1-score.</li>
-					</ul>
-					<div class="row mt-5">
-						<div class="col-12 col-lg-6 mb-5">
-							<img class="img-fluid rounded" src="assets/images/project/titanic-feature-importance.jpg" alt="Titanic Feature Importance">
-						</div>
-						<div class="col-12 col-lg-6 mb-5">
-							<img class="img-fluid rounded" src="assets/images/project/titanic-model-comparison.jpg" alt="Titanic Model Comparison">
-						</div>
-					</div>
-				</div><!--//project-section-->
+                    <div class="project-section mb-3">
+                        <h3 class="project-section-title">The Challenge</h3>
+                        <p>The Titanic dataset presents classic machine learning challenges:</p>
+                        <ul>
+                            <li><strong>Missing Data:</strong> Significant gaps in Age (20%), Cabin (77%), and Embarked (0.2%) columns.</li>
+                            <li><strong>Class Imbalance:</strong> 61.6% fatalities vs 38.4% survivors creating prediction bias.</li>
+                            <li><strong>Feature Engineering:</strong> Extracting meaningful patterns from passenger names, tickets, and family relationships.</li>
+                            <li><strong>Categorical Encoding:</strong> Converting text data (Sex, Embarked) into numerical formats for ML algorithms.</li>
+                            <li><strong>Historical Context:</strong> Understanding how social class, gender, and age influenced survival in 1912.</li>
+                            <li><strong>Model Selection:</strong> Comparing multiple algorithms to find optimal performance for binary classification.</li>
+                        </ul>
+                    </div>
 
-				<div class="project-section mb-5">
-					<h3 class="project-section-title mb-3">The Results</h3>
-					<div class="metrics mb-4">
-						<div class="row">
-							<div class="metric col-6 col-xl-3 mb-3">
-								<div class="inner p-3 theme-bg-light">
-									<div class="metric-name">Best Accuracy</div>
-									<div class="metric-data mb-2">~82%</div>
-									<div class="metric-desc">Achieved using Random Forest Classifier.</div>
-								</div>
-							</div>
-							<div class="metric col-6 col-xl-3 mb-3">
-								<div class="inner p-3 theme-bg-light">
-									<div class="metric-name">Top Predictors</div>
-									<div class="metric-data mb-2">Sex, Pclass, Age</div>
-									<div class="metric-desc">Gender and ticket class were most predictive.</div>
-								</div>
-							</div>
-							<div class="metric col-6 col-xl-3 mb-3">
-								<div class="inner p-3 theme-bg-light">
-									<div class="metric-name">Survival Rate</div>
-									<div class="metric-data mb-2">38%</div>
-									<div class="metric-desc">Overall survival rate in the dataset.</div>
-								</div>
-							</div>
-							<div class="metric col-6 col-xl-3 mb-3">
-								<div class="inner p-3 theme-bg-light">
-									<div class="metric-name">Gender Insight</div>
-									<div class="metric-data mb-2">74% Women Survived</div>
-									<div class="metric-desc">Compared to only 18% of men.</div>
-								</div>
-							</div>
-						</div><!--//row-->
-					</div><!--//metrics-->
-					<p>
-						The analysis confirmed the historical narrative: women and children in higher classes had a higher survival chance.  
-						Machine learning models were able to capture these relationships and predict survival with high accuracy, 
-						showcasing how predictive analytics can be applied even to historical data.
-					</p>
-				</div><!--//project-section-->
-			</div>
-		</div>
-	</section>
-	    
-	    <section class="promo-section theme-bg-light py-5 text-center">
-		    <div class="container single-col-max-width">
-			    <h2 class="title">Want me to help with your project?</h2>
-			    <p>If you take on freelance work, you can use this section to prompt any potential clients to get in touch with you with their project requirements.</p>
-                <div class="text-center"><a class="btn btn-primary" href="contact.html" target="_blank"><i class="fas fa-paper-plane me-2"></i>Hire Me</a></div>
-		    </div><!--//container-->
-	    </section><!--//promo-section-->
-	    
-	    <footer class="footer text-center py-4">
-			<small class="copyright">Template Copyright &copy; <a href="https://themes.3rdwavemedia.com/" target="_blank">3rd Wave Media</a></small>
-		</footer>
-    
-    </div><!--//main-wrapper-->
-    
-    <!-- *****CONFIGURE STYLE (REMOVE ON YOUR PRODUCTION SITE)****** -->  
-	<div id="config-panel" class="config-panel config-panel-hide d-none d-lg-block">
-		<div class="panel-inner">
-			<a id="config-trigger" class="config-trigger text-center" href="#"><i class="fas fa-cog mx-auto" data-fa-transform="down-6" ></i></a>
-			<h5 class="panel-title">Choose Colour</h5>
-			<ul id="color-options" class="list-inline mb-0">
-				<li class="theme-1 active list-inline-item"><a data-style="assets/css/theme.css" href="#"></a></li>
-				<li class="theme-2  list-inline-item"><a data-style="assets/css/theme-1.css" href="#"></a></li>
-				<li class="theme-3  list-inline-item"><a data-style="assets/css/theme-2.css" href="#"></a></li>
-				<li class="theme-4  list-inline-item"><a data-style="assets/css/theme-3.css" href="#"></a></li>
-				<li class="theme-5  list-inline-item"><a data-style="assets/css/theme-4.css" href="#"></a></li>
-				<li class="theme-6  list-inline-item"><a data-style="assets/css/theme-5.css" href="#"></a></li>
-				<li class="theme-7  list-inline-item"><a data-style="assets/css/theme-6.css" href="#"></a></li>
-				<li class="theme-8  list-inline-item"><a data-style="assets/css/theme-7.css" href="#"></a></li>
-				<li class="theme-9  list-inline-item"><a data-style="assets/css/theme-8.css" href="#"></a></li>
-				<li class="theme-9  list-inline-item"><a data-style="assets/css/theme-9.css" href="#"></a></li>
-			</ul>
-			<a id="config-close" class="close" href="#"><i class="fa fa-times-circle"></i></a>
-		</div><!--//panel-inner-->
-	</div><!--//configure-panel-->
+                    <div class="project-section mb-4">
+                        <h3 class="project-section-title">The Approach &amp; Solution</h3>
+                        <p>
+                            I implemented a comprehensive <strong>classification pipeline</strong> with advanced preprocessing:
+                        </p>
 
-    <!-- Javascript -->          
-    <script src="assets/plugins/popper.min.js"></script> 
-    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script> 
+                        <h4 class="mb-3"><i class="fas fa-wrench me-2"></i>1. Data Wrangling & Feature Engineering</h4>
+                        <ul>
+                            <li><strong>Missing Value Imputation:</strong> Age filled with median, Embarked with mode, Fare with median.</li>
+                            <li><strong>Feature Creation:</strong> Engineered FamilySize (SibSp + Parch) for family survival analysis.</li>
+                            <li><strong>Categorical Encoding:</strong> Mapped Sex (Female=0, Male=1) and Embarked (C=0, Q=1, S=2).</li>
+                            <li><strong>Data Transformation:</strong> Log transformation of Fare to handle skewed distribution.</li>
+                        </ul>
+
+                        <h4 class="mb-3"><i class="fas fa-brain me-2"></i>2. Multi-Algorithm Machine Learning</h4>
+                        <ul>
+                            <li><strong>Random Forest:</strong> Ensemble method with 500 estimators achieving best performance (83.2%).</li>
+                            <li><strong>Logistic Regression:</strong> Linear baseline model for comparison (80.2% accuracy).</li>
+                            <li><strong>Decision Tree:</strong> Interpretable single-tree model (80.2% accuracy).</li>
+                            <li><strong>Model Optimization:</strong> Hyperparameter tuning with max_depth=10 for Random Forest.</li>
+                        </ul>
+
+                        <div class="insight-card">
+                            <h5><i class="fas fa-users me-2"></i>Social Class Impact</h5>
+                            <p class="mb-0">
+                                <strong>"Women and children first" - but class mattered too!</strong> 
+                                Analysis reveals that passenger class (Pclass) and gender were the strongest predictors 
+                                of survival, reflecting the social hierarchies and evacuation protocols of 1912.
+                            </p>
+                        </div>
+
+                        <div class="text-center mb-4">
+                            <a class="btn btn-primary me-3" href="#" target="_blank">
+                                <i class="fab fa-python me-2"></i>View Python Code
+                            </a>
+                            <a class="btn btn-outline-primary" href="#" target="_blank">
+                                <i class="fab fa-kaggle me-2"></i>Kaggle Competition
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="project-section mb-2">
+                        <h3 class="project-section-title mb-3">Model Performance & Comparison</h3>
+                        <div class="metrics mb-4">
+                            <div class="row">
+                                <div class="metric col-6 col-xl-3 mb-3">
+                                    <div class="inner p-3 theme-bg-light">
+                                        <div class="metric-name">Best Accuracy</div>
+                                        <div class="metric-data mb-2">83.2%</div>
+                                        <div class="metric-desc">Random Forest classifier performance.</div>
+                                    </div>
+                                </div>
+                                <div class="metric col-6 col-xl-3 mb-3">
+                                    <div class="inner p-3 theme-bg-light">
+                                        <div class="metric-name">F1-Score</div>
+                                        <div class="metric-data mb-2">76.2%</div>
+                                        <div class="metric-desc">Balanced precision-recall metric.</div>
+                                    </div>
+                                </div>
+                                <div class="metric col-6 col-xl-3 mb-3">
+                                    <div class="inner p-3 theme-bg-light">
+                                        <div class="metric-name">Training Data</div>
+                                        <div class="metric-data mb-2">891</div>
+                                        <div class="metric-desc">Passenger records for model training.</div>
+                                    </div>
+                                </div>
+                                <div class="metric col-6 col-xl-3 mb-3">
+                                    <div class="inner p-3 theme-bg-light">
+                                        <div class="metric-name">Features Used</div>
+                                        <div class="metric-data mb-2">6</div>
+                                        <div class="metric-desc">Engineered features for prediction.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h4 class="mb-3"><i class="fas fa-trophy me-2"></i>Algorithm Performance Comparison</h4>
+                        <div class="row mb-4">
+                            <div class="col-md-4">
+                                <div class="model-comparison">
+                                    <h6><i class="fas fa-tree me-2"></i>Random Forest</h6>
+                                    <div style="font-size: 1.8rem;">83.2%</div>
+                                    <small>🏆 Best Performance</small>
+                                    <div class="correlation-highlight" style="width: 100%;"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="model-comparison" style="background: linear-gradient(135deg, #f39c12, #e67e22);">
+                                    <h6><i class="fas fa-chart-line me-2"></i>Logistic Regression</h6>
+                                    <div style="font-size: 1.8rem;">80.2%</div>
+                                    <small>🥈 Linear Baseline</small>
+                                    <div class="correlation-highlight" style="width: 96%;"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="model-comparison" style="background: linear-gradient(135deg, #e74c3c, #c0392b);">
+                                    <h6><i class="fas fa-sitemap me-2"></i>Decision Tree</h6>
+                                    <div style="font-size: 1.8rem;">80.2%</div>
+                                    <small>🥉 Interpretable Model</small>
+                                    <div class="correlation-highlight" style="width: 96%;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h4 class="mb-3"><i class="fas fa-search-plus me-2"></i>Key Survival Factors</h4>
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <strong>Gender (Sex): Strongest Predictor</strong>
+                                    <div class="feature-importance" style="width: 100%;"></div>
+                                    <small class="text-muted">Women had 74% survival rate vs 19% for men</small>
+                                </div>
+                                <div class="mb-3">
+                                    <strong>Passenger Class (Pclass): Social Status</strong>
+                                    <div class="feature-importance" style="width: 85%;"></div>
+                                    <small class="text-muted">1st class: 63%, 2nd: 47%, 3rd: 24% survival rates</small>
+                                </div>
+                                <div class="mb-3">
+                                    <strong>Age: Protective Factor for Children</strong>
+                                    <div class="feature-importance" style="width: 65%;"></div>
+                                    <small class="text-muted">Children under 16 had higher survival probability</small>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <strong>Fare: Economic Indicator</strong>
+                                    <div class="feature-importance" style="width: 70%;"></div>
+                                    <small class="text-muted">Higher fares correlated with better survival chances</small>
+                                </div>
+                                <div class="mb-3">
+                                    <strong>Family Size: Complex Relationship</strong>
+                                    <div class="feature-importance" style="width: 45%;"></div>
+                                    <small class="text-muted">Medium family size optimal for survival</small>
+                                </div>
+                                <div class="mb-3">
+                                    <strong>Embarkation Port: Geographic Factor</strong>
+                                    <div class="feature-importance" style="width: 35%;"></div>
+                                    <small class="text-muted">Cherbourg (C) passengers had higher survival rate</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h4 class="mb-3"><i class="fas fa-lightbulb me-2"></i>Historical Insights Discovered</h4>
+                        <ul>
+                            <li><strong>Gender Bias:</strong> Women were 3.9x more likely to survive than men due to "women and children first" protocol.</li>
+                            <li><strong>Class Discrimination:</strong> First-class passengers were 2.6x more likely to survive than third-class.</li>
+                            <li><strong>Age Protection:</strong> Children and elderly showed different survival patterns reflecting evacuation priorities.</li>
+                            <li><strong>Economic Influence:</strong> Higher ticket prices (Fare) correlated strongly with survival probability.</li>
+                            <li><strong>Family Dynamics:</strong> Small families (2-4 members) had optimal survival rates compared to solo travelers.</li>
+                            <li><strong>Port of Embarkation:</strong> Cherbourg passengers had highest survival rates (55% vs 34% overall).</li>
+                        </ul>
+
+                        <h4 class="mb-3"><i class="fas fa-chart-area me-2"></i>Statistical Analysis Results</h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="insight-card">
+                                    <h6><i class="fas fa-venus me-2"></i>Gender Impact Analysis</h6>
+                                    <p class="mb-0">Female passengers: 74% survival rate. Male passengers: 19% survival rate. The "women and children first" evacuation protocol clearly visible in data.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="insight-card">
+                                    <h6><i class="fas fa-layer-group me-2"></i>Class-Based Survival</h6>
+                                    <p class="mb-0">1st Class: 63% survival, 2nd Class: 47% survival, 3rd Class: 24% survival. Clear socioeconomic hierarchy in disaster response.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="insight-card">
+                                    <h6><i class="fas fa-baby me-2"></i>Age Demographics</h6>
+                                    <p class="mb-0">Children under 16 showed higher survival rates. Median age of survivors was 28 years, reflecting age-based evacuation priorities.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="insight-card">
+                                    <h6><i class="fas fa-home me-2"></i>Family Size Effect</h6>
+                                    <p class="mb-0">Optimal family size of 2-4 members. Solo travelers and very large families had lower survival probabilities.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-section mb-4">
+                        <h3 class="project-section-title">Technical Implementation</h3>
+
+                        <h4 class="mb-3"><i class="fas fa-tools me-2"></i>Technologies & Libraries</h4>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <ul class="list-unstyled">
+                                    <li><i class="fas fa-check-circle text-success me-2"></i><strong>Python:</strong> Core programming language</li>
+                                    <li><i class="fas fa-check-circle text-success me-2"></i><strong>Pandas & NumPy:</strong> Data manipulation and numerical computing</li>
+                                    <li><i class="fas fa-check-circle text-success me-2"></i><strong>Scikit-learn:</strong> Machine learning algorithms and metrics</li>
+                                    <li><i class="fas fa-check-circle text-success me-2"></i><strong>Matplotlib & Seaborn:</strong> Statistical visualization</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <ul class="list-unstyled">
+                                    <li><i class="fas fa-check-circle text-success me-2"></i><strong>Random Forest:</strong> Best performing ensemble method</li>
+                                    <li><i class="fas fa-check-circle text-success me-2"></i><strong>Logistic Regression:</strong> Linear classification baseline</li>
+                                    <li><i class="fas fa-check-circle text-success me-2"></i><strong>Decision Trees:</strong> Interpretable single-tree classifier</li>
+                                    <li><i class="fas fa-check-circle text-success me-2"></i><strong>Statistical Analysis:</strong> Correlation matrices and distribution analysis</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <h4 class="mb-3"><i class="fas fa-code me-2"></i>Advanced Data Science Techniques</h4>
+                        <ul>
+                            <li><strong>Custom Wrangle Function:</strong> Automated preprocessing pipeline for consistent data transformation.</li>
+                            <li><strong>Feature Engineering:</strong> Created FamilySize variable combining SibSp and Parch relationships.</li>
+                            <li><strong>Logarithmic Transformation:</strong> Applied log1p to Fare for handling right-skewed financial data.</li>
+                            <li><strong>Train-Test Split:</strong> 70-30 split with stratification for balanced validation.</li>
+                            <li><strong>Correlation Analysis:</strong> Comprehensive heatmap visualization of feature relationships.</li>
+                            <li><strong>Model Comparison:</strong> Systematic evaluation across multiple algorithms with performance metrics.</li>
+                        </ul>
+
+                        <h4 class="mb-3"><i class="fas fa-chart-bar me-2"></i>Data Quality & Preprocessing</h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="alert alert-info">
+                                    <h6><i class="fas fa-database me-2"></i>Data Cleaning Success</h6>
+                                    <p class="mb-0">
+                                        <strong>100% complete dataset</strong> achieved through strategic imputation:
+                                        Age (median), Embarked (mode), Fare (median) - zero missing values post-processing.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="alert alert-success">
+                                    <h6><i class="fas fa-cogs me-2"></i>Feature Engineering</h6>
+                                    <p class="mb-0">
+                                        <strong>FamilySize feature</strong> created by combining SibSp + Parch,
+                                        revealing that medium-sized families had optimal survival advantages.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h4 class="mb-3"><i class="fas fa-search me-2"></i>Detailed Model Analysis</h4>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h6>Random Forest (Winner)</h6>
+                                <ul class="small">
+                                    <li>Accuracy: 83.2%</li>
+                                    <li>F1-Score: 76.2%</li>
+                                    <li>500 estimators, max_depth=10</li>
+                                    <li>Best for handling feature interactions</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-4">
+                                <h6>Logistic Regression</h6>
+                                <ul class="small">
+                                    <li>Accuracy: 80.2%</li>
+                                    <li>F1-Score: 73.9%</li>
+                                    <li>Linear decision boundary</li>
+                                    <li>Fast and interpretable</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-4">
+                                <h6>Decision Tree</h6>
+                                <ul class="small">
+                                    <li>Accuracy: 80.2%</li>
+                                    <li>F1-Score: 73.9%</li>
+                                    <li>Single tree structure</li>
+                                    <li>Highly interpretable rules</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <h4 class="mb-3"><i class="fas fa-chart-pie me-2"></i>Historical Data Insights</h4>
+                        <ul>
+                            <li><strong>Survival Rate by Class:</strong> 1st (63%) > 2nd (47%) > 3rd (24%) - clear socioeconomic stratification.</li>
+                            <li><strong>Gender Disparity:</strong> 74% female survival vs 19% male survival - evacuation protocol impact.</li>
+                            <li><strong>Age Distribution:</strong> Median survivor age of 28 years with children prioritized in rescue.</li>
+                            <li><strong>Economic Correlation:</strong> Fare prices strongly correlated with survival probability.</li>
+                            <li><strong>Family Survival:</strong> Optimal family size of 2-4 members for survival probability.</li>
+                            <li><strong>Embarkation Analysis:</strong> Cherbourg passengers had highest survival rates among ports.</li>
+                        </ul>
+                    </div>
+
+                    <div class="project-section mb-4">
+                        <h3 class="project-section-title">Model Deployment & Predictions</h3>
+                        
+                        <h4 class="mb-3"><i class="fas fa-rocket me-2"></i>Production Implementation</h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="insight-card">
+                                    <h6><i class="fas fa-upload me-2"></i>Kaggle Submission</h6>
+                                    <p class="mb-0">Generated predictions for 418 test passengers and created submission file for Kaggle competition leaderboard.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="insight-card">
+                                    <h6><i class="fas fa-save me-2"></i>Model Persistence</h6>
+                                    <p class="mb-0">Trained model saved for future predictions and deployment in production environments.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h4 class="mb-3"><i class="fas fa-brain me-2"></i>Predictive Insights</h4>
+                        <p>The final Random Forest model successfully predicted survival for 418 test passengers, demonstrating:</p>
+                        <ul>
+                            <li><strong>High Precision:</strong> 92% precision for non-survivors, 70% for survivors.</li>
+                            <li><strong>Balanced Recall:</strong> 83% recall for non-survivors, 84% for survivors.</li>
+                            <li><strong>Robust Performance:</strong> Consistent accuracy across different passenger demographics.</li>
+                            <li><strong>Feature Robustness:</strong> Model relies on historically significant factors (class, gender, age).</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="promo-section theme-bg-light py-5 text-center">
+            <div class="container single-col-max-width">
+                <h2 class="title">Looking for a machine learning expert for your business?</h2>
+                <p>I specialize in building predictive models and extracting insights from complex datasets. From classification problems to feature engineering and model optimization, let's unlock the power of your data through advanced machine learning and statistical analysis.</p>
+                <div class="text-center">
+                    <a class="btn btn-primary" href="contact.html" target="_blank">
+                        <i class="fas fa-paper-plane me-2"></i>Let's Work Together
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer text-center py-4">
+            <small class="copyright">Template Copyright &copy;
+                <a href="https://themes.3rdwavemedia.com/" target="_blank">3rd Wave Media</a>
+            </small>
+        </footer>
+    </div>
+
+    <!-- *****CONFIGURE STYLE (REMOVE ON YOUR PRODUCTION SITE)****** -->
+    <div id="config-panel" class="config-panel config-panel-hide d-none d-lg-block">
+        <div class="panel-inner">
+            <a id="config-trigger" class="config-trigger text-center" href="#"><i class="fas fa-cog mx-auto" data-fa-transform="down-6"></i></a>
+            <h5 class="panel-title">Choose Colour</h5>
+            <ul id="color-options" class="list-inline mb-0">
+                <li class="theme-1 active list-inline-item"><a data-style="assets/css/theme.css" href="#"></a></li>
+                <li class="theme-2 list-inline-item"><a data-style="assets/css/theme-1.css" href="#"></a></li>
+                <li class="theme-3 list-inline-item"><a data-style="assets/css/theme-2.css" href="#"></a></li>
+                <li class="theme-4 list-inline-item"><a data-style="assets/css/theme-3.css" href="#"></a></li>
+                <li class="theme-5 list-inline-item"><a data-style="assets/css/theme-4.css" href="#"></a></li>
+                <li class="theme-6 list-inline-item"><a data-style="assets/css/theme-5.css" href="#"></a></li>
+                <li class="theme-7 list-inline-item"><a data-style="assets/css/theme-6.css" href="#"></a></li>
+                <li class="theme-8 list-inline-item"><a data-style="assets/css/theme-7.css" href="#"></a></li>
+                <li class="theme-9 list-inline-item"><a data-style="assets/css/theme-8.css" href="#"></a></li>
+                <li class="theme-9 list-inline-item"><a data-style="assets/css/theme-9.css" href="#"></a></li>
+            </ul>
+            <a id="config-close" class="close" href="#"><i class="fa fa-times-circle"></i></a>
+        </div>
+    </div>
+
+    <!-- Javascript -->
+    <script src="assets/plugins/popper.min.js"></script>
+    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
     
     <!-- Dark Mode -->
-	<script src="assets/plugins/js-cookie.min.js"></script>
-	<script src="assets/js/dark-mode.js"></script>
-
-    <!-- Style Switcher (REMOVE ON YOUR PRODUCTION SITE) -->
-    <script src="assets/js/demo/style-switcher.js"></script>     
+    <script src="assets/plugins/js-cookie.min.js"></script>
+    <script src="assets/js/dark-mode.js"></script>
     
+    <!-- Style Switcher (REMOVE ON YOUR PRODUCTION SITE) -->
+    <script src="assets/js/demo/style-switcher.js"></script>
 
 </body>
-</html> 
-
+</html>
