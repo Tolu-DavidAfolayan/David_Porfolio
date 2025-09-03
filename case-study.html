@@ -1,263 +1,638 @@
 <!DOCTYPE html>
-<html lang="en"> 
+<html lang="en">
 <head>
-    <title>Hi, I'm David Afolayan</title>
-    
+    <title>BMW Vehicle Sales Analytics - David Afolayan</title>
+         
     <!-- Meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Blog Template">
-    <meta name="author" content="Xiaoying Riley at 3rd Wave Media">    
-    <link rel="shortcut icon" href="favicon.ico"> 
-    
+    <meta name="description" content="BMW Vehicle Sales Performance Analytics Case Study">
+    <meta name="author" content="David Afolayan">
+         
+    <link rel="shortcut icon" href="favicon.ico">
+         
     <!-- FontAwesome JS-->
-	<script defer src="assets/fontawesome/js/all.min.js"></script>
-    
+    <script defer src="assets/fontawesome/js/all.min.js"></script>
+         
     <!-- Plugin CSS -->
     <link rel="stylesheet" href="assets/plugins/highlight/styles/monokai-sublime.css">
-    
-    <!-- Theme CSS -->  
+         
+    <!-- Theme CSS -->
     <link id="theme-style" rel="stylesheet" href="assets/css/theme.css">
-    
-
-</head> 
+         
+    <style>
+        .metric-data {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #2c5aa0;
+        }
+        .insight-card {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .bmw-card {
+            background: linear-gradient(135deg, #0066cc 0%, #004499 100%);
+            color: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .feature-bar {
+            background: linear-gradient(90deg, #0066cc, #3399ff, #66ccff);
+            height: 8px;
+            border-radius: 4px;
+            margin: 5px 0;
+        }
+        .performance-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .performance-card {
+            padding: 20px;
+            text-align: center;
+            border-radius: 12px;
+            font-weight: bold;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        .revenue-card { background: linear-gradient(135deg, #0066cc, #004499); }
+        .growth-card { background: linear-gradient(135deg, #00aa44, #008833); }
+        .volume-card { background: linear-gradient(135deg, #ff6600, #cc5500); }
+        .price-card { background: linear-gradient(135deg, #9900cc, #7700aa); }
+        .model-showcase {
+            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 1rem 0;
+            text-align: center;
+        }
+        .country-performance {
+            background: linear-gradient(90deg, #0066cc, #3399ff, #66ccff);
+            height: 12px;
+            border-radius: 6px;
+            margin: 8px 0;
+        }
+        .sales-highlight {
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+        .trend-indicator {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        .trend-up { background: #d4edda; color: #155724; }
+        .trend-stable { background: #fff3cd; color: #856404; }
+        .bmw-logo-section {
+            background: linear-gradient(135deg, #0066cc, #004499);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            color: white;
+            margin: 1rem 0;
+        }
+        .model-card {
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px 0;
+            transition: all 0.3s ease;
+        }
+        .model-card:hover {
+            border-color: #0066cc;
+            box-shadow: 0 4px 12px rgba(0, 102, 204, 0.2);
+        }
+        .channel-distribution {
+            background: linear-gradient(135deg, #f3f4f6, #d1d5db);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
 
 <body>
-    
-    <header class="header text-center">	    
-	    <h1 class="blog-name pt-lg-4 mb-0"><a class="no-text-decoration" href="index.html">Da'insight Space</a></h1>
-        
-	    <nav class="navbar navbar-expand-lg navbar-dark" >
-           
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
+    <header class="header text-center">
+        <h1 class="blog-name pt-lg-4 mb-0"><a class="no-text-decoration" href="index.html">Da'insight Space</a></h1>
+                
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-			<div id="navigation" class="collapse navbar-collapse flex-column" >
-				<div class="profile-section pt-3 pt-lg-0">
-				    <img class="profile-image mb-3 rounded-circle mx-auto" src="assets/images/blog/headshotImg.png" alt="image" >			
-					
-					<div class="bio mb-3">Hi, my name is Afolayan David Tolulope, a data analyst and machine learning expert.<br><a href="about.html">Find out more about me</a></div><!--//bio-->
-					<ul class="social-list list-inline py-3 mx-auto text-center" style="font-size:15px;">
-			            <li class="list-inline-item"><a href="https://x.com/Da_vid_AFO?t=COoXOfQ8KQDKOSzQ4nBHuw&s=09"><i class="fab fa-twitter"></i></a></li>
-		                    <li class="list-inline-item"><a href="https://www.linkedin.com/in/afolayan-tolulope/"><i class="fab fa-linkedin-in"></i></a></li>
-		                    <li class="list-inline-item"><a href="https://github.com/Tolu-DavidAfolayan/"><i class="fab fa-github-alt"></i></a></li>    
-		                    <li class="list-inline-item"><a href="https://wa.me/2347065080990"><i class="fab fa-whatsapp"></i></a></li>
-					<li class="list-inline-item last-item"><a href="https://www.kaggle.com/davidafolayan"><i class="fab fa-kaggle"></i></a></li>
-		                    <li class="list-inline-item last-item"><a href="https://www.instagram.com/td_afolayan/profilecard/?igsh=MTdzeWZtemJwZWoyaQ=="><i class="fab fa-instagram"></i></a></li>
-			        </ul><!--//social-list-->
-			        <hr> 
-				</div><!--//profile-section-->
-				
-				<ul class="navbar-nav flex-column text-start">
-						<li class="nav-item">
-							<a class="nav-link" href="index.html"><i class="fas fa-user fa-fw me-2"></i>About</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="Portfolio.html"><i class="fas fa-laptop-code fa-fw me-2"></i>Portfolio</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="resume.html"><i class="fas fa-file-alt fa-fw me-2"></i>Resume</a> 
-						</li>
-						<li class="nav-item">
-							<a class="nav-link active" href="case-study.html"><i class="fas fa-envelope-open-text fa-fw me-2"></i>Case Study</a>
-						</li>
-					</ul>
+            <div id="navigation" class="collapse navbar-collapse flex-column">
+                <div class="profile-section pt-3 pt-lg-0">
+                    <img class="profile-image mb-3 rounded-circle mx-auto" src="assets/images/blog/headshotImg.png" alt="image">
+                                        
+                    <div class="bio mb-3">Hi, my name is Afolayan David Tolulope, a data analyst and machine learning expert.<br><a href="about.html">Find out more about me</a></div>
+                    <ul class="social-list list-inline py-3 mx-auto text-center" style="font-size:15px;">
+                        <li class="list-inline-item"><a href="https://x.com/Da_vid_AFO?t=COoXOfQ8KQDKOSzQ4nBHuw&s=09"><i class="fab fa-twitter"></i></a></li>
+                        <li class="list-inline-item"><a href="https://www.linkedin.com/in/afolayan-tolulope/"><i class="fab fa-linkedin-in"></i></a></li>
+                        <li class="list-inline-item"><a href="https://github.com/Tolu-DavidAfolayan/"><i class="fab fa-github-alt"></i></a></li>
+                        <li class="list-inline-item"><a href="https://wa.me/2347065080990"><i class="fab fa-whatsapp"></i></a></li>
+                        <li class="list-inline-item last-item"><a href="https://www.kaggle.com/davidafolayan"><i class="fab fa-kaggle"></i></a></li>
+                        <li class="list-inline-item last-item"><a href="https://www.instagram.com/td_afolayan/profilecard/?igsh=MTdzeWZtemJwZWoyaQ=="><i class="fab fa-instagram"></i></a></li>
+                    </ul>
+                    <hr>
+                </div>
+                                
+                <ul class="navbar-nav flex-column text-start">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html"><i class="fas fa-user fa-fw me-2"></i>About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Portfolio.html"><i class="fas fa-laptop-code fa-fw me-2"></i>Portfolio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="resume.html"><i class="fas fa-file-alt fa-fw me-2"></i>Resume</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="case-study.html"><i class="fas fa-envelope-open-text fa-fw me-2"></i>Case Study</a>
+                    </li>
+                </ul>
 
-				<div class="my-2">
-                        <a class="btn btn-primary" href="contact.html" target="_blank"><i class="fas fa-paper-plane me-2"></i>Hire Me</a>
-                    </div>
-				<div class="dark-mode-toggle text-center w-100">
-						<hr class="mb-4">
-					    <h4 class="toggle-name mb-3 "><i class="fas fa-adjust me-1"></i>Dark Mode</h4>
-					    
-					    <input class="toggle" id="darkmode" type="checkbox">
-					    <label class="toggle-btn mx-auto mb-0" for="darkmode"></label>
-					    
-					</div><!--//dark-mode-toggle-->
-			</div>
-		</nav>
+                <div class="my-2">
+                    <a class="btn btn-primary" href="contact.html" target="_blank"><i class="fas fa-paper-plane me-2"></i>Hire Me</a>
+                </div>
+                <div class="dark-mode-toggle text-center w-100">
+                    <hr class="mb-4">
+                    <h4 class="toggle-name mb-3"><i class="fas fa-adjust me-1"></i>Dark Mode</h4>
+                    <input class="toggle" id="darkmode" type="checkbox">
+                    <label class="toggle-btn mx-auto mb-0" for="darkmode"></label>
+                </div>
+            </div>
+        </nav>
     </header>
 
-	<div class="main-wrapper"> 
-	<section class="cta-section theme-bg-light py-5">
-		<div class="container single-col-max-width">
-			<h2 class="heading text-center">Case Study: BMW Car Sales Analysis (2019–2023)</h2>
-			<div class="project-intro text-center">
-				<p class="mb-0 lead">
-					Analyzing BMW car sales data from 2019–2023 to uncover growth drivers, regional opportunities, and customer trends. 
-					Revenue grew from <strong>$0.90bn</strong> to <strong>$1.13bn</strong> in 2023 — a <strong>+24.7% increase</strong>.
-				</p>
-			</div>
-		</div><!--//container-->
-	</section>
+    <div class="main-wrapper">
+        <section class="cta-section theme-bg-light py-5">
+            <div class="container single-col-max-width">
+                <h2 class="heading text-center">Case Study: BMW Vehicle Sales Performance Analytics (2019-2023)</h2>
+                <div class="project-intro text-center">
+                    <p class="mb-0 lead">
+                        Comprehensive automotive business intelligence dashboard analyzing BMW's global sales performance with <strong>1.13bn revenue</strong>
+                        and <strong>+24.7% growth</strong>. Advanced analytics tracking vehicle sales across multiple models, markets, and channels
+                        with <strong>interactive data visualization</strong> and <strong>automotive industry insights</strong>.
+                    </p>
+                </div>
+            </div>
+        </section>
 
-	<section class="project px-3 py-5 p-md-5">
-		<div class="container">
-			<div class="project-meta theme-bg-light p-4">
-				<div class="row g-4 g-lg-5">
-					<div class="col-md-12 text-center">
-						<img class="project-thumb img-fluid rounded" 
-						     src="assets/images/blog/bmw port full.png" 
-						     alt="BMW Dashboard" 
-						     style="max-width:100%; height:auto; border-radius:12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
-					</div><!--//col-->
-				</div><!--//row-->
-			</div><!--//project-meta-->
+        <section class="project px-3 py-5 p-md-5">
+            <div class="container">
+                <div class="project-meta theme-bg-light p-4">
+                    <div class="row g-4 g-lg-5">
+                        <div class="col-md-12 text-center">
+                            <div class="performance-grid">
+                                <div class="performance-card revenue-card">
+                                    <div><i class="fas fa-chart-line me-2"></i>Overall Revenue</div>
+                                    <div style="font-size: 2rem;">1.13bn</div>
+                                    <small class="trend-indicator trend-up">+24.7% Growth</small>
+                                </div>
+                                <div class="performance-card growth-card">
+                                    <div><i class="fas fa-trending-up me-2"></i>Revenue PY</div>
+                                    <div style="font-size: 2rem;">0.90bn</div>
+                                    <small class="trend-indicator trend-stable">Previous Year</small>
+                                </div>
+                                <div class="performance-card volume-card">
+                                    <div><i class="fas fa-car me-2"></i>Top Model (Z4)</div>
+                                    <div style="font-size: 2rem;">666 Units</div>
+                                    <small class="trend-indicator trend-up">Best Seller</small>
+                                </div>
+                                <div class="performance-card price-card">
+                                    <div><i class="fas fa-trophy me-2"></i>Premium (iX 3)</div>
+                                    <div style="font-size: 2rem;">$78.2K</div>
+                                    <small class="trend-indicator trend-up">Highest Value</small>
+                                </div>
+                            </div>
+                            <p class="mt-2 text-muted"><small><em>BMW Vehicle Sales Performance Metrics - Jan 1, 2019 - Dec 31, 2023</em></small></p>
+                        </div>
+                    </div>
+                </div>
 
-			<div class="project-sections py-5">
-				<div class="project-section mb-5">
-					<h3 class="project-section-title mb-3">Project Overview</h3>
-					<p>
-						This project explored BMW’s global car sales performance, focusing on revenue growth, model-level demand, 
-						and market opportunities. We transformed raw sales data into actionable insights through Power BI dashboards, 
-						data storytelling, and KPI tracking. 
-					</p>
-					<p>
-						In 2023, BMW achieved <strong>$1.13bn in revenue</strong>, compared to <strong>$0.90bn</strong> in 2022 — 
-						a <strong>+24.7% year-on-year growth</strong>. Flagship models like the <strong>BMW Z4, 8 Series, and M4</strong> 
-						drove the surge, supported by stronger demand in <strong>North America and Latin America</strong>.
-					</p>
-				</div><!--//project-section-->
+                <div class="project-sections py-5">
+                    <div class="project-section mb-5">
+                        <h3 class="project-section-title mb-3">Project Overview</h3>
+                        <p>
+                            This comprehensive BMW Vehicle Sales Analytics project delivers end-to-end automotive business intelligence
+                            through interactive dashboards spanning <strong>Revenue Performance</strong>, <strong>Model Analysis</strong>,
+                            <strong>Geographic Markets</strong>, and <strong>Sales Channels</strong>. The multi-dashboard system provides
+                            real-time insights across global automotive markets with detailed model, country, and channel analysis.
+                        </p>
+                        <p>
+                            Analyzing BMW operations from <strong>2019-2023</strong>, the dashboards reveal performance
+                            patterns across model lines including Z4 (666 units), 8 Series (641 units), M4 (620 units), and i8 (615 units),
+                            enabling data-driven strategic decisions for inventory management, market penetration, and revenue optimization.
+                        </p>
+                    </div>
 
-				<div class="project-section mb-3">
-					<h3 class="project-section-title">The Challenge</h3>
-					<p>Despite strong demand, BMW faced several strategic challenges:</p>
-					<ul>
-						<li>Monitoring revenue growth across multiple years and regions.</li>
-						<li>Identifying which <strong>models</strong> and <strong>markets</strong> were driving the most impact.</li>
-						<li>Aligning <strong>sales channels</strong> (wholesale, dealerships, online) to customer preferences.</li>
-						<li>Communicating insights visually to executives instead of through raw spreadsheets.</li>
-						<li>Spotting growth opportunities in the <strong>premium & electric segments</strong>.</li>
-					</ul>
-				</div><!--//project-section-->
+                    <div class="project-section mb-3">
+                        <h3 class="project-section-title">The Challenge</h3>
+                        <p>BMW's global automotive operations face complex analytical challenges requiring comprehensive tracking:</p>
+                        <ul>
+                            <li><strong>Multi-Model Portfolio:</strong> Performance tracking across diverse vehicle lines from sports cars to luxury sedans and electric vehicles.</li>
+                            <li><strong>Geographic Complexity:</strong> Revenue optimization across diverse global markets including USA, Canada, South Africa, Kenya, and Mexico.</li>
+                            <li><strong>Channel Distribution:</strong> Sales performance across Online (3K units, 22%), Wholesale (7K units, 45%), and Dealership (5K units, 33%).</li>
+                            <li><strong>Premium Pricing Strategy:</strong> Managing high-value products from $77.4K average to premium models reaching $78.2K.</li>
+                            <li><strong>Market Penetration:</strong> Country-specific performance with variance rates tracking growth opportunities.</li>
+                            <li><strong>Seasonal Trends:</strong> Multi-year revenue tracking showing growth patterns and market cycles.</li>
+                        </ul>
+                    </div>
 
-				<div class="project-section mb-4">
-					<h3 class="project-section-title">The Approach &amp; Solution</h3>
-					<p>
-						Our solution blended <strong>data engineering</strong>, <strong>analytics</strong>, and 
-						<strong>visual storytelling</strong>:
-					</p>
-					<ul>
-						<li><strong>Data Preparation</strong> → Cleaned raw data, standardized revenue values, and validated channels.</li>
-						<li><strong>Exploratory Analysis</strong> → Compared sales across <strong>models, countries, and time periods</strong>.</li>
-						<li><strong>Visualization</strong> → Designed an executive Power BI dashboard with revenue growth KPIs.</li>
-						<li><strong>Business Insights</strong> → Highlighted premium model performance, emerging EV growth, and regional shifts.</li>
-					</ul>
-					
-					<div class="text-center mb-4">
-			<a class="btn btn-primary" href="contact.html" target="_blank">
-				<i class="fas fa-paper-plane me-2"></i>View Dashboard
-			</a>
-		</div>
-				</div><!--//project-section-->
+                    <div class="project-section mb-4">
+                        <h3 class="project-section-title">The Approach &amp; Solution</h3>
+                        <p>
+                            I developed a comprehensive <strong>automotive business intelligence ecosystem</strong> with specialized analytical capabilities:
+                        </p>
 
-				<div class="project-section mb-2">
-					<h3 class="project-section-title mb-3">The Results</h3>
-					<div class="metrics mb-4">
-						<div class="row">
-							<div class="metric col-6 col-xl-3 mb-3">
-								<div class="inner p-3 theme-bg-light">
-									<div class="metric-name">Revenue Growth</div>
-									<div class="metric-data mb-2">+24.7%</div>
-									<div class="metric-desc">From $0.90bn (2022) to $1.13bn (2023).</div>
-								</div>
-							</div>
-							<div class="metric col-6 col-xl-3 mb-3">
-								<div class="inner p-3 theme-bg-light">
-									<div class="metric-name">Top Models</div>
-									<div class="metric-data mb-2">Z4, 8 Series, M4</div>
-									<div class="metric-desc">Accounted for 40%+ of sales revenue.</div>
-								</div>
-							</div>
-							<div class="metric col-6 col-xl-3 mb-3">
-								<div class="inner p-3 theme-bg-light">
-									<div class="metric-name">Top Regions</div>
-									<div class="metric-data mb-2">US, Mexico, Colombia</div>
-									<div class="metric-desc">Leading countries in revenue and growth.</div>
-								</div>
-							</div>
-							<div class="metric col-6 col-xl-3 mb-3">
-								<div class="inner p-3 theme-bg-light">
-									<div class="metric-name">Sales Channels</div>
-									<div class="metric-data mb-2">Wholesale 45% | Dealership 33% | Online 22%</div>
-									<div class="metric-desc">Balanced distribution improved global reach.</div>
-								</div>
-							</div>
-						</div><!--//row-->
-					</div><!--//metrics-->
-					<p>
-						The analysis revealed:
-					</p>
-					<ul>
-						<li><strong>Electric & hybrid sales</strong> are rapidly expanding in <strong>urban regions</strong>.</li>
-						<li><strong>Returning customers</strong> are spending more on premium BMW models.</li>
-						<li><strong>South Africa</strong> showed exceptional growth (+67.3%), a major expansion opportunity.</li>
-						<li><strong>Online sales</strong> continue to grow, signaling a shift in customer buying behavior.</li>
-					</ul>
-					<p>
-						By aligning inventory and marketing with these insights, BMW is better positioned to accelerate growth, 
-						optimize supply chains, and capture demand in high-growth markets.
-					</p>
-				</div><!--//project-section-->
-			</div>
-		</div>
-	</section>
+                        <h4 class="mb-3"><i class="fas fa-car me-2"></i>1. Vehicle Sales Performance Dashboard</h4>
+                        <ul>
+                            <li><strong>Revenue Tracking:</strong> 1.13bn total revenue with +24.7% growth showing strong market performance.</li>
+                            <li><strong>Model Performance:</strong> Z4 leading with 666 units, followed by 8 Series, M4, and i8 models.</li>
+                            <li><strong>Premium Positioning:</strong> Average vehicle value of $77.4K demonstrating luxury market success.</li>
+                            <li><strong>Growth Analysis:</strong> Year-over-year comparison showing substantial revenue increases.</li>
+                        </ul>
 
-<section class="promo-section theme-bg-light py-5 text-center">
-	<div class="container single-col-max-width">
-		<h2 class="title">Want me to help with your project?</h2>
-		<p>If you take on freelance work, you can use this section to prompt any potential clients to get in touch with you with their project requirements.</p>
-		<div class="text-center">
-			<a class="btn btn-primary" href="contact.html" target="_blank">
-				<i class="fas fa-paper-plane me-2"></i>Hire Me
-			</a>
-		</div>
-	</div><!--//container-->
-</section><!--//promo-section-->
+                        <h4 class="mb-3"><i class="fas fa-globe me-2"></i>2. Geographic Market Intelligence</h4>
+                        <ul>
+                            <li><strong>Top 6 Grossing Countries:</strong> USA ($3.96M), Canada ($3.43M), South Africa ($3.09M) leading performance.</li>
+                            <li><strong>Market Variance Tracking:</strong> Growth rates including +31.8% (USA), +25.5% (Canada), +67.3% (South Africa).</li>
+                            <li><strong>Revenue Trends:</strong> Country-specific performance patterns with detailed variance analysis.</li>
+                            <li><strong>International Expansion:</strong> Multi-continent presence showing global market penetration.</li>
+                        </ul>
 
-<footer class="footer text-center py-4">
-	<small class="copyright">Template Copyright &copy; 
-		<a href="https://themes.3rdwavemedia.com/" target="_blank">3rd Wave Media</a>
-	</small>
-</footer>
-</div><!--//main-wrapper-->
+                        <div class="bmw-card">
+                            <h5><i class="fas fa-trophy me-2"></i>Premium Model Excellence</h5>
+                            <p class="mb-0">
+                                <strong>BMW Z4 dominates sales volume!</strong>
+                                With 666 units sold and premium positioning at $77.4K average price point, 
+                                the Z4 represents BMW's successful balance of performance, luxury, and market appeal
+                                in the competitive sports car segment.
+                            </p>
+                        </div>
 
-    
-    <!-- *****CONFIGURE STYLE (REMOVE ON YOUR PRODUCTION SITE)****** -->  
-	<div id="config-panel" class="config-panel config-panel-hide d-none d-lg-block">
-		<div class="panel-inner">
-			<a id="config-trigger" class="config-trigger text-center" href="#"><i class="fas fa-cog mx-auto" data-fa-transform="down-6" ></i></a>
-			<h5 class="panel-title">Choose Colour</h5>
-			<ul id="color-options" class="list-inline mb-0">
-				<li class="theme-1 active list-inline-item"><a data-style="assets/css/theme.css" href="#"></a></li>
-				<li class="theme-2  list-inline-item"><a data-style="assets/css/theme-1.css" href="#"></a></li>
-				<li class="theme-3  list-inline-item"><a data-style="assets/css/theme-2.css" href="#"></a></li>
-				<li class="theme-4  list-inline-item"><a data-style="assets/css/theme-3.css" href="#"></a></li>
-				<li class="theme-5  list-inline-item"><a data-style="assets/css/theme-4.css" href="#"></a></li>
-				<li class="theme-6  list-inline-item"><a data-style="assets/css/theme-5.css" href="#"></a></li>
-				<li class="theme-7  list-inline-item"><a data-style="assets/css/theme-6.css" href="#"></a></li>
-				<li class="theme-8  list-inline-item"><a data-style="assets/css/theme-7.css" href="#"></a></li>
-				<li class="theme-9  list-inline-item"><a data-style="assets/css/theme-8.css" href="#"></a></li>
-				<li class="theme-9  list-inline-item"><a data-style="assets/css/theme-9.css" href="#"></a></li>
-			</ul>
-			<a id="config-close" class="close" href="#"><i class="fa fa-times-circle"></i></a>
-		</div><!--//panel-inner-->
-	</div><!--//configure-panel-->
+                        <div class="text-center mb-4">
+                            <a class="btn btn-primary me-3" href="#" target="_blank">
+                                <i class="fas fa-car me-2"></i>View Interactive Dashboard
+                            </a>
+                            <a class="btn btn-outline-primary" href="#" target="_blank">
+                                <i class="fab fa-github me-2"></i>Sales Analysis Files
+                            </a>
+                        </div>
+                    </div>
 
-    <!-- Javascript -->          
-    <script src="assets/plugins/popper.min.js"></script> 
-    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script> 
-    
+                    <div class="project-section mb-2">
+                        <h3 class="project-section-title mb-3">Key Performance Metrics & Analysis</h3>
+                        <div class="metrics mb-4">
+                            <div class="row">
+                                <div class="metric col-6 col-xl-3 mb-3">
+                                    <div class="inner p-3 theme-bg-light">
+                                        <div class="metric-name">Total Revenue</div>
+                                        <div class="metric-data mb-2">1.13bn</div>
+                                        <div class="metric-desc">Overall BMW sales performance across all models and markets.</div>
+                                    </div>
+                                </div>
+                                <div class="metric col-6 col-xl-3 mb-3">
+                                    <div class="inner p-3 theme-bg-light">
+                                        <div class="metric-name">Growth Rate</div>
+                                        <div class="metric-data mb-2">+24.7%</div>
+                                        <div class="metric-desc">Year-over-year revenue growth showing strong market performance.</div>
+                                    </div>
+                                </div>
+                                <div class="metric col-6 col-xl-3 mb-3">
+                                    <div class="inner p-3 theme-bg-light">
+                                        <div class="metric-name">Channel Volume</div>
+                                        <div class="metric-data mb-2">15K Units</div>
+                                        <div class="metric-desc">Total vehicles sold across all distribution channels.</div>
+                                    </div>
+                                </div>
+                                <div class="metric col-6 col-xl-3 mb-3">
+                                    <div class="inner p-3 theme-bg-light">
+                                        <div class="metric-name">Premium Value</div>
+                                        <div class="metric-data mb-2">$78.2K</div>
+                                        <div class="metric-desc">Highest model value demonstrating luxury positioning.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h4 class="mb-3"><i class="fas fa-car-side me-2"></i>Top Performing BMW Models</h4>
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <strong>1. BMW Z4: 666 Units Sold</strong>
+                                    <div class="country-performance" style="width: 100%;"></div>
+                                    <small class="text-muted">Premium sports car leading sales volume</small>
+                                </div>
+                                <div class="mb-3">
+                                    <strong>2. BMW 8 Series: 641 Units</strong>
+                                    <div class="country-performance" style="width: 96%;"></div>
+                                    <small class="text-muted">Luxury grand tourer with strong performance</small>
+                                </div>
+                                <div class="mb-3">
+                                    <strong>3. BMW M4: 620 Units</strong>
+                                    <div class="country-performance" style="width: 93%;"></div>
+                                    <small class="text-muted">High-performance coupe with racing heritage</small>
+                                </div>
+                                <div class="mb-3">
+                                    <strong>4. BMW i8: 615 Units</strong>
+                                    <div class="country-performance" style="width: 92%;"></div>
+                                    <small class="text-muted">Hybrid sports car showcasing innovation</small>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="model-showcase">
+                                    <i class="fas fa-car" style="font-size: 3rem; margin-bottom: 1rem; color: #0066cc;"></i>
+                                    <h5>Premium Model Portfolio</h5>
+                                    <p class="mb-0">BMW's diverse model range from sports cars (Z4) to luxury grand tourers (8 Series), 
+                                    high-performance vehicles (M4), and innovative hybrids (i8) demonstrates comprehensive market coverage 
+                                    across premium automotive segments.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h4 class="mb-3"><i class="fas fa-flag me-2"></i>Geographic Market Performance</h4>
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <h6>Top Revenue Markets</h6>
+                                <ul>
+                                    <li><strong>USA:</strong> $3.96M revenue with +31.8% growth rate</li>
+                                    <li><strong>Canada:</strong> $3.43M revenue with +25.5% growth rate</li>
+                                    <li><strong>South Africa:</strong> $3.09M revenue with +67.3% growth rate</li>
+                                    <li><strong>Kenya:</strong> $2.88M revenue with +23.6% growth rate</li>
+                                    <li><strong>Mexico:</strong> $2.74M revenue with +49.1% growth rate</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h6>Market Growth Analysis</h6>
+                                <ul>
+                                    <li><strong>Highest Growth:</strong> South Africa leading with +67.3% increase</li>
+                                    <li><strong>Volume Leader:</strong> USA maintaining largest revenue base</li>
+                                    <li><strong>Emerging Markets:</strong> Mexico showing +49.1% strong expansion</li>
+                                    <li><strong>Stable Performance:</strong> Canada with consistent +25.5% growth</li>
+                                    <li><strong>Market Penetration:</strong> Kenya demonstrating +23.6% steady growth</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <h4 class="mb-3"><i class="fas fa-store me-2"></i>Sales Channel Distribution</h4>
+                        <div class="row mb-4">
+                            <div class="col-md-4">
+                                <div class="channel-distribution text-center">
+                                    <h6><i class="fas fa-building me-2"></i>Wholesale</h6>
+                                    <div style="font-size: 2rem; color: #0066cc;">7K Units</div>
+                                    <small class="text-muted">45% of total sales volume</small>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="channel-distribution text-center">
+                                    <h6><i class="fas fa-handshake me-2"></i>Dealership</h6>
+                                    <div style="font-size: 2rem; color: #0066cc;">5K Units</div>
+                                    <small class="text-muted">33% of total sales volume</small>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="channel-distribution text-center">
+                                    <h6><i class="fas fa-laptop me-2"></i>Online</h6>
+                                    <div style="font-size: 2rem; color: #0066cc;">3K Units</div>
+                                    <small class="text-muted">22% of total sales volume</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h4 class="mb-3"><i class="fas fa-chart-line me-2"></i>Most Expensive BMW Models</h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="sales-highlight">
+                                    <h6><i class="fas fa-crown me-2"></i>BMW iX 3</h6>
+                                    <div style="font-size: 1.5rem;">$78.2K</div>
+                                    <small>Premium electric luxury SUV</small>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="sales-highlight">
+                                    <h6><i class="fas fa-star me-2"></i>BMW M4</h6>
+                                    <div style="font-size: 1.5rem;">$77.6K</div>
+                                    <small>High-performance sports coupe</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h4 class="mb-3"><i class="fas fa-rocket me-2"></i>Strategic Automotive Recommendations</h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="insight-card">
+                                    <h6><i class="fas fa-trophy me-2"></i>Model Z4 Focus</h6>
+                                    <p class="mb-0">Leverage Z4's 666-unit leadership by expanding production capacity and marketing investment in high-performing sports car segment.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="insight-card">
+                                    <h6><i class="fas fa-globe-africa me-2"></i>South Africa Expansion</h6>
+                                    <p class="mb-0">South Africa's +67.3% growth rate indicates exceptional market opportunity - increase dealer network and inventory allocation.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="insight-card">
+                                    <h6><i class="fas fa-laptop me-2"></i>Digital Channel Growth</h6>
+                                    <p class="mb-0">Online channel's 22% share shows digital transformation potential - invest in e-commerce platform and virtual showrooms.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="insight-card">
+                                    <h6><i class="fas fa-bolt me-2"></i>Electric Vehicle Strategy</h6>
+                                    <p class="mb-0">iX 3's $78.2K premium positioning demonstrates EV market success - accelerate electric model development and marketing.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-section mb-4">
+                        <h3 class="project-section-title">Dashboard Architecture & Technical Implementation</h3>
+                                                
+                        <h4 class="mb-3"><i class="fas fa-tools me-2"></i>Automotive Business Intelligence Stack</h4>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <ul class="list-unstyled">
+                                    <li><i class="fas fa-check-circle text-success me-2"></i><strong>Power BI/Tableau:</strong> Interactive automotive dashboard development</li>
+                                    <li><i class="fas fa-check-circle text-success me-2"></i><strong>Sales Analytics:</strong> Multi-model performance tracking and analysis</li>
+                                    <li><i class="fas fa-check-circle text-success me-2"></i><strong>Geographic Mapping:</strong> Country-level revenue and growth visualization</li>
+                                    <li><i class="fas fa-check-circle text-success me-2"></i><strong>Time Series Analysis:</strong> Multi-year trend tracking and forecasting</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <ul class="list-unstyled">
+                                    <li><i class="fas fa-check-circle text-success me-2"></i><strong>Channel Analytics:</strong> Distribution channel performance optimization</li>
+                                    <li><i class="fas fa-check-circle text-success me-2"></i><strong>Premium Pricing:</strong> High-value automotive product analysis</li>
+                                    <li><i class="fas fa-check-circle text-success me-2"></i><strong>Model Comparison:</strong> Portfolio performance benchmarking</li>
+                                    <li><i class="fas fa-check-circle text-success me-2"></i><strong>Growth Tracking:</strong> YoY variance and trend analysis</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <h4 class="mb-3"><i class="fas fa-database me-2"></i>Automotive Data Architecture</h4>
+                        <ul>
+                            <li><strong>Vehicle Sales Data:</strong> Model-level sales volume, revenue, and unit pricing across time periods.</li>
+                            <li><strong>Geographic Markets:</strong> Country and region-level performance with growth variance tracking.</li>
+                            <li><strong>Channel Intelligence:</strong> Multi-channel sales distribution (Online, Wholesale, Dealership) with volume analysis.</li>
+                            <li><strong>Model Portfolio:</strong> Complete BMW model lineup with pricing, positioning, and performance metrics.</li>
+                            <li><strong>Financial Performance:</strong> Revenue tracking, growth analysis, and premium pricing strategies.</li>
+                            <li><strong>Trend Analysis:</strong> Historical performance patterns and seasonal sales cycles.</li>
+                        </ul>
+                    </div>
+
+                    <div class="project-section mb-4">
+                        <h3 class="project-section-title">Business Impact & Key Automotive Insights</h3>
+                                                
+                        <h4 class="mb-3"><i class="fas fa-lightbulb me-2"></i>Critical Automotive Business Insights</h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="alert alert-success">
+                                    <h6><i class="fas fa-car me-2"></i>Model Portfolio Excellence</h6>
+                                    <p class="mb-0">
+                                        <strong>BMW Z4's 666-unit leadership</strong> demonstrates successful premium sports car 
+                                        positioning and represents optimal balance of performance, luxury, and market demand.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="alert alert-info">
+                                    <h6><i class="fas fa-globe-africa me-2"></i>Market Growth Leadership</h6>
+                                    <p class="mb-0">
+                                        <strong>South Africa's +67.3% growth rate</strong> indicates exceptional market expansion 
+                                        opportunity and demonstrates BMW's successful emerging market penetration strategies.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h4 class="mb-3"><i class="fas fa-chart-line me-2"></i>Automotive Performance Optimization Opportunities</h4>
+                        <ul>
+                            <li><strong>Channel Optimization:</strong> Wholesale's 45% dominance suggests opportunity to balance distribution channels for optimal reach.</li>
+                            <li><strong>Digital Transformation:</strong> Online's 22% share indicates significant growth potential for digital sales channels.</li>
+                            <li><strong>Premium Positioning:</strong> iX 3's $78.2K price point demonstrates successful luxury electric vehicle market positioning.</li>
+                            <li><strong>Geographic Expansion:</strong> Mexico's +49.1% growth rate shows strong Latin American market potential.</li>
+                            <li><strong>Model Diversification:</strong> Close performance between Z4, 8 Series, M4, and i8 indicates balanced portfolio strength.</li>
+                            <li><strong>Market Penetration:</strong> USA's $3.96M revenue with +31.8% growth shows continued North American dominance.</li>
+                        </ul>
+
+                        <h4 class="mb-3"><i class="fas fa-trophy me-2"></i>Revenue & Growth Analysis Deep Dive</h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6>Revenue Performance Indicators</h6>
+                                <ul class="small">
+                                    <li>Overall Revenue: 1.13bn showing strong market position</li>
+                                    <li>Previous Year: 0.90bn baseline for growth calculation</li>
+                                    <li>Growth Rate: +24.7% exceptional year-over-year improvement</li>
+                                    <li>Channel Volume: 15K total units across all distribution methods</li>
+                                    <li>Premium Average: $77.4K demonstrating luxury market success</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h6>Market Intelligence</h6>
+                                <ul class="small">
+                                    <li>Top Country: USA leading with $3.96M revenue</li>
+                                    <li>Fastest Growth: South Africa with +67.3% expansion</li>
+                                    <li>Emerging Market: Mexico showing +49.1% strong development</li>
+                                    <li>Stable Performance: Canada maintaining +25.5% consistent growth</li>
+                                    <li>Regional Expansion: Kenya demonstrating +23.6% steady progress</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <h4 class="mb-3"><i class="fas fa-cogs me-2"></i>Model Performance & Positioning Analysis</h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6>Top Performing Models</h6>
+                                <ul class="small">
+                                    <li>BMW Z4: 666 units - Sports car segment leader</li>
+                                    <li>BMW 8 Series: 641 units - Luxury grand tourer excellence</li>
+                                    <li>BMW M4: 620 units - High-performance coupe success</li>
+                                    <li>BMW i8: 615 units - Hybrid innovation showcase</li>
+                                    <li>BMW i3: 611 units - Electric vehicle market presence</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h6>Premium Value Positioning</h6>
+                                <ul class="small">
+                                    <li>BMW iX 3: $78.2K - Premium electric luxury positioning</li>
+                                    <li>BMW M4: $77.6K - High-performance sports excellence</li>
+                                    <li>Portfolio Average: $77.4K - Consistent luxury market placement</li>
+                                    <li>Value Range: Premium positioning across all model lines</li>
+                                    <li>Market Strategy: Successful luxury automotive brand positioning</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="promo-section theme-bg-light py-5 text-center">
+            <div class="container single-col-max-width">
+                <h2 class="title">Looking for an automotive business intelligence expert for your dealership or manufacturer?</h2>
+                <p>I specialize in creating comprehensive automotive analytics dashboards that transform complex sales and market data into actionable business insights. From model performance analysis to geographic market optimization, let's accelerate your automotive business through advanced data visualization and strategic analytics.</p>
+                <div class="text-center">
+                    <a class="btn btn-primary" href="contact.html" target="_blank">
+                        <i class="fas fa-paper-plane me-2"></i>Let's Drive Results Together
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer text-center py-4">
+            <small class="copyright">Template Copyright &copy;
+                <a href="https://themes.3rdwavemedia.com/" target="_blank">3rd Wave Media</a>
+            </small>
+        </footer>
+    </div>
+
+    <!-- *****CONFIGURE STYLE (REMOVE ON YOUR PRODUCTION SITE)****** -->
+    <div id="config-panel" class="config-panel config-panel-hide d-none d-lg-block">
+        <div class="panel-inner">
+            <a id="config-trigger" class="config-trigger text-center" href="#"><i class="fas fa-cog mx-auto" data-fa-transform="down-6"></i></a>
+            <h5 class="panel-title">Choose Colour</h5>
+            <ul id="color-options" class="list-inline mb-0">
+                <li class="theme-1 active list-inline-item"><a data-style="assets/css/theme.css" href="#"></a></li>
+                <li class="theme-2 list-inline-item"><a data-style="assets/css/theme-1.css" href="#"></a></li>
+                <li class="theme-3 list-inline-item"><a data-style="assets/css/theme-2.css" href="#"></a></li>
+                <li class="theme-4 list-inline-item"><a data-style="assets/css/theme-3.css" href="#"></a></li>
+                <li class="theme-5 list-inline-item"><a data-style="assets/css/theme-4.css" href="#"></a></li>
+                <li class="theme-6 list-inline-item"><a data-style="assets/css/theme-5.css" href="#"></a></li>
+                <li class="theme-7 list-inline-item"><a data-style="assets/css/theme-6.css" href="#"></a></li>
+                <li class="theme-8 list-inline-item"><a data-style="assets/css/theme-7.css" href="#"></a></li>
+                <li class="theme-9 list-inline-item"><a data-style="assets/css/theme-8.css" href="#"></a></li>
+                <li class="theme-9 list-inline-item"><a data-style="assets/css/theme-9.css" href="#"></a></li>
+            </ul>
+            <a id="config-close" class="close" href="#"><i class="fa fa-times-circle"></i></a>
+        </div>
+    </div>
+
+    <!-- Javascript -->
+    <script src="assets/plugins/popper.min.js"></script>
+    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
     <!-- Dark Mode -->
-	<script src="assets/plugins/js-cookie.min.js"></script>
-	<script src="assets/js/dark-mode.js"></script>
+    <script src="assets/plugins/js-cookie.min.js"></script>
+    <script src="assets/js/dark-mode.js"></script>
 
     <!-- Style Switcher (REMOVE ON YOUR PRODUCTION SITE) -->
-    <script src="assets/js/demo/style-switcher.js"></script>     
-    
+    <script src="assets/js/demo/style-switcher.js"></script>
 
 </body>
-</html> 
-
+</html>
