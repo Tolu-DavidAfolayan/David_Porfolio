@@ -1,318 +1,620 @@
 <!DOCTYPE html>
-<html lang="en"> 
+<html lang="en">
 <head>
-    <title>Gym Business Analytics - David Afolayan</title>
-    
+    <title>Telco Customer Retention Analytics - David Afolayan</title>
+         
     <!-- Meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Gym Business Analytics Case Study">
-    <meta name="author" content="David Afolayan">    
-    <link rel="shortcut icon" href="favicon.ico"> 
-    
+    <meta name="description" content="Telco Customer Retention Analytics Business Intelligence Case Study">
+    <meta name="author" content="David Afolayan">
+         
+    <link rel="shortcut icon" href="favicon.ico">
+         
     <!-- FontAwesome JS-->
-	<script defer src="assets/fontawesome/js/all.min.js"></script>
-    
+    <script defer src="assets/fontawesome/js/all.min.js"></script>
+         
     <!-- Plugin CSS -->
     <link rel="stylesheet" href="assets/plugins/highlight/styles/monokai-sublime.css">
-    
-    <!-- Theme CSS -->  
+         
+    <!-- Theme CSS -->
     <link id="theme-style" rel="stylesheet" href="assets/css/theme.css">
-    
-
-</head> 
+         
+    <style>
+        .metric-data {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #1e40af;
+        }
+        .insight-card {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            color: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .telco-card {
+            background: linear-gradient(135deg, #1e40af 0%, #1d4ed8 100%);
+            color: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .feature-bar {
+            background: linear-gradient(90deg, #1e40af, #3b82f6, #60a5fa);
+            height: 8px;
+            border-radius: 4px;
+            margin: 5px 0;
+        }
+        .performance-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .performance-card {
+            padding: 20px;
+            text-align: center;
+            border-radius: 12px;
+            font-weight: bold;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        .customers-card { background: linear-gradient(135deg, #1e40af, #1d4ed8); }
+        .churn-card { background: linear-gradient(135deg, #dc2626, #b91c1c); }
+        .revenue-card { background: linear-gradient(135deg, #10b981, #059669); }
+        .risk-card { background: linear-gradient(135deg, #f59e0b, #d97706); }
+        .service-showcase {
+            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 1rem 0;
+            text-align: center;
+        }
+        .service-performance {
+            background: linear-gradient(90deg, #1e40af, #3b82f6, #60a5fa);
+            height: 12px;
+            border-radius: 6px;
+            margin: 8px 0;
+        }
+        .customer-highlight {
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+        .trend-indicator {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        .trend-up { background: #d1fae5; color: #065f46; }
+        .trend-stable { background: #fef3c7; color: #92400e; }
+        .trend-down { background: #fee2e2; color: #991b1b; }
+        .retention-visual {
+            background: linear-gradient(135deg, #1e40af, #1d4ed8);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            color: white;
+            margin: 1rem 0;
+        }
+        .churn-card-detail {
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px 0;
+            transition: all 0.3s ease;
+        }
+        .churn-card-detail:hover {
+            border-color: #1e40af;
+            box-shadow: 0 4px 12px rgba(30, 64, 175, 0.2);
+        }
+        .payment-distribution {
+            background: linear-gradient(135deg, #f9fafb, #f3f4f6);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+        .risk-analysis {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
 
 <body>
-    
-    <header class="header text-center">	    
-	    <h1 class="blog-name pt-lg-4 mb-0"><a class="no-text-decoration" href="index.html">Da'insight Space</a></h1>
-        
-	    <nav class="navbar navbar-expand-lg navbar-dark" >
-           
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
+    <header class="header text-center">
+        <h1 class="blog-name pt-lg-4 mb-0"><a class="no-text-decoration" href="index.html">Da'insight Space</a></h1>
+                
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-			<div id="navigation" class="collapse navbar-collapse flex-column" >
-				<div class="profile-section pt-3 pt-lg-0">
-				    <img class="profile-image mb-3 rounded-circle mx-auto" src="assets/images/blog/headshotImg.png" alt="image" >			
-					
-					<div class="bio mb-3">Hi, my name is Afolayan David Tolulope, a data analyst and machine learning expert.<br><a href="about.html">Find out more about me</a></div><!--//bio-->
-					<ul class="social-list list-inline py-3 mx-auto text-center" style="font-size:15px;">
-			            <li class="list-inline-item"><a href="https://x.com/Da_vid_AFO?t=COoXOfQ8KQDKOSzQ4nBHuw&s=09"><i class="fab fa-twitter"></i></a></li>
-		                    <li class="list-inline-item"><a href="https://www.linkedin.com/in/afolayan-tolulope/"><i class="fab fa-linkedin-in"></i></a></li>
-		                    <li class="list-inline-item"><a href="https://github.com/Tolu-DavidAfolayan/"><i class="fab fa-github-alt"></i></a></li>    
-		                    <li class="list-inline-item"><a href="https://wa.me/2347065080990"><i class="fab fa-whatsapp"></i></a></li>
-					<li class="list-inline-item last-item"><a href="https://www.kaggle.com/davidafolayan"><i class="fab fa-kaggle"></i></a></li>
-		                    <li class="list-inline-item last-item"><a href="https://www.instagram.com/td_afolayan/profilecard/?igsh=MTdzeWZtemJwZWoyaQ=="><i class="fab fa-instagram"></i></a></li>
-			        </ul><!--//social-list-->
-			        <hr> 
-				</div><!--//profile-section-->
-				
-				<ul class="navbar-nav flex-column text-start">
-						<li class="nav-item">
-							<a class="nav-link" href="index.html"><i class="fas fa-user fa-fw me-2"></i>About</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="Portfolio.html"><i class="fas fa-laptop-code fa-fw me-2"></i>Portfolio</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="resume.html"><i class="fas fa-file-alt fa-fw me-2"></i>Resume</a> 
-						</li>
-						<li class="nav-item">
-							<a class="nav-link active" href="case-study.html"><i class="fas fa-envelope-open-text fa-fw me-2"></i>Case Study</a>
-						</li>
-					</ul>
+            <div id="navigation" class="collapse navbar-collapse flex-column">
+                <div class="profile-section pt-3 pt-lg-0">
+                    <img class="profile-image mb-3 rounded-circle mx-auto" src="assets/images/blog/headshotImg.png" alt="image">
+                                        
+                    <div class="bio mb-3">Hi, my name is Afolayan David Tolulope, a data analyst and machine learning expert.<br><a href="about.html">Find out more about me</a></div>
+                    <ul class="social-list list-inline py-3 mx-auto text-center" style="font-size:15px;">
+                        <li class="list-inline-item"><a href="https://x.com/Da_vid_AFO?t=COoXOfQ8KQDKOSzQ4nBHuw&s=09"><i class="fab fa-twitter"></i></a></li>
+                        <li class="list-inline-item"><a href="https://www.linkedin.com/in/afolayan-tolulope/"><i class="fab fa-linkedin-in"></i></a></li>
+                        <li class="list-inline-item"><a href="https://github.com/Tolu-DavidAfolayan/"><i class="fab fa-github-alt"></i></a></li>
+                        <li class="list-inline-item"><a href="https://wa.me/2347065080990"><i class="fab fa-whatsapp"></i></a></li>
+                        <li class="list-inline-item last-item"><a href="https://www.kaggle.com/davidafolayan"><i class="fab fa-kaggle"></i></a></li>
+                        <li class="list-inline-item last-item"><a href="https://instagram.com/td_afolayan/"><i class="fab fa-instagram"></i></a></li>
+                    </ul>
+                    <hr>
+                </div>
+                                
+                <ul class="navbar-nav flex-column text-start">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html"><i class="fas fa-user fa-fw me-2"></i>About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Portfolio.html"><i class="fas fa-laptop-code fa-fw me-2"></i>Portfolio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="resume.html"><i class="fas fa-file-alt fa-fw me-2"></i>Resume</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="case-study.html"><i class="fas fa-envelope-open-text fa-fw me-2"></i>Case Study</a>
+                    </li>
+                </ul>
 
-				<div class="my-2">
-                        <a class="btn btn-primary" href="contact.html" target="_blank"><i class="fas fa-paper-plane me-2"></i>Hire Me</a>
-                    </div>
-				<div class="dark-mode-toggle text-center w-100">
-						<hr class="mb-4">
-					    <h4 class="toggle-name mb-3 "><i class="fas fa-adjust me-1"></i>Dark Mode</h4>
-					    
-					    <input class="toggle" id="darkmode" type="checkbox">
-					    <label class="toggle-btn mx-auto mb-0" for="darkmode"></label>
-					    
-					</div><!--//dark-mode-toggle-->
-			</div>
-		</nav>
+                <div class="my-2">
+                    <a class="btn btn-primary" href="contact.html" target="_blank"><i class="fas fa-paper-plane me-2"></i>Hire Me</a>
+                </div>
+                <div class="dark-mode-toggle text-center w-100">
+                    <hr class="mb-4">
+                    <h4 class="toggle-name mb-3"><i class="fas fa-adjust me-1"></i>Dark Mode</h4>
+                    <input class="toggle" id="darkmode" type="checkbox">
+                    <label class="toggle-btn mx-auto mb-0" for="darkmode"></label>
+                </div>
+            </div>
+        </nav>
     </header>
 
-	<div class="main-wrapper"> 
-	<section class="cta-section theme-bg-light py-5">
-		<div class="container single-col-max-width">
-			<h2 class="heading text-center">Case Study: Gym Business Analytics & Performance Optimization</h2>
-			<div class="project-intro text-center">
-				<p class="mb-0 lead">
-					Comprehensive analysis of gym operations using SQL Server and data analytics to optimize member retention, 
-					revenue growth, and operational efficiency. Transformed raw membership data into actionable business insights 
-					through <strong>advanced SQL queries</strong> and <strong>KPI tracking</strong>.
-				</p>
-			</div>
-		</div><!--//container-->
-	</section>
+    <div class="main-wrapper">
+        <section class="cta-section theme-bg-light py-5">
+            <div class="container single-col-max-width">
+                <h2 class="heading text-center">Case Study: Telco Customer Retention & Churn Analytics Intelligence</h2>
+                <div class="project-intro text-center">
+                    <p class="mb-0 lead">
+                        Comprehensive telecommunications analytics platform analyzing customer retention with <strong>7,032 total customers</strong>
+                        and <strong>1,869 churned customers</strong>. Advanced dashboards tracking risk prediction, demographic analysis,
+                        and <strong>$16.06M yearly revenue</strong> through integrated telco business intelligence.
+                    </p>
+                </div>
+            </div>
+        </section>
 
-	<section class="project px-3 py-5 p-md-5">
-		<div class="container">
+        <section class="project px-3 py-5 p-md-5">
+            <div class="container">
+                <div class="project-meta theme-bg-light p-4">
+                    <div class="row g-4 g-lg-5">
+                        <div class="col-md-12 text-center">
+                            <div class="performance-grid">
+                                <div class="performance-card customers-card">
+                                    <div><i class="fas fa-users me-2"></i>Total Customers</div>
+                                    <div style="font-size: 2rem;">7,032</div>
+                                    <small class="trend-indicator trend-stable">Customer Base</small>
+                                </div>
+                                <div class="performance-card churn-card">
+                                    <div><i class="fas fa-user-times me-2"></i>Churned Customers</div>
+                                    <div style="font-size: 2rem;">1,869</div>
+                                    <small class="trend-indicator trend-down">26.6% Churn Rate</small>
+                                </div>
+                                <div class="performance-card revenue-card">
+                                    <div><i class="fas fa-dollar-sign me-2"></i>Yearly Revenue</div>
+                                    <div style="font-size: 2rem;">$16.06M</div>
+                                    <small class="trend-indicator trend-up">Revenue Performance</small>
+                                </div>
+                                <div class="performance-card risk-card">
+                                    <div><i class="fas fa-exclamation-triangle me-2"></i>Risky Customers</div>
+                                    <div style="font-size: 2rem;">2,252</div>
+                                    <small class="trend-indicator trend-down">At-Risk Segment</small>
+                                </div>
+                            </div>
+                            <p class="mt-2 text-muted"><small><em>Telco Customer Retention Analytics - Multi-Dashboard Intelligence</em></small></p>
+                        </div>
+                    </div>
+                </div>
 
-			<div class="project-sections py-5">
-				<div class="project-section mb-5">
-					<h3 class="project-section-title mb-3">Project Overview</h3>
-					<p>
-						This comprehensive gym business analytics project focused on transforming raw operational data into strategic 
-						business intelligence. Using <strong>SQL Server</strong> as the primary database engine, I designed and 
-						implemented a complete data infrastructure to track member demographics, payment patterns, fitness goals, 
-						and operational expenses.
-					</p>
-					<p>
-						The analysis revealed critical insights about member retention, revenue optimization opportunities, and 
-						demographic trends that directly impacted business strategy. Through advanced SQL queries and KPI development, 
-						the project delivered a 360-degree view of gym operations, enabling data-driven decision making.
-					</p>
-				</div><!--//project-section-->
+                <div class="project-sections py-5">
+                    <div class="project-section mb-5">
+                        <h3 class="project-section-title mb-3">Project Overview</h3>
+                        <p>
+                            This comprehensive Telco Customer Retention analytics project delivers end-to-end telecommunications intelligence
+                            through specialized dashboards spanning <strong>Customer Profile Analytics</strong>, <strong>Churn Analysis</strong>,
+                            <strong>Risk Forecasting</strong>, and <strong>Insight Summary</strong>. The integrated system provides
+                            real-time insights across customer demographics, service preferences, and retention risks.
+                        </p>
+                        <p>
+                            Analyzing telecommunications operations with <strong>7,032 total customers</strong> and tracking 
+                            <strong>1,869 churned customers (26.6%)</strong>, the platform reveals critical patterns in customer behavior,
+                            service utilization (Fiber optic 69.4%, DSL 24.56%), and payment preferences enabling strategic retention
+                            initiatives and revenue protection across the $16.06M yearly revenue base.
+                        </p>
+                    </div>
 
-				<div class="project-section mb-3">
-					<h3 class="project-section-title">The Challenge</h3>
-					<p>The gym faced several operational and strategic challenges:</p>
-					<ul>
-						<li><strong>Data Fragmentation:</strong> Member, payment, and expense data scattered across multiple Excel sheets.</li>
-						<li><strong>Member Retention Issues:</strong> Unclear understanding of which demographics had highest retention rates.</li>
-						<li><strong>Revenue Optimization:</strong> Need to identify most profitable membership types and payment methods.</li>
-						<li><strong>Health Tracking:</strong> No systematic analysis of member BMI trends and fitness goal achievement.</li>
-						<li><strong>Operational Efficiency:</strong> Lack of expense tracking and profitability analysis.</li>
-						<li><strong>Manual Reporting:</strong> Time-intensive manual processes for generating business insights.</li>
-					</ul>
-				</div><!--//project-section-->
+                    <div class="project-section mb-3">
+                        <h3 class="project-section-title">The Challenge</h3>
+                        <p>Telecommunications companies face complex customer retention challenges requiring comprehensive analysis:</p>
+                        <ul>
+                            <li><strong>High Churn Rate:</strong> 26.6% customer churn rate (1,869 of 7,032 customers) requiring immediate retention strategies.</li>
+                            <li><strong>Risk Prediction:</strong> 2,252 risky customers identified needing proactive intervention to prevent churn.</li>
+                            <li><strong>Service Optimization:</strong> Multiple internet service types (Fiber optic, DSL, No service) with varying retention rates.</li>
+                            <li><strong>Payment Method Impact:</strong> Electronic check (57%), Bank transfer (14%), Credit card (12%) affecting customer loyalty.</li>
+                            <li><strong>Contract Analysis:</strong> Month-to-month (89%), One-year (9%), Two-year (3%) contract preferences impacting retention.</li>
+                            <li><strong>Demographic Segmentation:</strong> Senior citizens (25%), Partner status (48%), Dependents (30%) requiring targeted approaches.</li>
+                        </ul>
+                    </div>
 
-				<div class="project-section mb-4">
-					<h3 class="project-section-title">The Approach &amp; Solution</h3>
-					<p>
-						I implemented a comprehensive <strong>data engineering and analytics solution</strong> using modern SQL practices:
-					</p>
-					
-					<h4 class="mb-3"><i class="fas fa-database me-2"></i>1. Database Design & Architecture</h4>
-					<ul>
-						<li><strong>Data Migration:</strong> Imported Excel data into SQL Server with proper data type optimization.</li>
-						<li><strong>Data Cleaning:</strong> Removed duplicates, handled NULL values, and standardized formats.</li>
-						<li><strong>Schema Design:</strong> Created primary keys, foreign keys, and indexes for optimal performance.</li>
-						<li><strong>Data Validation:</strong> Implemented integrity constraints to ensure data quality.</li>
-					</ul>
+                    <div class="project-section mb-4">
+                        <h3 class="project-section-title">The Approach &amp; Solution</h3>
+                        <p>
+                            I developed a comprehensive <strong>telco customer intelligence ecosystem</strong> with specialized retention analytics:
+                        </p>
 
-					<h4 class="mb-3"><i class="fas fa-chart-line me-2"></i>2. Advanced Analytics Implementation</h4>
-					<ul>
-						<li><strong>Member Segmentation:</strong> Age-based analysis (Students, Working Class, Retired Personnel).</li>
-						<li><strong>Health Analytics:</strong> BMI categorization and obesity tracking using WHO standards.</li>
-						<li><strong>Revenue Analysis:</strong> Payment method performance and success rate tracking.</li>
-						<li><strong>Retention Modeling:</strong> Member lifecycle analysis and churn prediction indicators.</li>
-					</ul>
+                        <h4 class="mb-3"><i class="fas fa-user-analytics me-2"></i>1. Customer Profile Analytics</h4>
+                        <ul>
+                            <li><strong>Demographic Insights:</strong> Male (930) vs Female (939) customer distribution with detailed age and dependency analysis.</li>
+                            <li><strong>Subscription Patterns:</strong> 55% customers with >1 year tenure, showing loyalty trends and retention opportunities.</li>
+                            <li><strong>Service Adoption:</strong> Device Protection (29% vs 65%), Online Backup (28% vs 66%), Phone Service (91% vs 64%).</li>
+                            <li><strong>Payment Preferences:</strong> Paperless billing adoption (74.91% vs 25.09%) indicating digital engagement levels.</li>
+                        </ul>
 
-					<h4 class="mb-3"><i class="fas fa-tachometer-alt me-2"></i>3. KPI Development</h4>
-					<ul>
-						<li><strong>Financial KPIs:</strong> Revenue growth, ARPU (Average Revenue Per User), profit margins.</li>
-						<li><strong>Operational KPIs:</strong> Member retention rates, trainer utilization, membership distribution.</li>
-						<li><strong>Health KPIs:</strong> BMI improvement tracking, fitness goal achievement rates.</li>
-						<li><strong>Customer KPIs:</strong> New member acquisition, payment success rates, demographic trends.</li>
-					</ul>
-					
-					<div class="text-center mb-4">
-						<a class="btn btn-primary me-3" href="#" target="_blank">
-							<i class="fas fa-code me-2"></i>View SQL Queries
-						</a>
-						<a class="btn btn-outline-primary" href="#" target="_blank">
-							<i class="fab fa-github me-2"></i>GitHub Repository
-						</a>
-					</div>
-				</div><!--//project-section-->
+                        <h4 class="mb-3"><i class="fas fa-chart-line-down me-2"></i>2. Churn Analysis Dashboard</h4>
+                        <ul>
+                            <li><strong>Churn Metrics:</strong> 7,032 total customers with 1,869 churned, $455.66K monthly charges, $16.06M yearly revenue.</li>
+                            <li><strong>Gender Impact:</strong> Female (3.48K) vs Male (3.55K) churn patterns with demographic-specific retention needs.</li>
+                            <li><strong>Contract Analysis:</strong> Month-to-month contracts showing 55.11% higher churn vs long-term commitments.</li>
+                            <li><strong>Service Dependencies:</strong> Internet service types (Fiber optic 44.03%, DSL 34.36%, No service 21.62%) affecting retention.</li>
+                        </ul>
 
-				<div class="project-section mb-2">
-					<h3 class="project-section-title mb-3">Key Results & Insights</h3>
-					<div class="metrics mb-4">
-						<div class="row">
-							<div class="metric col-6 col-xl-3 mb-3">
-								<div class="inner p-3 theme-bg-light">
-									<div class="metric-name">Member Retention</div>
-									<div class="metric-data mb-2">85.3%</div>
-									<div class="metric-desc">12-month retention rate for active members.</div>
-								</div>
-							</div>
-							<div class="metric col-6 col-xl-3 mb-3">
-								<div class="inner p-3 theme-bg-light">
-									<div class="metric-name">Revenue Growth</div>
-									<div class="metric-data mb-2">+18.7%</div>
-									<div class="metric-desc">Year-over-year revenue increase.</div>
-								</div>
-							</div>
-							<div class="metric col-6 col-xl-3 mb-3">
-								<div class="inner p-3 theme-bg-light">
-									<div class="metric-name">Payment Success</div>
-									<div class="metric-data mb-2">94.2%</div>
-									<div class="metric-desc">Overall payment processing success rate.</div>
-								</div>
-							</div>
-							<div class="metric col-6 col-xl-3 mb-3">
-								<div class="inner p-3 theme-bg-light">
-									<div class="metric-name">Health Goals</div>
-									<div class="metric-data mb-2">67%</div>
-									<div class="metric-desc">Members showing BMI improvement.</div>
-								</div>
-							</div>
-						</div><!--//row-->
-					</div><!--//metrics-->
+                        <div class="telco-card">
+                            <h5><i class="fas fa-signal me-2"></i>Fiber Optic Service Leadership</h5>
+                            <p class="mb-0">
+                                <strong>Fiber optic services dominate with 69.4% adoption!</strong>
+                                Despite higher revenue potential, fiber customers show different churn patterns compared to DSL (24.56%) users,
+                                indicating need for service-specific retention strategies and premium service value communication.
+                            </p>
+                        </div>
 
-					<h4 class="mb-3"><i class="fas fa-lightbulb me-2"></i>Strategic Insights Discovered</h4>
-					<ul>
-						<li><strong>Demographics:</strong> Working-class members (26-59) represent 62% of membership with highest retention.</li>
-						<li><strong>Payment Preferences:</strong> Card payments dominate (45%), but online payments growing 23% annually.</li>
-						<li><strong>Health Trends:</strong> 34% of new members join for weight loss, showing strong demand for targeted programs.</li>
-						<li><strong>Revenue Optimization:</strong> Premium memberships generate 3.2x more revenue per member.</li>
-						<li><strong>Operational Efficiency:</strong> Trainer utilization varies 40%, indicating optimization opportunities.</li>
-						<li><strong>Seasonal Patterns:</strong> January and September show 35% higher new member acquisition.</li>
-					</ul>
+                        <div class="text-center mb-4">
+                            <a class="btn btn-primary me-3" href="#" target="_blank">
+                                <i class="fas fa-signal me-2"></i>View Interactive Dashboard
+                            </a>
+                            <a class="btn btn-outline-primary" href="#" target="_blank">
+                                <i class="fab fa-github me-2"></i>Retention Analytics Files
+                            </a>
+                        </div>
+                    </div>
 
-					<h4 class="mb-3"><i class="fas fa-rocket me-2"></i>Business Impact</h4>
-					<p>
-						The analytics implementation enabled the gym to:
-					</p>
-					<ul>
-						<li><strong>Increase Revenue:</strong> Optimized membership pricing strategies based on demographic analysis.</li>
-						<li><strong>Improve Retention:</strong> Identified at-risk member segments and implemented targeted retention programs.</li>
-						<li><strong>Enhance Operations:</strong> Balanced trainer workloads and optimized class schedules.</li>
-						<li><strong>Drive Growth:</strong> Focused marketing on high-value demographic segments.</li>
-						<li><strong>Health Outcomes:</strong> Tracked member fitness progress to improve program effectiveness.</li>
-					</ul>
-				</div><!--//project-section-->
+                    <div class="project-section mb-2">
+                        <h3 class="project-section-title mb-3">Key Telco Metrics & Retention Analysis</h3>
+                        <div class="metrics mb-4">
+                            <div class="row">
+                                <div class="metric col-6 col-xl-3 mb-3">
+                                    <div class="inner p-3 theme-bg-light">
+                                        <div class="metric-name">Churn Rate</div>
+                                        <div class="metric-data mb-2">26.6%</div>
+                                        <div class="metric-desc">Customer churn rate requiring retention intervention.</div>
+                                    </div>
+                                </div>
+                                <div class="metric col-6 col-xl-3 mb-3">
+                                    <div class="inner p-3 theme-bg-light">
+                                        <div class="metric-name">Monthly Revenue</div>
+                                        <div class="metric-data mb-2">$455.66K</div>
+                                        <div class="metric-desc">Monthly recurring revenue from customer base.</div>
+                                    </div>
+                                </div>
+                                <div class="metric col-6 col-xl-3 mb-3">
+                                    <div class="inner p-3 theme-bg-light">
+                                        <div class="metric-name">Risk Customers</div>
+                                        <div class="metric-data mb-2">2,252</div>
+                                        <div class="metric-desc">High-risk customers requiring proactive retention.</div>
+                                    </div>
+                                </div>
+                                <div class="metric col-6 col-xl-3 mb-3">
+                                    <div class="inner p-3 theme-bg-light">
+                                        <div class="metric-name">Fiber Adoption</div>
+                                        <div class="metric-data mb-2">69.4%</div>
+                                        <div class="metric-desc">Premium service adoption rate across customer base.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-				<div class="project-section mb-4">
-					<h3 class="project-section-title">Technical Implementation</h3>
-					
-					<h4 class="mb-3"><i class="fas fa-tools me-2"></i>Technologies Used</h4>
-					<div class="row">
-						<div class="col-md-6 mb-3">
-							<ul class="list-unstyled">
-								<li><i class="fas fa-check-circle text-success me-2"></i><strong>SQL Server:</strong> Primary database engine</li>
-								<li><i class="fas fa-check-circle text-success me-2"></i><strong>T-SQL:</strong> Advanced query development</li>
-								<li><i class="fas fa-check-circle text-success me-2"></i><strong>SSMS:</strong> Database management and development</li>
-								<li><i class="fas fa-check-circle text-success me-2"></i><strong>Excel Integration:</strong> Data import and initial analysis</li>
-							</ul>
-						</div>
-						<div class="col-md-6 mb-3">
-							<ul class="list-unstyled">
-								<li><i class="fas fa-check-circle text-success me-2"></i><strong>Data Modeling:</strong> Relational database design</li>
-								<li><i class="fas fa-check-circle text-success me-2"></i><strong>ETL Processes:</strong> Data cleaning and transformation</li>
-								<li><i class="fas fa-check-circle text-success me-2"></i><strong>Performance Optimization:</strong> Indexing and query tuning</li>
-								<li><i class="fas fa-check-circle text-success me-2"></i><strong>Business Intelligence:</strong> KPI development and tracking</li>
-							</ul>
-						</div>
-					</div>
+                        <h4 class="mb-3"><i class="fas fa-wifi me-2"></i>Internet Service Performance Analysis</h4>
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <strong>1. Fiber Optic: 69.4% Adoption</strong>
+                                    <div class="service-performance" style="width: 100%;"></div>
+                                    <small class="text-muted">Premium high-speed internet service leading adoption</small>
+                                </div>
+                                <div class="mb-3">
+                                    <strong>2. DSL Service: 24.56% Market Share</strong>
+                                    <div class="service-performance" style="width: 35%;"></div>
+                                    <small class="text-muted">Traditional broadband service with moderate retention</small>
+                                </div>
+                                <div class="mb-3">
+                                    <strong>3. No Internet Service: 6.05%</strong>
+                                    <div class="service-performance" style="width: 15%;"></div>
+                                    <small class="text-muted">Phone-only customers with upgrade potential</small>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="retention-visual">
+                                    <i class="fas fa-broadcast-tower" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                                    <h5>Service Distribution Strategy</h5>
+                                    <p class="mb-0">Fiber optic services dominate customer preference with 69.4% adoption,
+                                    while DSL maintains 24.56% market share. Service-specific retention strategies
+                                    needed to address varying churn patterns across service types.</p>
+                                </div>
+                            </div>
+                        </div>
 
-					<h4 class="mb-3"><i class="fas fa-code me-2"></i>Key SQL Features Implemented</h4>
-					<ul>
-						<li><strong>Complex Joins:</strong> Multi-table analysis across Users, Payments, and Expenses.</li>
-						<li><strong>Window Functions:</strong> ROW_NUMBER(), PARTITION BY for advanced analytics.</li>
-						<li><strong>CTEs:</strong> Common Table Expressions for complex data transformations.</li>
-						<li><strong>Aggregation:</strong> GROUP BY, HAVING, and statistical functions.</li>
-						<li><strong>Data Validation:</strong> CASE statements and conditional logic for data categorization.</li>
-						<li><strong>Performance Optimization:</strong> Indexed views and query optimization.</li>
-					</ul>
-				</div><!--//project-section-->
-			</div>
-		</div>
-	</section>
+                        <h4 class="mb-3"><i class="fas fa-credit-card me-2"></i>Payment Method & Billing Analysis</h4>
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <h6>Payment Method Distribution</h6>
+                                <ul>
+                                    <li><strong>Electronic Check:</strong> 57% - Most popular payment method with potential churn risk</li>
+                                    <li><strong>Mailed Check:</strong> 16% - Traditional payment preference indicating older demographics</li>
+                                    <li><strong>Bank Transfer:</strong> 14% - Automated payment method with lower churn risk</li>
+                                    <li><strong>Credit Card:</strong> 12% - Premium payment method with loyalty benefits</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h6>Paperless Billing Adoption</h6>
+                                <ul>
+                                    <li><strong>Paperless Billing Yes:</strong> 74.91% adoption showing digital engagement</li>
+                                    <li><strong>Paperless Billing No:</strong> 25.09% preferring traditional billing</li>
+                                    <li><strong>Monthly Charges:</strong> $74.4 average for paperless vs traditional billing</li>
+                                    <li><strong>Total Charges:</strong> $1.53K average customer lifetime value</li>
+                                </ul>
+                            </div>
+                        </div>
 
-<section class="promo-section theme-bg-light py-5 text-center">
-	<div class="container single-col-max-width">
-		<h2 class="title">Looking for a data analyst for your business?</h2>
-		<p>I specialize in transforming raw business data into actionable insights through advanced SQL development, database design, and analytics. Let's discuss how data analytics can drive your business growth.</p>
-		<div class="text-center">
-			<a class="btn btn-primary" href="contact.html" target="_blank">
-				<i class="fas fa-paper-plane me-2"></i>Let's Work Together
-			</a>
-		</div>
-	</div><!--//container-->
-</section><!--//promo-section-->
+                        <h4 class="mb-3"><i class="fas fa-exclamation-triangle me-2"></i>Risk Prediction & Customer Segmentation</h4>
+                        <div class="row mb-4">
+                            <div class="col-md-4">
+                                <div class="risk-analysis text-center">
+                                    <h6><i class="fas fa-users-slash me-2"></i>High Risk</h6>
+                                    <div style="font-size: 1.8rem;">1.1K</div>
+                                    <small>Customers requiring immediate retention intervention</small>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="risk-analysis text-center">
+                                    <h6><i class="fas fa-user-clock me-2"></i>Risky</h6>
+                                    <div style="font-size: 1.8rem;">1.1K</div>
+                                    <small>Moderate risk customers needing proactive engagement</small>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="risk-analysis text-center">
+                                    <h6><i class="fas fa-user-check me-2"></i>Low Risk</h6>
+                                    <div style="font-size: 1.8rem;">0.5K</div>
+                                    <small>Stable customers with high retention probability</small>
+                                </div>
+                            </div>
+                        </div>
 
-<footer class="footer text-center py-4">
-	<small class="copyright">Template Copyright &copy; 
-		<a href="https://themes.3rdwavemedia.com/" target="_blank">3rd Wave Media</a>
-	</small>
-</footer>
-</div><!--//main-wrapper-->
+                        <h4 class="mb-3"><i class="fas fa-rocket me-2"></i>Strategic Retention Recommendations</h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="insight-card">
+                                    <h6><i class="fas fa-chart-line-down me-2"></i>Churn Reduction Priority</h6>
+                                    <p class="mb-0">26.6% churn rate demands immediate action - implement targeted retention campaigns for 2,252 risky customers with personalized offers.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="insight-card">
+                                    <h6><i class="fas fa-file-contract me-2"></i>Contract Optimization</h6>
+                                    <p class="mb-0">89% month-to-month contracts indicate flexibility preference - develop attractive long-term contract incentives to improve retention.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="insight-card">
+                                    <h6><i class="fas fa-wifi me-2"></i>Service Upselling</h6>
+                                    <p class="mb-0">6.05% no internet service customers present upgrade opportunity - targeted campaigns for internet service adoption and revenue growth.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="insight-card">
+                                    <h6><i class="fas fa-credit-card me-2"></i>Payment Method Strategy</h6>
+                                    <p class="mb-0">57% electronic check users show higher churn risk - promote automatic payment methods (bank transfer, credit card) for better retention.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-    
-    <!-- *****CONFIGURE STYLE (REMOVE ON YOUR PRODUCTION SITE)****** -->  
-	<div id="config-panel" class="config-panel config-panel-hide d-none d-lg-block">
-		<div class="panel-inner">
-			<a id="config-trigger" class="config-trigger text-center" href="#"><i class="fas fa-cog mx-auto" data-fa-transform="down-6" ></i></a>
-			<h5 class="panel-title">Choose Colour</h5>
-			<ul id="color-options" class="list-inline mb-0">
-				<li class="theme-1 active list-inline-item"><a data-style="assets/css/theme.css" href="#"></a></li>
-				<li class="theme-2  list-inline-item"><a data-style="assets/css/theme-1.css" href="#"></a></li>
-				<li class="theme-3  list-inline-item"><a data-style="assets/css/theme-2.css" href="#"></a></li>
-				<li class="theme-4  list-inline-item"><a data-style="assets/css/theme-3.css" href="#"></a></li>
-				<li class="theme-5  list-inline-item"><a data-style="assets/css/theme-4.css" href="#"></a></li>
-				<li class="theme-6  list-inline-item"><a data-style="assets/css/theme-5.css" href="#"></a></li>
-				<li class="theme-7  list-inline-item"><a data-style="assets/css/theme-6.css" href="#"></a></li>
-				<li class="theme-8  list-inline-item"><a data-style="assets/css/theme-7.css" href="#"></a></li>
-				<li class="theme-9  list-inline-item"><a data-style="assets/css/theme-8.css" href="#"></a></li>
-				<li class="theme-9  list-inline-item"><a data-style="assets/css/theme-9.css" href="#"></a></li>
-			</ul>
-			<a id="config-close" class="close" href="#"><i class="fa fa-times-circle"></i></a>
-		</div><!--//panel-inner-->
-	</div><!--//configure-panel-->
+                    <div class="project-section mb-4">
+                        <h3 class="project-section-title">Dashboard Architecture & Technical Implementation</h3>
+                                                
+                        <h4 class="mb-3"><i class="fas fa-tools me-2"></i>Telco Analytics Intelligence Stack</h4>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <ul class="list-unstyled">
+                                    <li><i class="fas fa-check-circle text-success me-2"></i><strong>Power BI/Tableau:</strong> Interactive telco dashboard development with real-time churn tracking</li>
+                                    <li><i class="fas fa-check-circle text-success me-2"></i><strong>Churn Prediction:</strong> Machine learning models for customer risk assessment and retention</li>
+                                    <li><i class="fas fa-check-circle text-success me-2"></i><strong>Customer Segmentation:</strong> Demographic and behavioral analysis for targeted retention strategies</li>
+                                    <li><i class="fas fa-check-circle text-success me-2"></i><strong>Service Analytics:</strong> Internet service type performance and adoption analysis</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <ul class="list-unstyled">
+                                    <li><i class="fas fa-check-circle text-success me-2"></i><strong>Revenue Intelligence:</strong> Monthly and yearly revenue tracking with customer value analysis</li>
+                                    <li><i class="fas fa-check-circle text-success me-2"></i><strong>Payment Analytics:</strong> Payment method impact on retention and churn patterns</li>
+                                    <li><i class="fas fa-check-circle text-success me-2"></i><strong>Contract Analysis:</strong> Term length impact on customer loyalty and retention rates</li>
+                                    <li><i class="fas fa-check-circle text-success me-2"></i><strong>Risk Forecasting:</strong> Predictive models for proactive customer retention interventions</li>
+                                </ul>
+                            </div>
+                        </div>
 
-    <!-- Javascript -->          
-    <script src="assets/plugins/popper.min.js"></script> 
-    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script> 
-    
+                        <h4 class="mb-3"><i class="fas fa-database me-2"></i>Telco Data Architecture & Integration</h4>
+                        <ul>
+                            <li><strong>Customer Database:</strong> Comprehensive customer profiles with demographic, service, and billing information.</li>
+                            <li><strong>Billing Systems:</strong> Integration with billing platforms for payment method and revenue analysis.</li>
+                            <li><strong>Service Provisioning:</strong> Internet service type tracking with performance and adoption metrics.</li>
+                            <li><strong>Contract Management:</strong> Customer contract terms and renewal tracking for retention analysis.</li>
+                            <li><strong>Churn History:</strong> Historical churn data with exit reasons and customer journey analysis.</li>
+                            <li><strong>Risk Scoring:</strong> Predictive analytics engine for customer risk assessment and intervention triggering.</li>
+                        </ul>
+                    </div>
+
+                    <div class="project-section mb-4">
+                        <h3 class="project-section-title">Business Impact & Telco Intelligence Insights</h3>
+                                                
+                        <h4 class="mb-3"><i class="fas fa-lightbulb me-2"></i>Critical Telco Business Insights</h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="alert alert-warning">
+                                    <h6><i class="fas fa-exclamation-triangle me-2"></i>Churn Challenge</h6>
+                                    <p class="mb-0">
+                                        <strong>26.6% churn rate (1,869 customers)</strong> represents significant revenue risk
+                                        requiring immediate retention strategy implementation and customer experience improvements.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="alert alert-info">
+                                    <h6><i class="fas fa-wifi me-2"></i>Service Leadership</h6>
+                                    <p class="mb-0">
+                                        <strong>Fiber optic 69.4% adoption</strong> demonstrates successful premium service positioning
+                                        and technology leadership in competitive telecommunications market.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h4 class="mb-3"><i class="fas fa-chart-line me-2"></i>Revenue & Customer Optimization Opportunities</h4>
+                        <ul>
+                            <li><strong>Revenue Protection:</strong> $16.06M yearly revenue at risk from 26.6% churn rate requiring immediate retention investments.</li>
+                            <li><strong>Contract Optimization:</strong> 89% month-to-month contracts present opportunity for long-term commitment incentives.</li>
+                            <li><strong>Service Upselling:</strong> 6.05% customers without internet service represent $1M+ potential revenue expansion.</li>
+                            <li><strong>Payment Method Impact:</strong> Electronic check users (57%) showing higher churn risk than automated payments.</li>
+                            <li><strong>Premium Service Growth:</strong> Fiber optic success (69.4%) indicates opportunity for additional premium service offerings.</li>
+                            <li><strong>Risk Intervention:</strong> 2,252 risky customers requiring proactive retention campaigns to prevent $4M+ revenue loss.</li>
+                        </ul>
+
+                        <h4 class="mb-3"><i class="fas fa-users me-2"></i>Customer Lifecycle & Engagement Analysis</h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6>Subscription Tenure Patterns</h6>
+                                <ul class="small">
+                                    <li>>1 Year: 55% of customers showing loyalty potential</li>
+                                    <li>=6 Years: 20% long-term customer segment with high value</li>
+                                    <li>=2 Years: 15% establishing relationship strength</li>
+                                    <li>=3 Years: 12% mid-term customers requiring engagement</li>
+                                    <li>Senior Citizens: 25% demographic needing specialized retention</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h6>Service Engagement Intelligence</h6>
+                                <ul class="small">
+                                    <li>Device Protection: 29% adoption vs 65% without service</li>
+                                    <li>Online Backup: 28% usage vs 66% non-adoption</li>
+                                    <li>Phone Service: 91% high adoption showing core service strength</li>
+                                    <li>Tech Support: 17% utilization indicating service complexity</li>
+                                    <li>Streaming Services: 44% adoption showing entertainment demand</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <h4 class="mb-3"><i class="fas fa-target me-2"></i>Predictive Analytics & Risk Modeling</h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6>Risk Segmentation Results</h6>
+                                <ul class="small">
+                                    <li>High Risk: 1,100 customers requiring immediate intervention</li>
+                                    <li>Risky: 1,100 customers needing proactive engagement</li>
+                                    <li>Low Risk: 500 customers with stable retention probability</li>
+                                    <li>Non Risky: 2,400 customers representing retention success</li>
+                                    <li>Average Charges by Risk: Higher risk correlates with lower engagement</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h6>Demographic Risk Factors</h6>
+                                <ul class="small">
+                                    <li>Senior Citizens: 13% of risky customers need specialized attention</li>
+                                    <li>Dependents: 34% with family relationships show better retention</li>
+                                    <li>Partners: 53% partnered customers demonstrate loyalty patterns</li>
+                                    <li>Gender Balance: Male/Female equal representation in risk segments</li>
+                                    <li>Subscription Time: Longer tenure correlates with lower risk scores</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="promo-section theme-bg-light py-5 text-center">
+            <div class="container single-col-max-width">
+                <h2 class="title">Looking for a telecommunications analytics expert for your customer retention initiatives?</h2>
+                <p>I specialize in creating comprehensive telco analytics dashboards that transform complex customer data into actionable retention insights. From churn prediction to revenue optimization, let's enhance your telecommunications business through advanced data visualization and strategic customer analytics.</p>
+                <div class="text-center">
+                    <a class="btn btn-primary" href="contact.html" target="_blank">
+                        <i class="fas fa-paper-plane me-2"></i>Let's Connect and Retain Customers
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer text-center py-4">
+            <small class="copyright">Template Copyright &copy;
+                <a href="https://themes.3rdwavemedia.com/" target="_blank">3rd Wave Media</a>
+            </small>
+        </footer>
+    </div>
+
+    <!-- *****CONFIGURE STYLE (REMOVE ON YOUR PRODUCTION SITE)****** -->
+    <div id="config-panel" class="config-panel config-panel-hide d-none d-lg-block">
+        <div class="panel-inner">
+            <a id="config-trigger" class="config-trigger text-center" href="#"><i class="fas fa-cog mx-auto" data-fa-transform="down-6"></i></a>
+            <h5 class="panel-title">Choose Colour</h5>
+            <ul id="color-options" class="list-inline mb-0">
+                <li class="theme-1 active list-inline-item"><a data-style="assets/css/theme.css" href="#"></a></li>
+                <li class="theme-2 list-inline-item"><a data-style="assets/css/theme-1.css" href="#"></a></li>
+                <li class="theme-3 list-inline-item"><a data-style="assets/css/theme-2.css" href="#"></a></li>
+                <li class="theme-4 list-inline-item"><a data-style="assets/css/theme-3.css" href="#"></a></li>
+                <li class="theme-5 list-inline-item"><a data-style="assets/css/theme-5.css" href="#"></a></li>
+                <li class="theme-6 list-inline-item"><a data-style="assets/css/theme-6.css" href="#"></a></li>
+                <li class="theme-7 list-inline-item"><a data-style="assets/css/theme-7.css" href="#"></a></li>
+                <li class="theme-8 list-inline-item"><a data-style="assets/css/theme-8.css" href="#"></a></li>
+                <li class="theme-9 list-inline-item"><a data-style="assets/css/theme-9.css" href="#"></a></li>
+            </ul>
+            <a id="config-close" class="close" href="#"><i class="fa fa-times-circle"></i></a>
+        </div>
+    </div>
+
+    <!-- Javascript -->
+    <script src="assets/plugins/popper.min.js"></script>
+    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
     <!-- Dark Mode -->
-	<script src="assets/plugins/js-cookie.min.js"></script>
-	<script src="assets/js/dark-mode.js"></script>
+    <script src="assets/plugins/js-cookie.min.js"></script>
+    <script src="assets/js/dark-mode.js"></script>
 
     <!-- Style Switcher (REMOVE ON YOUR PRODUCTION SITE) -->
-    <script src="assets/js/demo/style-switcher.js"></script>     
-    
+    <script src="assets/js/demo/style-switcher.js"></script>
 
 </body>
 </html>
