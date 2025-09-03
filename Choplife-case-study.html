@@ -1,377 +1,754 @@
 <!DOCTYPE html>
-<html lang="en"> 
+<html lang="en">
 <head>
-    <title>Hi, I'm David Afolayan</title>
+    <title>ChopLife Food Delivery Analytics - David Afolayan</title>
     
     <!-- Meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Blog Template">
-    <meta name="author" content="Xiaoying Riley at 3rd Wave Media">    
-    <link rel="shortcut icon" href="favicon.ico"> 
+    <meta name="description" content="ChopLife Food Delivery Analytics Case Study">
+    <meta name="author" content="David Afolayan">
+    
+    <link rel="shortcut icon" href="favicon.ico">
     
     <!-- FontAwesome JS-->
-	<script defer src="assets/fontawesome/js/all.min.js"></script>
+    <script defer src="assets/fontawesome/js/all.min.js"></script>
     
     <!-- Plugin CSS -->
     <link rel="stylesheet" href="assets/plugins/highlight/styles/monokai-sublime.css">
     
-    <!-- Theme CSS -->  
+    <!-- Theme CSS -->
     <link id="theme-style" rel="stylesheet" href="assets/css/theme.css">
     
-
-</head> 
+    <style>
+        .metric-data {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #dc3545;
+        }
+        .insight-card {
+            background: linear-gradient(135deg, #dc3545 0%, #b02a37 100%);
+            color: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .feature-bar {
+            background: linear-gradient(90deg, #dc3545, #ffc107, #28a745);
+            height: 8px;
+            border-radius: 4px;
+            margin: 5px 0;
+        }
+        .choplife-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .choplife-card {
+            padding: 20px;
+            text-align: center;
+            border-radius: 12px;
+            font-weight: bold;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        .revenue-card { background: linear-gradient(135deg, #28a745, #20c997); }
+        .orders-card { background: linear-gradient(135deg, #dc3545, #c82333); }
+        .customers-card { background: linear-gradient(135deg, #fd7e14, #e85d04); }
+        .efficiency-card { background: linear-gradient(135deg, #6f42c1, #5a31a5); }
+        .subscription-visual {
+            background: linear-gradient(135deg, #495057, #343a40);
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        .nigeria-map {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            margin: 1rem 0;
+        }
+        .meal-performance {
+            background: linear-gradient(90deg, #dc3545, #ffc107, #fd7e14);
+            height: 12px;
+            border-radius: 6px;
+            margin: 8px 0;
+        }
+        .delivery-highlight {
+            background: linear-gradient(135deg, #dc3545, #b02a37);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+        .trend-indicator {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        .trend-up { background: #d4edda; color: #155724; }
+        .trend-down { background: #f8d7da; color: #721c24; }
+        .marketing-visual {
+            background: linear-gradient(135deg, #6f42c1, #5a31a5);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            color: white;
+            margin: 1rem 0;
+        }
+        .location-card {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .accuracy-badge {
+            background: #28a745;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+        }
+        .brand-red {
+            color: #dc3545;
+        }
+        .choplife-brand {
+            background: #dc3545;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            display: inline-block;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+    </style>
+</head>
 
 <body>
-    
-    <header class="header text-center">	    
-	    <h1 class="blog-name pt-lg-4 mb-0"><a class="no-text-decoration" href="index.html">Da'insight Space</a></h1>
+    <header class="header text-center">
+        <h1 class="blog-name pt-lg-4 mb-0"><a class="no-text-decoration" href="index.html">Da'insight Space</a></h1>
         
-	    <nav class="navbar navbar-expand-lg navbar-dark" >
-           
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-			<div id="navigation" class="collapse navbar-collapse flex-column" >
-				<div class="profile-section pt-3 pt-lg-0">
-				    <img class="profile-image mb-3 rounded-circle mx-auto" src="assets/images/blog/headshotImg.png" alt="image" >			
-					
-					<div class="bio mb-3">Hi, my name is Afolayan David Tolulope, a data analyst and machine learning expert.<br><a href="about.html">Find out more about me</a></div><!--//bio-->
-					<ul class="social-list list-inline py-3 mx-auto text-center" style="font-size:15px;">
-			            <li class="list-inline-item"><a href="https://x.com/Da_vid_AFO?t=COoXOfQ8KQDKOSzQ4nBHuw&s=09"><i class="fab fa-twitter"></i></a></li>
-		                    <li class="list-inline-item"><a href="https://www.linkedin.com/in/afolayan-tolulope/"><i class="fab fa-linkedin-in"></i></a></li>
-		                    <li class="list-inline-item"><a href="https://github.com/Tolu-DavidAfolayan/"><i class="fab fa-github-alt"></i></a></li>    
-		                    <li class="list-inline-item"><a href="https://wa.me/2347065080990"><i class="fab fa-whatsapp"></i></a></li>
-					<li class="list-inline-item last-item"><a href="https://www.kaggle.com/davidafolayan"><i class="fab fa-kaggle"></i></a></li>
-		                    <li class="list-inline-item last-item"><a href="https://www.instagram.com/td_afolayan/profilecard/?igsh=MTdzeWZtemJwZWoyaQ=="><i class="fab fa-instagram"></i></a></li>
-			        </ul><!--//social-list-->
-			        <hr> 
-				</div><!--//profile-section-->
-				
-				<ul class="navbar-nav flex-column text-start">
-						<li class="nav-item">
-							<a class="nav-link" href="index.html"><i class="fas fa-user fa-fw me-2"></i>About</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="Portfolio.html"><i class="fas fa-laptop-code fa-fw me-2"></i>Portfolio</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="resume.html"><i class="fas fa-file-alt fa-fw me-2"></i>Resume</a> 
-						</li>
-						<li class="nav-item">
-							<a class="nav-link active" href="case-study.html"><i class="fas fa-envelope-open-text fa-fw me-2"></i>Case Study</a>
-						</li>
-					</ul>
+            <div id="navigation" class="collapse navbar-collapse flex-column">
+                <div class="profile-section pt-3 pt-lg-0">
+                    <img class="profile-image mb-3 rounded-circle mx-auto" src="assets/images/blog/headshotImg.png" alt="image">
+                    
+                    <div class="bio mb-3">Hi, my name is Afolayan David Tolulope, a data analyst and machine learning expert.<br><a href="about.html">Find out more about me</a></div>
+                    <ul class="social-list list-inline py-3 mx-auto text-center" style="font-size:15px;">
+                        <li class="list-inline-item"><a href="https://x.com/Da_vid_AFO?t=COoXOfQ8KQDKOSzQ4nBHuw&s=09"><i class="fab fa-twitter"></i></a></li>
+                        <li class="list-inline-item"><a href="https://www.linkedin.com/in/afolayan-tolulope/"><i class="fab fa-linkedin-in"></i></a></li>
+                        <li class="list-inline-item"><a href="https://github.com/Tolu-DavidAfolayan/"><i class="fab fa-github-alt"></i></a></li>
+                        <li class="list-inline-item"><a href="https://wa.me/2347065080990"><i class="fab fa-whatsapp"></i></a></li>
+                        <li class="list-inline-item last-item"><a href="https://www.kaggle.com/davidafolayan"><i class="fab fa-kaggle"></i></a></li>
+                        <li class="list-inline-item last-item"><a href="https://www.instagram.com/td_afolayan/profilecard/?igsh=MTdzeWZtemJwZWoyaQ=="><i class="fab fa-instagram"></i></a></li>
+                    </ul>
+                    <hr>
+                </div>
+                
+                <ul class="navbar-nav flex-column text-start">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html"><i class="fas fa-user fa-fw me-2"></i>About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Portfolio.html"><i class="fas fa-laptop-code fa-fw me-2"></i>Portfolio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="resume.html"><i class="fas fa-file-alt fa-fw me-2"></i>Resume</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="case-study.html"><i class="fas fa-envelope-open-text fa-fw me-2"></i>Case Study</a>
+                    </li>
+                </ul>
 
-				<div class="my-2">
-                        <a class="btn btn-primary" href="contact.html" target="_blank"><i class="fas fa-paper-plane me-2"></i>Hire Me</a>
-                    </div>
-				<div class="dark-mode-toggle text-center w-100">
-						<hr class="mb-4">
-					    <h4 class="toggle-name mb-3 "><i class="fas fa-adjust me-1"></i>Dark Mode</h4>
-					    
-					    <input class="toggle" id="darkmode" type="checkbox">
-					    <label class="toggle-btn mx-auto mb-0" for="darkmode"></label>
-					    
-					</div><!--//dark-mode-toggle-->
-			</div>
-		</nav>
+                <div class="my-2">
+                    <a class="btn btn-primary" href="contact.html" target="_blank"><i class="fas fa-paper-plane me-2"></i>Hire Me</a>
+                </div>
+                <div class="dark-mode-toggle text-center w-100">
+                    <hr class="mb-4">
+                    <h4 class="toggle-name mb-3"><i class="fas fa-adjust me-1"></i>Dark Mode</h4>
+                    <input class="toggle" id="darkmode" type="checkbox">
+                    <label class="toggle-btn mx-auto mb-0" for="darkmode"></label>
+                </div>
+            </div>
+        </nav>
     </header>
 
-	<div class="main-wrapper"> 
-	<section class="cta-section theme-bg-light py-5">
-		<div class="container single-col-max-width">
-			<h2 class="heading text-center">Case Study: Pizza Sales Analysis Dashboard</h2>
-			<div class="project-intro text-center">
-				<p class="mb-0 lead">
-					Comprehensive pizza sales analysis dashboard built with SQL and Power BI. 
-					Total revenue of <strong>$817,860</strong> across <strong>21,350 orders</strong> with detailed insights into customer behavior, product performance, and sales trends.
-				</p>
-			</div>
-		</div><!--//container-->
-	</section>
+    <div class="main-wrapper">
+        <section class="cta-section theme-bg-light py-5">
+            <div class="container single-col-max-width">
+                <div class="choplife-brand text-center mb-3">
+                    <i class="fas fa-utensils me-2"></i>ChopLife Analytics Dashboard
+                </div>
+                <h2 class="heading text-center">Case Study: ChopLife Food Delivery Analytics & Market Intelligence</h2>
+                <div class="project-intro text-center">
+                    <p class="mb-0 lead">
+                        Comprehensive food delivery business intelligence dashboard analyzing <strong>₦70.01M revenue</strong> 
+                        across Nigeria. Built multi-dashboard system tracking <strong>4,887 orders</strong>, operational efficiency 
+                        of <strong>85.19%</strong>, and marketing ROI through <strong>advanced analytics</strong> and <strong>geographic intelligence</strong>.
+                    </p>
+                </div>
+            </div>
+        </section>
 
-	<section class="project px-3 py-5 p-md-5">
-		<div class="container">
-			<div class="project-sections py-5">
-				<div class="project-section mb-5">
-					<h3 class="project-section-title mb-3">Project Overview</h3>
-					<p>
-						This project involved creating a comprehensive pizza sales analytics dashboard using SQL for data extraction and Power BI for visualization. 
-						The analysis covered revenue performance, customer ordering patterns, product popularity, and time-based sales trends. 
-					</p>
-					<p>
-						Key metrics revealed <strong>$817,860 total revenue</strong> from <strong>21,350 orders</strong>, with an average order value of <strong>$38.31</strong>. 
-						The dashboard provides actionable insights for inventory management, marketing strategies, and operational optimization.
-					</p>
-				</div><!--//project-section-->
+        <section class="project px-3 py-5 p-md-5">
+            <div class="container">
+                <div class="project-meta theme-bg-light p-4">
+                    <div class="row g-4 g-lg-5">
+                        <div class="col-md-12 text-center">
+                            <div class="choplife-grid">
+                                <div class="choplife-card revenue-card">
+                                    <div><i class="fas fa-naira-sign me-2"></i>Total Revenue</div>
+                                    <div style="font-size: 2rem;">₦70.01M</div>
+                                    <small>Peak revenue performance</small>
+                                </div>
+                                <div class="choplife-card orders-card">
+                                    <div><i class="fas fa-shopping-bag me-2"></i>Total Orders</div>
+                                    <div style="font-size: 2rem;">4,887</div>
+                                    <small>Monthly order volume</small>
+                                </div>
+                                <div class="choplife-card customers-card">
+                                    <div><i class="fas fa-users me-2"></i>Total Customers</div>
+                                    <div style="font-size: 2rem;">5,000</div>
+                                    <small>Active user base</small>
+                                </div>
+                                <div class="choplife-card efficiency-card">
+                                    <div><i class="fas fa-chart-line me-2"></i>Delivery Success</div>
+                                    <div style="font-size: 2rem;">85.19%</div>
+                                    <small>Operational excellence</small>
+                                </div>
+                            </div>
+                            <p class="mt-2 text-muted"><small><em>ChopLife Nigeria - Multi-Dashboard Performance Overview</em></small></p>
+                        </div>
+                    </div>
+                </div>
 
-				<div class="project-section mb-3">
-					<h3 class="project-section-title">The Challenge</h3>
-					<p>The pizza restaurant needed to understand:</p>
-					<ul>
-						<li>Overall sales performance and revenue trends</li>
-						<li>Which pizza types and sizes generate the most revenue</li>
-						<li>Customer ordering patterns throughout different time periods</li>
-						<li>Top and bottom-performing products for inventory optimization</li>
-						<li>Sales distribution across different categories and sizes</li>
-					</ul>
-				</div><!--//project-section-->
+                <div class="project-sections py-5">
+                    <div class="project-section mb-5">
+                        <h3 class="project-section-title mb-3">Project Overview</h3>
+                        <p>
+                            This comprehensive ChopLife food delivery analytics project delivers end-to-end business intelligence 
+                            through specialized dashboards covering <strong>Revenue Momentum</strong>, <strong>Operational Efficiency</strong>, 
+                            <strong>Investment Profile</strong>, and <strong>Market Exposure</strong>. The system provides real-time 
+                            insights across Nigeria's major cities with detailed performance tracking and customer behavior analysis.
+                        </p>
+                        <p>
+                            Analyzing operations across <strong>10 major Nigerian cities</strong> including Lagos, Abuja, Ibadan, 
+                            and Port Harcourt, the dashboards reveal geographic performance patterns, subscription tier analysis, 
+                            and marketing effectiveness enabling data-driven strategic decisions for market expansion and operational optimization.
+                        </p>
+                    </div>
 
-				<div class="project-section mb-4">
-					<h3 class="project-section-title">The Approach &amp; Solution</h3>
-					<p>
-						The solution combined <strong>SQL data analysis</strong> with <strong>Power BI visualization</strong>:
-					</p>
-					<ul>
-						<li><strong>Data Extraction</strong> → Used SQL Server to query pizza sales database with complex aggregations</li>
-						<li><strong>KPI Development</strong> → Created key performance indicators for revenue, orders, and customer metrics</li>
-						<li><strong>Trend Analysis</strong> → Analyzed daily and monthly patterns using date functions</li>
-						<li><strong>Dashboard Design</strong> → Built interactive Power BI dashboard with pizza-themed color palette</li>
-					</ul>
-					
-					<div class="text-center mb-4">
-			<a class="btn btn-primary" href="contact.html" target="_blank">
-				<i class="fas fa-paper-plane me-2"></i>View Dashboard
-			</a>
-		</div>
-				</div><!--//project-section-->
+                    <div class="project-section mb-3">
+                        <h3 class="project-section-title">The Challenge</h3>
+                        <p>Food delivery operations in Nigeria face unique analytical challenges requiring comprehensive tracking:</p>
+                        <ul>
+                            <li><strong>Multi-City Operations:</strong> Performance tracking across diverse Nigerian markets with varying demand patterns.</li>
+                            <li><strong>Subscription Management:</strong> Three-tier system (Basic, Premium, Standard) with different service levels.</li>
+                            <li><strong>Delivery Optimization:</strong> 85.19% success rate with average delivery time of 54.54 minutes.</li>
+                            <li><strong>Marketing ROI:</strong> ₦781M marketing spend with conversion tracking across multiple channels.</li>
+                            <li><strong>Geographic Coverage:</strong> 27.78% geo coverage across Nigeria with 488.70 average deliveries per state.</li>
+                            <li><strong>Customer Acquisition:</strong> Multi-channel approach via Google Ads, Instagram, referrals, and social media.</li>
+                        </ul>
+                    </div>
 
-				<div class="project-section mb-4">
-					<h3 class="project-section-title mb-3">SQL Queries & Analysis</h3>
-					<p>Here are the key SQL queries used to extract insights from the pizza sales data:</p>
+                    <div class="project-section mb-4">
+                        <h3 class="project-section-title">The Approach &amp; Solution</h3>
+                        <p>
+                            I developed a comprehensive <strong>food delivery intelligence ecosystem</strong> with specialized analytical views:
+                        </p>
 
-					<div class="code-section mb-4">
-						<h5>1. Key Performance Indicators (KPIs)</h5>
-						<div class="mb-3">
-							<h6>Total Revenue</h6>
-							<pre style="background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto;"><code>SELECT 
-    FORMAT(SUM(total_price), 'N2') AS Total_Revenue
-FROM [Pizza Sales].[dbo].[pizza_sales];</code></pre>
-						</div>
+                        <h4 class="mb-3"><i class="fas fa-chart-line me-2"></i>1. Revenue Momentum Dashboard</h4>
+                        <ul>
+                            <li><strong>Revenue Tracking:</strong> ₦70.01M peak performance with detailed cost analysis (₦28.03M).</li>
+                            <li><strong>Meal Performance:</strong> Breakfast, Lunch, and Dinner revenue comparison across subscription tiers.</li>
+                            <li><strong>Customer Segmentation:</strong> Age group analysis (45-54, 35-44, 25-34, 18-24) showing demographic preferences.</li>
+                            <li><strong>Referral Intelligence:</strong> Google Ads, Instagram, LinkedIn, Twitter, and Friend referrals tracking.</li>
+                        </ul>
 
-						<div class="mb-3">
-							<h6>Average Order Value</h6>
-							<pre style="background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto;"><code>SELECT 
-    Format(SUM(total_price) / COUNT(DISTINCT order_id), 'N2') AS Avg_order_Value 
-FROM pizza_sales;</code></pre>
-						</div>
+                        <h4 class="mb-3"><i class="fas fa-cogs me-2"></i>2. Operational Efficiency Dashboard</h4>
+                        <ul>
+                            <li><strong>Delivery Performance:</strong> 85.19% success rate with 54.54 minutes average delivery time.</li>
+                            <li><strong>Order Status Tracking:</strong> Real-time monitoring of delivered (85.19%), failed (5.18%), and in-transit orders.</li>
+                            <li><strong>Payment Methods:</strong> Transfer, Wallet, and Card payment distribution analysis.</li>
+                            <li><strong>Delivery Partners:</strong> ChopLife Fleet, Gig, and Kwik partner performance comparison.</li>
+                        </ul>
 
-						<div class="mb-3">
-							<h6>Total Pizza Sold</h6>
-							<pre style="background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto;"><code>SELECT 
-    SUM(quantity) AS Total_pizza_sold 
-FROM pizza_sales;</code></pre>
-						</div>
+                        <div class="insight-card">
+                            <h5><i class="fas fa-map-marked-alt me-2"></i>Nigerian Market Dominance</h5>
+                            <p class="mb-0">
+                                <strong>Lagos leads with ₦6.42M revenue!</strong> 
+                                Port Harcourt follows with ₹7.21M, while Lagos maintains 459 orders showing strong 
+                                market penetration across Nigeria's economic centers.
+                            </p>
+                        </div>
 
-						<div class="mb-3">
-							<h6>Total Orders</h6>
-							<pre style="background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto;"><code>SELECT 
-    COUNT(DISTINCT order_id) AS Total_Orders 
-FROM pizza_sales;</code></pre>
-						</div>
+                        <div class="text-center mb-4">
+                            <a class="btn btn-primary me-3" href="#" target="_blank">
+                                <i class="fas fa-utensils me-2"></i>View Live Dashboard
+                            </a>
+                            <a class="btn btn-outline-primary" href="#" target="_blank">
+                                <i class="fab fa-github me-2"></i>Analytics Repository
+                            </a>
+                        </div>
+                    </div>
 
-						<div class="mb-3">
-							<h6>Average Pizzas per Order</h6>
-							<pre style="background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto;"><code>SELECT 
-    CAST(CAST(SUM(quantity) AS DECIMAL(10,2)) /
-    CAST(COUNT(DISTINCT order_id) AS DECIMAL(10,2)) AS DECIMAL(10,2))
-    AS Avg_Pizzas_per_order
-FROM pizza_sales;</code></pre>
-						</div>
-					</div>
+                    <div class="project-section mb-2">
+                        <h3 class="project-section-title mb-3">Key Performance Metrics & Market Intelligence</h3>
+                        <div class="metrics mb-4">
+                            <div class="row">
+                                <div class="metric col-6 col-xl-3 mb-3">
+                                    <div class="inner p-3 theme-bg-light">
+                                        <div class="metric-name">Peak Revenue</div>
+                                        <div class="metric-data mb-2">₦70.01M</div>
+                                        <div class="metric-desc">Monthly revenue achievement across Nigeria.</div>
+                                    </div>
+                                </div>
+                                <div class="metric col-6 col-xl-3 mb-3">
+                                    <div class="inner p-3 theme-bg-light">
+                                        <div class="metric-name">Order Volume</div>
+                                        <div class="metric-data mb-2">4,887</div>
+                                        <div class="metric-desc">Total monthly orders processed.</div>
+                                    </div>
+                                </div>
+                                <div class="metric col-6 col-xl-3 mb-3">
+                                    <div class="inner p-3 theme-bg-light">
+                                        <div class="metric-name">Marketing ROI</div>
+                                        <div class="metric-data mb-2">₦781M</div>
+                                        <div class="metric-desc">Total marketing investment and spend.</div>
+                                    </div>
+                                </div>
+                                <div class="metric col-6 col-xl-3 mb-3">
+                                    <div class="inner p-3 theme-bg-light">
+                                        <div class="metric-name">Avg CTR</div>
+                                        <div class="metric-data mb-2">2.74</div>
+                                        <div class="metric-desc">Digital marketing click-through rate.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-					<div class="code-section mb-4">
-						<h5>2. Daily and Monthly Trends</h5>
-						<div class="mb-3">
-							<h6>Daily Trends for Orders and Revenue</h6>
-							<pre style="background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto;"><code>SELECT 
-    DATENAME(WEEKDAY, order_date) AS order_day,
-    COUNT(DISTINCT order_id) AS total_orders,
-    Format(SUM(total_price), 'N2') AS total_revenue
-FROM pizza_sales
-GROUP BY DATENAME(WEEKDAY, order_date), DATEPART(WEEKDAY, order_date)
-ORDER BY DATEPART(WEEKDAY, order_date);</code></pre>
-						</div>
+                        <h4 class="mb-3"><i class="fas fa-star me-2"></i>Top Performing Markets</h4>
+                        <div class="row mb-4">
+                            <div class="col-md-8">
+                                <div class="location-card">
+                                    <div>
+                                        <strong>Lagos</strong>
+                                        <div class="small text-muted">459 Orders | ₦6.42M Revenue</div>
+                                    </div>
+                                    <div>
+                                        <span class="accuracy-badge">85.25%</span>
+                                        <small class="ms-2">55.08 min avg</small>
+                                    </div>
+                                </div>
+                                <div class="location-card">
+                                    <div>
+                                        <strong>Port Harcourt</strong>
+                                        <div class="small text-muted">488 Orders | ₦7.21M Revenue</div>
+                                    </div>
+                                    <div>
+                                        <span class="accuracy-badge">85.25%</span>
+                                        <small class="ms-2">53.08 min avg</small>
+                                    </div>
+                                </div>
+                                <div class="location-card">
+                                    <div>
+                                        <strong>Abuja</strong>
+                                        <div class="small text-muted">522 Orders | ₦7.29M Revenue</div>
+                                    </div>
+                                    <div>
+                                        <span class="accuracy-badge">84.29%</span>
+                                        <small class="ms-2">54.75 min avg</small>
+                                    </div>
+                                </div>
+                                <div class="location-card">
+                                    <div>
+                                        <strong>Ibadan</strong>
+                                        <div class="small text-muted">513 Orders | ₦7.43M Revenue</div>
+                                    </div>
+                                    <div>
+                                        <span class="accuracy-badge">86.35%</span>
+                                        <small class="ms-2">54.99 min avg</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="nigeria-map">
+                                    <i class="fas fa-map" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                                    <h5>Nigeria Coverage</h5>
+                                    <div class="brand-red" style="font-size: 2rem; font-weight: bold;">27.78%</div>
+                                    <p class="mb-0">Geographic coverage across 10 major cities with 488.70 average deliveries per state</p>
+                                </div>
+                            </div>
+                        </div>
 
-						<div class="mb-3">
-							<h6>Monthly Trends for Orders and Revenue</h6>
-							<pre style="background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto;"><code>SELECT 
-    DATENAME(MONTH, order_date) AS Month_Name,
-    COUNT(DISTINCT order_id) AS total_orders,
-    Format(SUM(total_price), 'N2') AS total_revenue
-FROM pizza_sales
-GROUP BY DATENAME(MONTH, order_date), DATEPART(MONTH, order_date)
-ORDER BY DATEPART(MONTH, order_date);</code></pre>
-						</div>
-					</div>
+                        <h4 class="mb-3"><i class="fas fa-crown me-2"></i>Subscription Tier Performance</h4>
+                        <div class="row mb-4">
+                            <div class="col-md-4">
+                                <div class="text-center">
+                                    <h6>Premium Tier</h6>
+                                    <div class="subscription-visual" style="background: linear-gradient(135deg, #6f42c1, #5a31a5);">
+                                        1,028<br><small>(100%)</small>
+                                    </div>
+                                    <small class="text-muted">Exclusive premium service</small>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="text-center">
+                                    <h6>Standard Tier</h6>
+                                    <div class="subscription-visual" style="background: linear-gradient(135deg, #28a745, #20c997);">
+                                        2,522<br><small>(100%)</small>
+                                    </div>
+                                    <small class="text-muted">Most popular service level</small>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="text-center">
+                                    <h6>Basic Tier</h6>
+                                    <div class="subscription-visual" style="background: linear-gradient(135deg, #dc3545, #c82333);">
+                                        1,450<br><small>(100%)</small>
+                                    </div>
+                                    <small class="text-muted">Entry-level service option</small>
+                                </div>
+                            </div>
+                        </div>
 
-					<div class="code-section mb-4">
-						<h5>3. Category and Size Analysis</h5>
-						<div class="mb-3">
-							<h6>Revenue Percentage by Pizza Category</h6>
-							<pre style="background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto;"><code>SELECT 
-    pizza_category, 
-    CAST(SUM(total_price) AS DECIMAL(10,2)) as total_revenue,
-    CAST(SUM(total_price) * 100 / (SELECT SUM(total_price) from pizza_sales) AS DECIMAL(10,2)) AS PCT
-FROM pizza_sales
-GROUP BY pizza_category;</code></pre>
-						</div>
+                        <h4 class="mb-3"><i class="fas fa-utensils me-2"></i>Meal Time Analysis</h4>
+                        <ul>
+                            <li><strong>Breakfast Revenue:</strong> Consistent performance across all subscription tiers with steady demand.</li>
+                            <li><strong>Lunch Dominance:</strong> Highest revenue generator showing peak business hours optimization.</li>
+                            <li><strong>Dinner Performance:</strong> Strong evening demand indicating market maturity and customer retention.</li>
+                            <li><strong>Age Demographics:</strong> 45-54 age group showing highest engagement, followed by 35-44 segment.</li>
+                            <li><strong>Marketing Channels:</strong> Google Ads leading acquisition, followed by Instagram and referrals.</li>
+                        </ul>
 
-						<div class="mb-3">
-							<h6>Revenue Percentage by Pizza Size</h6>
-							<pre style="background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto;"><code>SELECT 
-    pizza_size, 
-    CAST(SUM(total_price) AS DECIMAL(10,2)) as total_revenue,
-    CAST(SUM(total_price) * 100 / (SELECT SUM(total_price) from pizza_sales) AS DECIMAL(10,2)) AS PCT
-FROM pizza_sales
-GROUP BY pizza_size
-ORDER BY pizza_size;</code></pre>
-						</div>
-					</div>
+                        <h4 class="mb-3"><i class="fas fa-bullseye me-2"></i>Marketing Performance Insights</h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="delivery-highlight">
+                                    <h6><i class="fas fa-search me-2"></i>Digital Advertising</h6>
+                                    <div style="font-size: 1.5rem;">₦781M Spend</div>
+                                    <small>Comprehensive digital marketing investment</small>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="delivery-highlight">
+                                    <h6><i class="fas fa-mouse-pointer me-2"></i>Conversion Rate</h6>
+                                    <div style="font-size: 1.5rem;">1.06 AVG</div>
+                                    <small>Marketing conversion performance</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="delivery-highlight">
+                                    <h6><i class="fas fa-chart-bar me-2"></i>Campaign Reach</h6>
+                                    <div style="font-size: 1.5rem;">3M Total</div>
+                                    <small>Marketing campaigns total reach</small>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="delivery-highlight">
+                                    <h6><i class="fas fa-dollar-sign me-2"></i>Cost Per Conversion</h6>
+                                    <div style="font-size: 1.5rem;">₦257.22</div>
+                                    <small>Customer acquisition cost</small>
+                                </div>
+                            </div>
+                        </div>
 
-					<div class="code-section mb-4">
-						<h5>4. Product Performance Analysis</h5>
-						<div class="mb-3">
-							<h6>Top 5 Pizzas by Revenue</h6>
-							<pre style="background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto;"><code>SELECT TOP 5 
-    pizza_name, 
-    Format(SUM(total_price),'N2') AS Total_Revenue
-FROM pizza_sales
-GROUP BY pizza_name
-ORDER BY Total_Revenue DESC;</code></pre>
-						</div>
+                        <h4 class="mb-3"><i class="fas fa-rocket me-2"></i>Strategic Business Recommendations</h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="insight-card">
+                                    <h6><i class="fas fa-chart-line me-2"></i>Lagos Market Focus</h6>
+                                    <p class="mb-0">Leverage Lagos's strong performance (459 orders, 85.25% accuracy) to test new services and optimize delivery routes for scale.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="insight-card">
+                                    <h6><i class="fas fa-crown me-2"></i>Premium Tier Growth</h6>
+                                    <p class="mb-0">Standard tier's popularity indicates opportunity to upsell premium features and expand service differentiation.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="insight-card">
+                                    <h6><i class="fas fa-clock me-2"></i>Delivery Optimization</h6>
+                                    <p class="mb-0">54.54-minute average delivery time provides improvement opportunity to reach sub-50 minute target for competitive advantage.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="insight-card">
+                                    <h6><i class="fas fa-bullseye me-2"></i>Marketing Efficiency</h6>
+                                    <p class="mb-0">₦257.22 cost per conversion suggests optimization potential in channel mix and targeting strategies.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-						<div class="mb-3">
-							<h6>Top 5 Pizzas by Quantity</h6>
-							<pre style="background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto;"><code>SELECT TOP 5 
-    pizza_name, 
-    SUM(quantity) AS Total_Pizza_Sold
-FROM pizza_sales
-GROUP BY pizza_name
-ORDER BY Total_Pizza_Sold DESC;</code></pre>
-						</div>
+                    <div class="project-section mb-4">
+                        <h3 class="project-section-title">Dashboard Architecture & Technical Implementation</h3>
+                        
+                        <h4 class="mb-3"><i class="fas fa-tools me-2"></i>Food Delivery Intelligence Stack</h4>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <ul class="list-unstyled">
+                                    <li><i class="fas fa-check-circle text-success me-2"></i><strong>Power BI/Tableau:</strong> Multi-dashboard business intelligence</li>
+                                    <li><i class="fas fa-check-circle text-success me-2"></i><strong>Geographic Mapping:</strong> Nigeria state-level performance visualization</li>
+                                    <li><i class="fas fa-check-circle text-success me-2"></i><strong>Real-time Tracking:</strong> Order status and delivery performance monitoring</li>
+                                    <li><i class="fas fa-check-circle text-success me-2"></i><strong>Customer Analytics:</strong> Age group and subscription tier analysis</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <ul class="list-unstyled">
+                                    <li><i class="fas fa-check-circle text-success me-2"></i><strong>Revenue Intelligence:</strong> Cost analysis and profit margin tracking</li>
+                                    <li><i class="fas fa-check-circle text-success me-2"></i><strong>Marketing ROI:</strong> Campaign performance and conversion analytics</li>
+                                    <li><i class="fas fa-check-circle text-success me-2"></i><strong>Operational KPIs:</strong> Delivery success rates and timing analysis</li>
+                                    <li><i class="fas fa-check-circle text-success me-2"></i><strong>Multi-channel Integration:</strong> Social media and referral tracking</li>
+                                </ul>
+                            </div>
+                        </div>
 
-						<div class="mb-3">
-							<h6>Top 5 Pizzas by Total Orders</h6>
-							<pre style="background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto;"><code>SELECT TOP 5 
-    pizza_name, 
-    COUNT(DISTINCT order_id) AS Total_Orders
-FROM pizza_sales
-GROUP BY pizza_name
-ORDER BY Total_Orders DESC;</code></pre>
-						</div>
-					</div>
-				</div><!--//project-section-->
+                        <h4 class="mb-3"><i class="fas fa-database me-2"></i>Data Architecture & Integration</h4>
+                        <ul>
+                            <li><strong>Order Management:</strong> Real-time order tracking across delivery lifecycle stages.</li>
+                            <li><strong>Customer Profiles:</strong> Demographic analysis and subscription tier management.</li>
+                            <li><strong>Geographic Intelligence:</strong> State and city-level performance mapping across Nigeria.</li>
+                            <li><strong>Marketing Analytics:</strong> Multi-channel campaign performance and ROI tracking.</li>
+                            <li><strong>Operational Metrics:</strong> Delivery partner performance and efficiency monitoring.</li>
+                            <li><strong>Financial Analytics:</strong> Revenue tracking, cost analysis, and profitability assessment.</li>
+                        </ul>
 
-				<div class="project-section mb-2">
-					<h3 class="project-section-title mb-3">The Results</h3>
-					<div class="metrics mb-4">
-						<div class="row">
-							<div class="metric col-6 col-xl-3 mb-3">
-								<div class="inner p-3 theme-bg-light">
-									<div class="metric-name">Total Revenue</div>
-									<div class="metric-data mb-2">$817,860</div>
-									<div class="metric-desc">Comprehensive sales performance</div>
-								</div>
-							</div>
-							<div class="metric col-6 col-xl-3 mb-3">
-								<div class="inner p-3 theme-bg-light">
-									<div class="metric-name">Total Orders</div>
-									<div class="metric-data mb-2">21,350</div>
-									<div class="metric-desc">Customer transactions analyzed</div>
-								</div>
-							</div>
-							<div class="metric col-6 col-xl-3 mb-3">
-								<div class="inner p-3 theme-bg-light">
-									<div class="metric-name">Avg Order Value</div>
-									<div class="metric-data mb-2">$38.31</div>
-									<div class="metric-desc">Customer spending per order</div>
-								</div>
-							</div>
-							<div class="metric col-6 col-xl-3 mb-3">
-								<div class="inner p-3 theme-bg-light">
-									<div class="metric-name">Total Pizzas</div>
-									<div class="metric-data mb-2">49,574</div>
-									<div class="metric-desc">Individual pizzas sold</div>
-								</div>
-							</div>
-						</div><!--//row-->
-					</div><!--//metrics-->
-					<p>
-						Key insights discovered through the analysis:
-					</p>
-					<ul>
-						<li><strong>Classic category</strong> drives 47% of total revenue</li>
-						<li><strong>Large pizzas</strong> generate the highest revenue per unit</li>
-						<li><strong>Friday</strong> shows peak daily performance</li>
-						<li><strong>Thai Chicken Pizza</strong> leads in revenue generation</li>
-						<li><strong>July</strong> recorded the highest monthly sales</li>
-					</ul>
-					<p>
-						The dashboard enables data-driven decisions for menu optimization, inventory management, 
-						staff scheduling, and marketing campaign targeting. The SQL queries provide a reusable 
-						framework for ongoing business intelligence and performance monitoring.
-					</p>
-				</div><!--//project-section-->
-			</div>
-		</div>
-	</section>
+                        <h4 class="mb-3"><i class="fas fa-chart-pie me-2"></i>Dashboard Specialization</h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6>Revenue Momentum Dashboard</h6>
+                                <ul class="small">
+                                    <li>Revenue and cost performance tracking</li>
+                                    <li>Meal type revenue analysis</li>
+                                    <li>Customer subscription tier distribution</li>
+                                    <li>Age group and referral source analytics</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h6>Operational Efficiency Dashboard</h6>
+                                <ul class="small">
+                                    <li>Delivery success rate monitoring</li>
+                                    <li>Average delivery time tracking</li>
+                                    <li>Payment method performance analysis</li>
+                                    <li>Delivery partner comparison</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6>Investment Profile Dashboard</h6>
+                                <ul class="small">
+                                    <li>Marketing spend and ROI analysis</li>
+                                    <li>Campaign performance tracking</li>
+                                    <li>Conversion rate optimization</li>
+                                    <li>Target audience reach analytics</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h6>Market Exposure Dashboard</h6>
+                                <ul class="small">
+                                    <li>Geographic coverage mapping</li>
+                                    <li>State-level performance analysis</li>
+                                    <li>City-wise delivery metrics</li>
+                                    <li>Market penetration insights</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
 
-<section class="promo-section theme-bg-light py-5 text-center">
-	<div class="container single-col-max-width">
-		<h2 class="title">Want me to help with your project?</h2>
-		<p>If you take on freelance work, you can use this section to prompt any potential clients to get in touch with you with their project requirements.</p>
-		<div class="text-center">
-			<a class="btn btn-primary" href="contact.html" target="_blank">
-				<i class="fas fa-paper-plane me-2"></i>Hire Me
-			</a>
-		</div>
-	</div><!--//container-->
-</section><!--//promo-section-->
+                    <div class="project-section mb-4">
+                        <h3 class="project-section-title">Business Impact & Operational Excellence</h3>
+                        
+                        <h4 class="mb-3"><i class="fas fa-lightbulb me-2"></i>Critical Performance Insights</h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="alert alert-success">
+                                    <h6><i class="fas fa-trophy me-2"></i>Delivery Excellence</h6>
+                                    <p class="mb-0">
+                                        <strong>85.19% delivery success rate</strong> demonstrates operational maturity 
+                                        with consistent performance across Nigeria's diverse geographic challenges.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="alert alert-info">
+                                    <h6><i class="fas fa-users me-2"></i>Customer Growth</h6>
+                                    <p class="mb-0">
+                                        <strong>5,000 total customers</strong> with 4,887 orders indicates strong 
+                                        customer engagement and repeat business across subscription tiers.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
 
-<footer class="footer text-center py-4">
-	<small class="copyright">Template Copyright &copy; 
-		<a href="https://themes.3rdwavemedia.com/" target="_blank">3rd Wave Media</a>
-	</small>
-</footer>
-</div><!--//main-wrapper-->
+                        <h4 class="mb-3"><i class="fas fa-chart-line me-2"></i>Market Expansion Opportunities</h4>
+                        <ul>
+                            <li><strong>Geographic Growth:</strong> 27.78% coverage suggests significant expansion potential across Nigeria's 36 states.</li>
+                            <li><strong>Premium Upselling:</strong> Standard tier dominance (2,522 users) indicates opportunity for premium conversion.</li>
+                            <li><strong>Delivery Optimization:</strong> 54.54-minute average presents improvement potential to enhance competitiveness.</li>
+                            <li><strong>Marketing ROI:</strong> ₦257.22 cost per conversion provides baseline for channel optimization.</li>
+                            <li><strong>Age Targeting:</strong> 45-54 segment strength suggests focused demographic marketing opportunities.</li>
+                            <li><strong>Channel Diversification:</strong> Google Ads success indicates potential for expanded digital marketing.</li>
+                        </ul>
 
-    
-    <!-- *****CONFIGURE STYLE (REMOVE ON YOUR PRODUCTION SITE)****** -->  
-	<div id="config-panel" class="config-panel config-panel-hide d-none d-lg-block">
-		<div class="panel-inner">
-			<a id="config-trigger" class="config-trigger text-center" href="#"><i class="fas fa-cog mx-auto" data-fa-transform="down-6" ></i></a>
-			<h5 class="panel-title">Choose Colour</h5>
-			<ul id="color-options" class="list-inline mb-0">
-				<li class="theme-1 active list-inline-item"><a data-style="assets/css/theme.css" href="#"></a></li>
-				<li class="theme-2  list-inline-item"><a data-style="assets/css/theme-1.css" href="#"></a></li>
-				<li class="theme-3  list-inline-item"><a data-style="assets/css/theme-2.css" href="#"></a></li>
-				<li class="theme-4  list-inline-item"><a data-style="assets/css/theme-3.css" href="#"></a></li>
-				<li class="theme-5  list-inline-item"><a data-style="assets/css/theme-4.css" href="#"></a></li>
-				<li class="theme-6  list-inline-item"><a data-style="assets/css/theme-5.css" href="#"></a></li>
-				<li class="theme-7  list-inline-item"><a data-style="assets/css/theme-6.css" href="#"></a></li>
-				<li class="theme-8  list-inline-item"><a data-style="assets/css/theme-7.css" href="#"></a></li>
-				<li class="theme-9  list-inline-item"><a data-style="assets/css/theme-8.css" href="#"></a></li>
-				<li class="theme-9  list-inline-item"><a data-style="assets/css/theme-9.css" href="#"></a></li>
-			</ul>
-			<a id="config-close" class="close" href="#"><i class="fa fa-times-circle"></i></a>
-		</div><!--//panel-inner-->
-	</div><!--//configure-panel-->
+                        <h4 class="mb-3"><i class="fas fa-cog me-2"></i>Operational Performance Analysis</h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6>Delivery Network Efficiency</h6>
+                                <ul class="small">
+                                    <li>ChopLife Fleet: Primary delivery partner</li>
+                                    <li>Gig Economy Integration: Secondary delivery option</li>
+                                    <li>Kwik Partnership: Specialized delivery services</li>
+                                    <li>Multi-partner strategy ensuring reliability</li>
+                                    <li>Average 54.54 minutes delivery time</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h6>Payment & Customer Behavior</h6>
+                                <ul class="small">
+                                    <li>Transfer payments: Most popular method</li>
+                                    <li>Wallet integration: Digital payment adoption</li>
+                                    <li>Card payments: Traditional payment option</li>
+                                    <li>Multi-tier subscription adoption</li>
+                                    <li>Strong age group diversity (18-54)</li>
+                                </ul>
+                            </div>
+                        </div>
 
-    <!-- Javascript -->          
-    <script src="assets/plugins/popper.min.js"></script> 
-    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script> 
+                        <h4 class="mb-3"><i class="fas fa-bullseye me-2"></i>Marketing Performance Deep Dive</h4>
+                        <div class="marketing-visual">
+                            <i class="fas fa-chart-bar" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                            <h5>Multi-Channel Marketing Strategy</h5>
+                            <div class="row text-center">
+                                <div class="col-md-3">
+                                    <div style="font-size: 1.5rem; font-weight: bold;">₦781M</div>
+                                    <small>Total Marketing Spend</small>
+                                </div>
+                                <div class="col-md-3">
+                                    <div style="font-size: 1.5rem; font-weight: bold;">2.74</div>
+                                    <small>Average CTR</small>
+                                </div>
+                                <div class="col-md-3">
+                                    <div style="font-size: 1.5rem; font-weight: bold;">1.06</div>
+                                    <small>Conversion Rate</small>
+                                </div>
+                                <div class="col-md-3">
+                                    <div style="font-size: 1.5rem; font-weight: bold;">₦257.22</div>
+                                    <small>Cost Per Conversion</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h4 class="mb-3"><i class="fas fa-map me-2"></i>Nigerian Market Intelligence</h4>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="text-center p-3" style="background: #28a745; color: white; border-radius: 10px;">
+                                    <h6>Top Revenue Cities</h6>
+                                    <div>Port Harcourt: ₦7.21M</div>
+                                    <div>Abuja: ₦7.29M</div>
+                                    <div>Ibadan: ₦7.43M</div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="text-center p-3" style="background: #dc3545; color: white; border-radius: 10px;">
+                                    <h6>Highest Order Volume</h6>
+                                    <div>Abuja: 522 orders</div>
+                                    <div>Ibadan: 513 orders</div>
+                                    <div>Enugu: 506 orders</div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="text-center p-3" style="background: #6f42c1; color: white; border-radius: 10px;">
+                                    <h6>Best Delivery Performance</h6>
+                                    <div>Ibadan: 86.35% accuracy</div>
+                                    <div>Kano: 86.26% accuracy</div>
+                                    <div>Ilorin: 86.43% accuracy</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="promo-section theme-bg-light py-5 text-center">
+            <div class="container single-col-max-width">
+                <h2 class="title">Looking for a food delivery analytics expert for your business?</h2>
+                <p>I specialize in creating comprehensive food delivery intelligence systems that optimize operations, enhance customer experience, and drive revenue growth. From multi-city logistics analytics to subscription tier optimization, let's transform your food delivery data into competitive advantage through advanced dashboard development and strategic insights.</p>
+                <div class="text-center">
+                    <a class="btn btn-primary" href="contact.html" target="_blank">
+                        <i class="fas fa-paper-plane me-2"></i>Let's Work Together
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer text-center py-4">
+            <small class="copyright">Template Copyright &copy;
+                <a href="https://themes.3rdwavemedia.com/" target="_blank">3rd Wave Media</a>
+            </small>
+        </footer>
+    </div>
+
+    <!-- *****CONFIGURE STYLE (REMOVE ON YOUR PRODUCTION SITE)****** -->
+    <div id="config-panel" class="config-panel config-panel-hide d-none d-lg-block">
+        <div class="panel-inner">
+            <a id="config-trigger" class="config-trigger text-center" href="#"><i class="fas fa-cog mx-auto" data-fa-transform="down-6"></i></a>
+            <h5 class="panel-title">Choose Colour</h5>
+            <ul id="color-options" class="list-inline mb-0">
+                <li class="theme-1 active list-inline-item"><a data-style="assets/css/theme.css" href="#"></a></li>
+                <li class="theme-2 list-inline-item"><a data-style="assets/css/theme-1.css" href="#"></a></li>
+                <li class="theme-3 list-inline-item"><a data-style="assets/css/theme-2.css" href="#"></a></li>
+                <li class="theme-4 list-inline-item"><a data-style="assets/css/theme-3.css" href="#"></a></li>
+                <li class="theme-5 list-inline-item"><a data-style="assets/css/theme-4.css" href="#"></a></li>
+                <li class="theme-6 list-inline-item"><a data-style="assets/css/theme-5.css" href="#"></a></li>
+                <li class="theme-7 list-inline-item"><a data-style="assets/css/theme-6.css" href="#"></a></li>
+                <li class="theme-8 list-inline-item"><a data-style="assets/css/theme-7.css" href="#"></a></li>
+                <li class="theme-9 list-inline-item"><a data-style="assets/css/theme-8.css" href="#"></a></li>
+                <li class="theme-9 list-inline-item"><a data-style="assets/css/theme-9.css" href="#"></a></li>
+            </ul>
+            <a id="config-close" class="close" href="#"><i class="fa fa-times-circle"></i></a>
+        </div>
+    </div>
+
+    <!-- Javascript -->
+    <script src="assets/plugins/popper.min.js"></script>
+    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
     
     <!-- Dark Mode -->
-	<script src="assets/plugins/js-cookie.min.js"></script>
-	<script src="assets/js/dark-mode.js"></script>
-
-    <!-- Style Switcher (REMOVE ON YOUR PRODUCTION SITE) -->
-    <script src="assets/js/demo/style-switcher.js"></script>     
+    <script src="assets/plugins/js-cookie.min.js"></script>
+    <script src="assets/js/dark-mode.js"></script>
     
+    <!-- Style Switcher (REMOVE ON YOUR PRODUCTION SITE) -->
+    <script src="assets/js/demo/style-switcher.js"></script>
 
 </body>
 </html>
