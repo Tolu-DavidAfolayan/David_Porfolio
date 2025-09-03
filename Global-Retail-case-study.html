@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Airline Satisfaction Analytics - David Afolayan</title>
+    <title>Global Retail Superstore Analytics - David Afolayan</title>
     
     <!-- Meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Airline Customer Satisfaction Analytics Case Study">
+    <meta name="description" content="Global Retail Superstore Analytics Case Study">
     <meta name="author" content="David Afolayan">
     
     <link rel="shortcut icon" href="favicon.ico">
@@ -40,23 +40,64 @@
             border-radius: 4px;
             margin: 5px 0;
         }
-        .confusion-matrix {
+        .performance-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            max-width: 400px;
-            margin: 0 auto;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
         }
-        .matrix-cell {
-            padding: 15px;
+        .performance-card {
+            padding: 20px;
             text-align: center;
-            border-radius: 8px;
+            border-radius: 12px;
+            font-weight: bold;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        .revenue-card { background: linear-gradient(135deg, #2ecc71, #27ae60); }
+        .units-card { background: linear-gradient(135deg, #3498db, #2980b9); }
+        .profit-card { background: linear-gradient(135deg, #f39c12, #e67e22); }
+        .cost-card { background: linear-gradient(135deg, #e74c3c, #c0392b); }
+        .segment-card { background: linear-gradient(135deg, #9b59b6, #8e44ad); }
+        .geographic-map {
+            background: linear-gradient(135deg, #34495e, #2c3e50);
+            color: white;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            margin: 1rem 0;
+        }
+        .category-performance {
+            background: linear-gradient(90deg, #FF6B35, #F7931E, #FFD23F);
+            height: 12px;
+            border-radius: 6px;
+            margin: 8px 0;
+        }
+        .manager-highlight {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+        .trend-indicator {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 15px;
+            font-size: 0.8rem;
             font-weight: bold;
         }
-        .true-negative { background: #1f77b4; color: white; }
-        .false-positive { background: #ff7f0e; color: white; }
-        .false-negative { background: #d62728; color: white; }
-        .true-positive { background: #2ca02c; color: white; }
+        .trend-up { background: #d4edda; color: #155724; }
+        .trend-down { background: #f8d7da; color: #721c24; }
+        .world-map-visual {
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            color: white;
+            margin: 1rem 0;
+        }
     </style>
 </head>
 
@@ -116,12 +157,12 @@
     <div class="main-wrapper">
         <section class="cta-section theme-bg-light py-5">
             <div class="container single-col-max-width">
-                <h2 class="heading text-center">Case Study: Airline Customer Satisfaction Prediction & Analytics</h2>
+                <h2 class="heading text-center">Case Study: Global Retail Superstore Analytics & Business Intelligence</h2>
                 <div class="project-intro text-center">
                     <p class="mb-0 lead">
-                        Advanced machine learning analysis of airline customer satisfaction using Python and scikit-learn.
-                        Built predictive models achieving <strong>96% accuracy</strong> to identify key satisfaction drivers
-                        and optimize passenger experience through <strong>data-driven insights</strong> and <strong>feature importance analysis</strong>.
+                        Comprehensive business intelligence dashboard analyzing global retail operations with <strong>$9.6M revenue</strong> 
+                        across multiple markets. Built interactive dashboards tracking <strong>98K+ units sold</strong>, regional performance, 
+                        and operational efficiency through <strong>advanced data visualization</strong> and <strong>business intelligence</strong>.
                     </p>
                 </div>
             </div>
@@ -132,29 +173,29 @@
                 <div class="project-meta theme-bg-light p-4">
                     <div class="row g-4 g-lg-5">
                         <div class="col-md-12 text-center">
-                            <div class="confusion-matrix mb-4">
-                                <div class="matrix-cell true-negative">
-                                    <div>True Negative</div>
-                                    <div style="font-size: 1.5rem;">14,342</div>
-                                    <small>97.63%</small>
+                            <div class="performance-grid">
+                                <div class="performance-card revenue-card">
+                                    <div><i class="fas fa-dollar-sign me-2"></i>Total Revenue</div>
+                                    <div style="font-size: 2rem;">$9.6M</div>
+                                    <small class="trend-indicator trend-up">+4.23% MoM</small>
                                 </div>
-                                <div class="matrix-cell false-positive">
-                                    <div>False Positive</div>
-                                    <div style="font-size: 1.5rem;">348</div>
-                                    <small>2.37%</small>
+                                <div class="performance-card units-card">
+                                    <div><i class="fas fa-boxes me-2"></i>Units Sold</div>
+                                    <div style="font-size: 2rem;">98K</div>
+                                    <small class="trend-indicator trend-up">+4.41% MoM</small>
                                 </div>
-                                <div class="matrix-cell false-negative">
-                                    <div>False Negative</div>
-                                    <div style="font-size: 1.5rem;">692</div>
-                                    <small>6.13%</small>
+                                <div class="performance-card profit-card">
+                                    <div><i class="fas fa-chart-line me-2"></i>Gross Profit</div>
+                                    <div style="font-size: 2rem;">$1.1M</div>
+                                    <small class="trend-indicator trend-up">+3.51% MoM</small>
                                 </div>
-                                <div class="matrix-cell true-positive">
-                                    <div>True Positive</div>
-                                    <div style="font-size: 1.5rem;">10,594</div>
-                                    <small>93.87%</small>
+                                <div class="performance-card cost-card">
+                                    <div><i class="fas fa-truck me-2"></i>Total Cost</div>
+                                    <div style="font-size: 2rem;">$8.5M</div>
+                                    <small class="trend-indicator trend-down">-4.32% MoM</small>
                                 </div>
                             </div>
-                            <p class="mt-2 text-muted"><small><em>Model Confusion Matrix - 96% Overall Accuracy</em></small></p>
+                            <p class="mt-2 text-muted"><small><em>Global Retail Performance Metrics - Multi-Dashboard Analysis</em></small></p>
                         </div>
                     </div>
                 </div>
@@ -163,276 +204,354 @@
                     <div class="project-section mb-5">
                         <h3 class="project-section-title mb-3">Project Overview</h3>
                         <p>
-                            This comprehensive airline satisfaction prediction project leveraged machine learning to analyze
-                            <strong>129,880 passenger records</strong> and identify the key drivers of customer satisfaction.
-                            Using advanced feature engineering and multiple ML algorithms, I developed a predictive model
-                            that achieved exceptional performance in classifying passenger satisfaction levels.
+                            This comprehensive Global Retail Superstore analytics project delivers end-to-end business intelligence 
+                            through interactive dashboards spanning <strong>Revenue & Operations</strong>, <strong>Profit & Leadership</strong>, 
+                            <strong>Return Management</strong>, and <strong>Cost & Logistics</strong>. The multi-dashboard system provides 
+                            real-time insights across global markets with detailed geographic, product, and customer analysis.
                         </p>
                         <p>
-                            The analysis uncovered surprising insights about which factors truly drive airline satisfaction,
-                            revealing that digital experience and service quality significantly outweigh traditional operational
-                            metrics like flight delays. This data-driven approach enables airlines to optimize resource
-                            allocation and improve customer experience strategically.
+                            Analyzing operations across <strong>multiple countries and regions</strong>, the dashboards reveal performance 
+                            patterns from Asia Pacific ($3.05M sales) to Europe ($2.47M sales) and the Americas, enabling data-driven 
+                            strategic decisions for inventory management, regional optimization, and profitability enhancement.
                         </p>
                     </div>
 
                     <div class="project-section mb-3">
                         <h3 class="project-section-title">The Challenge</h3>
-                        <p>Airlines face complex challenges in understanding and predicting customer satisfaction:</p>
+                        <p>Global retail operations face complex analytical challenges requiring comprehensive tracking:</p>
                         <ul>
-                            <li><strong>Multi-dimensional Data:</strong> 25+ variables across demographics, services, and operational metrics.</li>
-                            <li><strong>Imbalanced Classes:</strong> 56.6% neutral/dissatisfied vs 43.4% satisfied passengers.</li>
-                            <li><strong>Feature Selection:</strong> Identifying which of dozens of factors actually drive satisfaction.</li>
-                            <li><strong>Prediction Accuracy:</strong> Need for reliable real-time satisfaction prediction.</li>
-                            <li><strong>Business Insights:</strong> Translating complex ML results into actionable business strategies.</li>
-                            <li><strong>Resource Optimization:</strong> Understanding where to invest for maximum satisfaction impact.</li>
+                            <li><strong>Multi-Market Analysis:</strong> Performance tracking across different countries, regions, and customer segments.</li>
+                            <li><strong>Product Portfolio Management:</strong> 3 main categories (Technology, Office Supplies, Furniture) with varied profitability.</li>
+                            <li><strong>Geographic Complexity:</strong> Revenue and cost optimization across diverse global markets.</li>
+                            <li><strong>Operational Efficiency:</strong> Shipping costs ($1.1M), return management ($390.5K), and logistics optimization.</li>
+                            <li><strong>Manager Performance:</strong> Individual and team performance tracking across different regions.</li>
+                            <li><strong>Customer Intelligence:</strong> Segment analysis (Consumer 51.66%, Corporate 30.22%, Home Office 18.12%).</li>
                         </ul>
                     </div>
 
                     <div class="project-section mb-4">
                         <h3 class="project-section-title">The Approach &amp; Solution</h3>
                         <p>
-                            I implemented a comprehensive <strong>machine learning pipeline</strong> using industry best practices:
+                            I developed a comprehensive <strong>business intelligence ecosystem</strong> with multiple specialized dashboards:
                         </p>
 
-                        <h4 class="mb-3"><i class="fas fa-brain me-2"></i>1. Machine Learning Pipeline</h4>
+                        <h4 class="mb-3"><i class="fas fa-chart-bar me-2"></i>1. Revenue & Operations Dashboard</h4>
                         <ul>
-                            <li><strong>Data Preprocessing:</strong> Handled missing values, encoded categorical variables, feature scaling.</li>
-                            <li><strong>Feature Engineering:</strong> Created derived features and encoded 25+ variables optimally.</li>
-                            <li><strong>Model Selection:</strong> Compared Random Forest, Gradient Boosting, and Logistic Regression.</li>
-                            <li><strong>Hyperparameter Tuning:</strong> Optimized model parameters for best performance.</li>
+                            <li><strong>Sales Performance:</strong> $9.6M total revenue with monthly trend analysis showing seasonal patterns.</li>
+                            <li><strong>Geographic Intelligence:</strong> World map visualization highlighting high/low performance regions.</li>
+                            <li><strong>Category Analysis:</strong> Technology leads with $3.8M, followed by Furniture $3.3M, Office Supplies $2.5M.</li>
+                            <li><strong>Top Markets:</strong> Asia Pacific ($3.05M), Europe ($2.47M), USCA ($1.85M) driving global performance.</li>
                         </ul>
 
-                        <h4 class="mb-3"><i class="fas fa-chart-bar me-2"></i>2. Advanced Analytics</h4>
+                        <h4 class="mb-3"><i class="fas fa-trophy me-2"></i>2. Profit & Leadership Dashboard</h4>
                         <ul>
-                            <li><strong>Feature Importance Analysis:</strong> Identified top satisfaction drivers using tree-based methods.</li>
-                            <li><strong>Correlation Analysis:</strong> Mapped relationships between service ratings and satisfaction.</li>
-                            <li><strong>Demographic Segmentation:</strong> Analyzed satisfaction patterns across customer segments.</li>
-                            <li><strong>Performance Validation:</strong> Comprehensive model evaluation with confusion matrices.</li>
+                            <li><strong>Profitability Analysis:</strong> $1.1M gross profit with detailed margin tracking and net profit insights.</li>
+                            <li><strong>Manager Performance:</strong> Individual manager tracking with Hadia Bousaid ($24.6K), Lindwe Afolayan ($23.6K) leading.</li>
+                            <li><strong>Segment Profitability:</strong> Consumer segment leading with $567K net profit.</li>
+                            <li><strong>Product Performance:</strong> Canon ImageCLASS 2200 Advanced Copier driving $21.28K profit.</li>
                         </ul>
 
                         <div class="insight-card">
-                            <h5><i class="fas fa-lightbulb me-2"></i>Key Discovery</h5>
+                            <h5><i class="fas fa-globe me-2"></i>Global Market Intelligence</h5>
                             <p class="mb-0">
-                                <strong>Digital experience matters more than operational excellence!</strong> 
-                                Online boarding and WiFi service are the top predictors of satisfaction, 
-                                while flight delays have minimal impact on customer sentiment.
+                                <strong>Asia Pacific dominates revenue generation!</strong> 
+                                With $3.05M in sales and 26,394 units sold, Asia Pacific represents the highest-performing 
+                                region, followed by Europe's $2.47M, indicating strategic expansion opportunities.
                             </p>
                         </div>
 
                         <div class="text-center mb-4">
                             <a class="btn btn-primary me-3" href="#" target="_blank">
-                                <i class="fab fa-python me-2"></i>View Python Code
+                                <i class="fas fa-chart-pie me-2"></i>View Interactive Dashboard
                             </a>
                             <a class="btn btn-outline-primary" href="#" target="_blank">
-                                <i class="fab fa-github me-2"></i>GitHub Repository
+                                <i class="fab fa-github me-2"></i>Data Analysis Files
                             </a>
                         </div>
                     </div>
 
                     <div class="project-section mb-2">
-                        <h3 class="project-section-title mb-3">Model Performance & Results</h3>
+                        <h3 class="project-section-title mb-3">Key Business Metrics & Performance</h3>
                         <div class="metrics mb-4">
                             <div class="row">
                                 <div class="metric col-6 col-xl-3 mb-3">
                                     <div class="inner p-3 theme-bg-light">
-                                        <div class="metric-name">Model Accuracy</div>
-                                        <div class="metric-data mb-2">96.00%</div>
-                                        <div class="metric-desc">Random Forest classifier performance.</div>
+                                        <div class="metric-name">Global Revenue</div>
+                                        <div class="metric-data mb-2">$9.6M</div>
+                                        <div class="metric-desc">Total sales across all regions and categories.</div>
                                     </div>
                                 </div>
                                 <div class="metric col-6 col-xl-3 mb-3">
                                     <div class="inner p-3 theme-bg-light">
-                                        <div class="metric-name">Precision Score</div>
-                                        <div class="metric-data mb-2">96.82%</div>
-                                        <div class="metric-desc">True positive prediction rate.</div>
+                                        <div class="metric-name">Units Moved</div>
+                                        <div class="metric-data mb-2">98K</div>
+                                        <div class="metric-desc">Total products sold globally.</div>
                                     </div>
                                 </div>
                                 <div class="metric col-6 col-xl-3 mb-3">
                                     <div class="inner p-3 theme-bg-light">
-                                        <div class="metric-name">Recall Score</div>
-                                        <div class="metric-data mb-2">93.87%</div>
-                                        <div class="metric-desc">Sensitivity to satisfied customers.</div>
+                                        <div class="metric-name">Return Rate</div>
+                                        <div class="metric-data mb-2">$390K</div>
+                                        <div class="metric-desc">Returned sales value for analysis.</div>
                                     </div>
                                 </div>
                                 <div class="metric col-6 col-xl-3 mb-3">
                                     <div class="inner p-3 theme-bg-light">
-                                        <div class="metric-name">F1-Score</div>
-                                        <div class="metric-data mb-2">95.32%</div>
-                                        <div class="metric-desc">Balanced precision-recall metric.</div>
+                                        <div class="metric-name">Shipping Costs</div>
+                                        <div class="metric-data mb-2">$1.1M</div>
+                                        <div class="metric-desc">Global logistics and delivery expenses.</div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <h4 class="mb-3"><i class="fas fa-trophy me-2"></i>Top Satisfaction Predictors</h4>
+                        <h4 class="mb-3"><i class="fas fa-star me-2"></i>Top Performing Markets</h4>
                         <div class="row mb-4">
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <strong>1. Online Boarding (16.81%)</strong>
-                                    <div class="feature-bar" style="width: 100%;"></div>
+                                    <strong>1. Asia Pacific: $3.05M Revenue</strong>
+                                    <div class="category-performance" style="width: 100%;"></div>
+                                    <small class="text-muted">26,394 units sold - Leading global performance</small>
                                 </div>
                                 <div class="mb-3">
-                                    <strong>2. In-flight WiFi Service (13.44%)</strong>
-                                    <div class="feature-bar" style="width: 80%;"></div>
+                                    <strong>2. Europe: $2.47M Revenue</strong>
+                                    <div class="category-performance" style="width: 81%;"></div>
+                                    <small class="text-muted">23,413 units sold - Strong European market</small>
                                 </div>
                                 <div class="mb-3">
-                                    <strong>3. Type of Travel (10.97%)</strong>
-                                    <div class="feature-bar" style="width: 65%;"></div>
+                                    <strong>3. USCA: $1.85M Revenue</strong>
+                                    <div class="category-performance" style="width: 60%;"></div>
+                                    <small class="text-muted">21,071 units sold - North American operations</small>
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="mb-3">
-                                    <strong>4. Travel Class (9.82%)</strong>
-                                    <div class="feature-bar" style="width: 58%;"></div>
-                                </div>
-                                <div class="mb-3">
-                                    <strong>5. Technology Score (5.82%)</strong>
-                                    <div class="feature-bar" style="width: 35%;"></div>
-                                </div>
-                                <div class="mb-3">
-                                    <strong>6. Comfort Score (5.00%)</strong>
-                                    <div class="feature-bar" style="width: 30%;"></div>
+                                <div class="world-map-visual">
+                                    <i class="fas fa-globe-americas" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                                    <h5>Global Market Coverage</h5>
+                                    <p class="mb-0">Multi-country operations spanning North America, Europe, Asia Pacific, and emerging markets with comprehensive regional analysis.</p>
                                 </div>
                             </div>
                         </div>
 
-                        <h4 class="mb-3"><i class="fas fa-chart-line me-2"></i>Strategic Insights Discovered</h4>
+                        <h4 class="mb-3"><i class="fas fa-shopping-cart me-2"></i>Product Category Analysis</h4>
                         <ul>
-                            <li><strong>Digital Experience Rules:</strong> Online boarding and WiFi combine for 30% of prediction power.</li>
-                            <li><strong>Service Over Operations:</strong> Service ratings matter 10x more than flight delay metrics.</li>
-                            <li><strong>Business vs Leisure:</strong> Travel type significantly impacts satisfaction expectations.</li>
-                            <li><strong>Class Differentiation:</strong> Premium class experience drives higher satisfaction rates.</li>
-                            <li><strong>Age Factor:</strong> Demographic variables have surprisingly low predictive power (1.88%).</li>
-                            <li><strong>Technology Integration:</strong> Tech-savvy passengers have different satisfaction drivers.</li>
+                            <li><strong>Technology ($3.8M):</strong> Highest revenue generator with smartphones, computers, and electronics leading.</li>
+                            <li><strong>Furniture ($3.3M):</strong> Strong performance in bookcases, chairs, and office furniture segments.</li>
+                            <li><strong>Office Supplies ($2.5M):</strong> Consistent demand for staples, storage, and general office products.</li>
+                            <li><strong>Top Products:</strong> Apple Smart Phone ($81.6K), Cisco Smart Phone ($73.2K), Motorola Smart Phone ($71.6K).</li>
+                            <li><strong>Profit Leaders:</strong> Canon ImageCLASS 2200 Advanced Copier leading with exceptional profit margins.</li>
                         </ul>
 
-                        <h4 class="mb-3"><i class="fas fa-rocket me-2"></i>Business Impact & Recommendations</h4>
+                        <h4 class="mb-3"><i class="fas fa-users-cog me-2"></i>Management & Leadership Insights</h4>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="manager-highlight">
+                                    <h6><i class="fas fa-medal me-2"></i>Top Performer</h6>
+                                    <div style="font-size: 1.5rem;">Gilbert Wolff</div>
+                                    <small>$150.2K Most Profitable Manager</small>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="manager-highlight">
+                                    <h6><i class="fas fa-chart-line me-2"></i>Sales Leader</h6>
+                                    <div style="font-size: 1.5rem;">Gilbert Wolff</div>
+                                    <small>$1.29M Best Selling Manager</small>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="manager-highlight">
+                                    <h6><i class="fas fa-dollar-sign me-2"></i>Gross Profit</h6>
+                                    <div style="font-size: 1.5rem;">Oxana Lagunov</div>
+                                    <small>$29.2K Best Grossing Manager</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h4 class="mb-3"><i class="fas fa-rocket me-2"></i>Strategic Business Recommendations</h4>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="insight-card">
-                                    <h6><i class="fas fa-wifi me-2"></i>Digital Infrastructure Priority</h6>
-                                    <p class="mb-0">Invest heavily in online boarding systems and in-flight WiFi - these are the strongest satisfaction drivers.</p>
+                                    <h6><i class="fas fa-globe-asia me-2"></i>Asia Pacific Focus</h6>
+                                    <p class="mb-0">Leverage Asia Pacific's $3.05M revenue leadership by expanding product lines and increasing market penetration in high-performing regions.</p>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="insight-card">
-                                    <h6><i class="fas fa-users me-2"></i>Service Quality Focus</h6>
-                                    <p class="mb-0">Prioritize service training over delay reduction - service scores predict satisfaction better than punctuality.</p>
+                                    <h6><i class="fas fa-mobile-alt me-2"></i>Technology Investment</h6>
+                                    <p class="mb-0">Technology category's $3.8M revenue dominance indicates strong growth potential - increase inventory and marketing investment.</p>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="insight-card">
-                                    <h6><i class="fas fa-target me-2"></i>Targeted Interventions</h6>
-                                    <p class="mb-0">Use model predictions to identify at-risk passengers and proactively address their concerns.</p>
+                                    <h6><i class="fas fa-shipping-fast me-2"></i>Logistics Optimization</h6>
+                                    <p class="mb-0">$1.1M shipping costs represent optimization opportunity - analyze routes and negotiate better rates for cost reduction.</p>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="insight-card">
-                                    <h6><i class="fas fa-chart-pie me-2"></i>Resource Allocation</h6>
-                                    <p class="mb-0">Reallocate budget from delay mitigation to digital experience and premium service improvements.</p>
+                                    <h6><i class="fas fa-undo me-2"></i>Return Analysis</h6>
+                                    <p class="mb-0">$390.5K in returns requires investigation - identify patterns and implement quality improvements to reduce return rates.</p>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <div class="project-section mb-4">
-                        <h3 class="project-section-title">Technical Implementation</h3>
-
-                        <h4 class="mb-3"><i class="fas fa-tools me-2"></i>Technologies & Algorithms</h4>
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <ul class="list-unstyled">
-                                    <li><i class="fas fa-check-circle text-success me-2"></i><strong>Python:</strong> Primary programming language</li>
-                                    <li><i class="fas fa-check-circle text-success me-2"></i><strong>Scikit-learn:</strong> Machine learning framework</li>
-                                    <li><i class="fas fa-check-circle text-success me-2"></i><strong>Pandas & NumPy:</strong> Data manipulation and analysis</li>
-                                    <li><i class="fas fa-check-circle text-success me-2"></i><strong>Matplotlib & Seaborn:</strong> Data visualization</li>
-                                </ul>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <ul class="list-unstyled">
-                                    <li><i class="fas fa-check-circle text-success me-2"></i><strong>Random Forest:</strong> Best performing algorithm (96%)</li>
-                                    <li><i class="fas fa-check-circle text-success me-2"></i><strong>Gradient Boosting:</strong> Secondary model (95.1%)</li>
-                                    <li><i class="fas fa-check-circle text-success me-2"></i><strong>Logistic Regression:</strong> Baseline model (87.76%)</li>
-                                    <li><i class="fas fa-check-circle text-success me-2"></i><strong>Feature Engineering:</strong> Categorical encoding and scaling</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <h4 class="mb-3"><i class="fas fa-code me-2"></i>Advanced ML Techniques</h4>
-                        <ul>
-                            <li><strong>Ensemble Methods:</strong> Random Forest with 100+ decision trees for robust predictions.</li>
-                            <li><strong>Feature Importance:</strong> Calculated predictive power of each variable.</li>
-                            <li><strong>Cross-Validation:</strong> Rigorous model validation to prevent overfitting.</li>
-                            <li><strong>Class Balancing:</strong> Handled imbalanced dataset (56.6% vs 43.4% distribution).</li>
-                            <li><strong>Hyperparameter Optimization:</strong> Grid search for optimal model parameters.</li>
-                            <li><strong>Model Comparison:</strong> Systematic evaluation of multiple algorithms.</li>
-                        </ul>
-
-                        <h4 class="mb-3"><i class="fas fa-surprise me-2"></i>Counterintuitive Findings</h4>
-                        <div class="alert alert-info">
-                            <h6><i class="fas fa-exclamation-triangle me-2"></i>Surprising Discovery</h6>
-                            <p class="mb-0">
-                                <strong>Flight delays have minimal impact on satisfaction!</strong> Departure delays (0.45%), 
-                                arrival delays (0.58%), and total delays (0.57%) rank among the least important features. 
-                                This challenges conventional airline thinking and suggests focusing on service quality 
-                                over punctuality optimization.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="project-section mb-4">
-                        <h3 class="project-section-title">Data Insights & Model Interpretability</h3>
+                        <h3 class="project-section-title">Dashboard Architecture & Technical Implementation</h3>
                         
-                        <h4 class="mb-3"><i class="fas fa-users me-2"></i>Customer Demographics</h4>
-                        <div class="row mb-4">
-                            <div class="col-md-4">
-                                <div class="text-center p-3 theme-bg-light rounded">
-                                    <h5>Customer Split</h5>
-                                    <div class="metric-data" style="font-size: 1.5rem;">56.6% | 43.4%</div>
-                                    <small>Neutral/Dissatisfied vs Satisfied</small>
+                        <h4 class="mb-3"><i class="fas fa-tools me-2"></i>Business Intelligence Stack</h4>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <ul class="list-unstyled">
+                                    <li><i class="fas fa-check-circle text-success me-2"></i><strong>Power BI/Tableau:</strong> Interactive dashboard development</li>
+                                    <li><i class="fas fa-check-circle text-success me-2"></i><strong>Data Modeling:</strong> Multi-table relationships and calculated fields</li>
+                                    <li><i class="fas fa-check-circle text-success me-2"></i><strong>Geographic Visualization:</strong> World map integration with performance data</li>
+                                    <li><i class="fas fa-check-circle text-success me-2"></i><strong>Time Series Analysis:</strong> Monthly trend tracking and seasonality</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <ul class="list-unstyled">
+                                    <li><i class="fas fa-check-circle text-success me-2"></i><strong>KPI Development:</strong> Revenue, profit, and operational metrics</li>
+                                    <li><i class="fas fa-check-circle text-success me-2"></i><strong>Advanced Filtering:</strong> Dynamic slicers for interactive exploration</li>
+                                    <li><i class="fas fa-check-circle text-success me-2"></i><strong>Performance Optimization:</strong> Efficient data refresh and loading</li>
+                                    <li><i class="fas fa-check-circle text-success me-2"></i><strong>Multi-Dashboard Architecture:</strong> Integrated navigation system</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <h4 class="mb-3"><i class="fas fa-database me-2"></i>Data Architecture & Sources</h4>
+                        <ul>
+                            <li><strong>Customer Data:</strong> Comprehensive customer profiles with geographic and segment information.</li>
+                            <li><strong>Product Catalog:</strong> Complete product hierarchy with categories, sub-categories, and pricing.</li>
+                            <li><strong>Sales Transactions:</strong> Order-level data with quantities, revenues, and profit calculations.</li>
+                            <li><strong>Geographic Data:</strong> Country, region, and city-level performance mapping.</li>
+                            <li><strong>Operational Metrics:</strong> Shipping costs, return data, and logistics performance.</li>
+                            <li><strong>Manager Performance:</strong> Individual and team-level sales and profitability tracking.</li>
+                        </ul>
+
+                        <h4 class="mb-3"><i class="fas fa-chart-pie me-2"></i>Dashboard Specialization</h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6>Revenue & Operations Dashboard</h6>
+                                <ul class="small">
+                                    <li>Total revenue and units sold tracking</li>
+                                    <li>Geographic performance mapping</li>
+                                    <li>Monthly trend analysis</li>
+                                    <li>Top markets and products identification</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h6>Profit & Leadership Dashboard</h6>
+                                <ul class="small">
+                                    <li>Gross and net profit analysis</li>
+                                    <li>Manager performance ranking</li>
+                                    <li>Profitability by segment and category</li>
+                                    <li>Margin trend monitoring</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6>Return Management Dashboard</h6>
+                                <ul class="small">
+                                    <li>Return volume and value tracking</li>
+                                    <li>Geographic return pattern analysis</li>
+                                    <li>Product-specific return rates</li>
+                                    <li>Operational expense monitoring</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h6>Cost & Logistics Dashboard</h6>
+                                <ul class="small">
+                                    <li>Total cost and shipping expense tracking</li>
+                                    <li>Regional cost analysis</li>
+                                    <li>Ship mode cost comparison</li>
+                                    <li>Logistics optimization insights</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-section mb-4">
+                        <h3 class="project-section-title">Business Impact & Key Discoveries</h3>
+                        
+                        <h4 class="mb-3"><i class="fas fa-lightbulb me-2"></i>Critical Business Insights</h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="alert alert-success">
+                                    <h6><i class="fas fa-trophy me-2"></i>Revenue Leadership</h6>
+                                    <p class="mb-0">
+                                        <strong>Asia Pacific market dominance</strong> with $3.05M revenue demonstrates 
+                                        successful international expansion and represents 32% of global sales volume.
+                                    </p>
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="text-center p-3 theme-bg-light rounded">
-                                    <h5>Customer Type</h5>
-                                    <div class="metric-data" style="font-size: 1.5rem;">82% | 18%</div>
-                                    <small>Returning vs First-time</small>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="text-center p-3 theme-bg-light rounded">
-                                    <h5>Travel Purpose</h5>
-                                    <div class="metric-data" style="font-size: 1.5rem;">Business Heavy</div>
-                                    <small>Business travel dominates dataset</small>
+                            <div class="col-md-6">
+                                <div class="alert alert-info">
+                                    <h6><i class="fas fa-mobile-alt me-2"></i>Technology Advantage</h6>
+                                    <p class="mb-0">
+                                        <strong>Technology category leadership</strong> with $3.8M revenue indicates strong 
+                                        digital transformation demand and premium product positioning success.
+                                    </p>
                                 </div>
                             </div>
                         </div>
 
-                        <h4 class="mb-3"><i class="fas fa-award me-2"></i>Model Performance Comparison</h4>
+                        <h4 class="mb-3"><i class="fas fa-chart-line me-2"></i>Performance Optimization Opportunities</h4>
+                        <ul>
+                            <li><strong>Geographic Expansion:</strong> Europe's $2.47M revenue suggests untapped potential for market share growth.</li>
+                            <li><strong>Category Diversification:</strong> Furniture's $3.3M performance indicates opportunity for expanded product lines.</li>
+                            <li><strong>Cost Management:</strong> $1.1M shipping costs represent 12% of revenue - optimization potential exists.</li>
+                            <li><strong>Return Reduction:</strong> $390.5K returns suggest quality improvement and customer education opportunities.</li>
+                            <li><strong>Manager Development:</strong> Performance variation across managers indicates training and best practice sharing needs.</li>
+                            <li><strong>Customer Segmentation:</strong> Consumer segment's 51.66% share offers targeted marketing opportunities.</li>
+                        </ul>
+
+                        <h4 class="mb-3"><i class="fas fa-shipping-fast me-2"></i>Operational Excellence Insights</h4>
                         <div class="row">
-                            <div class="col-md-4 text-center mb-3">
-                                <div class="p-3 rounded" style="background: linear-gradient(135deg, #ff6b6b, #ee5a24);">
-                                    <h6 class="text-white">Random Forest</h6>
-                                    <div class="text-white" style="font-size: 2rem; font-weight: bold;">96.00%</div>
-                                    <small class="text-white">🏆 Best Performance</small>
-                                </div>
+                            <div class="col-md-6">
+                                <h6>Shipping & Logistics Analysis</h6>
+                                <ul class="small">
+                                    <li>Standard Class: $228.9K - Most used shipping method</li>
+                                    <li>First Class: $120.3K - Premium service option</li>
+                                    <li>Second Class: $118.4K - Balanced cost-speed option</li>
+                                    <li>Same Day: $44.2K - Express delivery service</li>
+                                    <li>Europe leads shipping volume with 23,413 units</li>
+                                </ul>
                             </div>
-                            <div class="col-md-4 text-center mb-3">
-                                <div class="p-3 rounded" style="background: linear-gradient(135deg, #26d0ce, #1dd1a1);">
-                                    <h6 class="text-white">Gradient Boosting</h6>
-                                    <div class="text-white" style="font-size: 2rem; font-weight: bold;">95.10%</div>
-                                    <small class="text-white">🥈 Second Place</small>
-                                </div>
+                            <div class="col-md-6">
+                                <h6>Customer Intelligence</h6>
+                                <ul class="small">
+                                    <li>Top customers span multiple countries and segments</li>
+                                    <li>Tamara Chand leads sales volume ($31,435)</li>
+                                    <li>Anna Andreadi tops order frequency (47 orders)</li>
+                                    <li>Joseph Holt dominates unit volume (205 units)</li>
+                                    <li>Global customer base across Asia Pacific, Europe, Americas</li>
+                                </ul>
                             </div>
-                            <div class="col-md-4 text-center mb-3">
-                                <div class="p-3 rounded" style="background: linear-gradient(135deg, #74b9ff, #0984e3);">
-                                    <h6 class="text-white">Logistic Regression</h6>
-                                    <div class="text-white" style="font-size: 2rem; font-weight: bold;">87.76%</div>
-                                    <small class="text-white">🥉 Baseline Model</small>
-                                </div>
+                        </div>
+
+                        <h4 class="mb-3"><i class="fas fa-award me-2"></i>Product Performance Deep Dive</h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6>Best Selling Products</h6>
+                                <ul class="small">
+                                    <li>Staples: 369 units - Office supply staple</li>
+                                    <li>Apple Smart Phone: $81,632 revenue leader</li>
+                                    <li>Cisco Smart Phone: Strong technology performance</li>
+                                    <li>Various furniture bookcases showing consistent demand</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h6>Profitability Champions</h6>
+                                <ul class="small">
+                                    <li>Canon ImageCLASS 2200: $21.28K profit, 33.1% margin</li>
+                                    <li>Cisco Smart Phone: $16.52K profit, 10.2% margin</li>
+                                    <li>Hoover Store Red: $11.17K profit, 26.6% margin</li>
+                                    <li>Technology and office equipment leading margins</li>
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -442,8 +561,8 @@
 
         <section class="promo-section theme-bg-light py-5 text-center">
             <div class="container single-col-max-width">
-                <h2 class="title">Looking for a machine learning expert for your business?</h2>
-                <p>I specialize in building predictive models and extracting actionable insights from complex datasets. From customer satisfaction prediction to revenue optimization, let's unlock the power of your data through advanced analytics and machine learning.</p>
+                <h2 class="title">Looking for a business intelligence expert for your retail operations?</h2>
+                <p>I specialize in creating comprehensive retail analytics dashboards that transform complex operational data into actionable business insights. From global market analysis to inventory optimization, let's unlock your retail potential through advanced data visualization and strategic analytics.</p>
                 <div class="text-center">
                     <a class="btn btn-primary" href="contact.html" target="_blank">
                         <i class="fas fa-paper-plane me-2"></i>Let's Work Together
