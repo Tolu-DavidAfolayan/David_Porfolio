@@ -1,318 +1,727 @@
 <!DOCTYPE html>
-<html lang="en"> 
+<html lang="en">
 <head>
-    <title>Gym Business Analytics - David Afolayan</title>
+    <title>HR Analytics Dashboard - David Afolayan</title>
     
     <!-- Meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Gym Business Analytics Case Study">
-    <meta name="author" content="David Afolayan">    
-    <link rel="shortcut icon" href="favicon.ico"> 
+    <meta name="description" content="HR Analytics Dashboard Case Study">
+    <meta name="author" content="David Afolayan">
+    
+    <link rel="shortcut icon" href="favicon.ico">
     
     <!-- FontAwesome JS-->
-	<script defer src="assets/fontawesome/js/all.min.js"></script>
+    <script defer src="assets/fontawesome/js/all.min.js"></script>
     
     <!-- Plugin CSS -->
     <link rel="stylesheet" href="assets/plugins/highlight/styles/monokai-sublime.css">
     
-    <!-- Theme CSS -->  
+    <!-- Theme CSS -->
     <link id="theme-style" rel="stylesheet" href="assets/css/theme.css">
     
-
-</head> 
+    <style>
+        .metric-data {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #6c7b95;
+        }
+        .insight-card {
+            background: linear-gradient(135deg, #6c7b95 0%, #4a5568 100%);
+            color: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .feature-bar {
+            background: linear-gradient(90deg, #4CAF50, #FFC107, #FF5722);
+            height: 8px;
+            border-radius: 4px;
+            margin: 5px 0;
+        }
+        .hr-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .hr-card {
+            padding: 20px;
+            text-align: center;
+            border-radius: 12px;
+            font-weight: bold;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        .employees-card { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+        .active-card { background: linear-gradient(135deg, #43e97b, #38f9d7); }
+        .inactive-card { background: linear-gradient(135deg, #fa709a, #fee140); }
+        .attrition-card { background: linear-gradient(135deg, #ff6b6b, #ee5a52); }
+        .demographic-visual {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+        .department-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+        .performance-indicator {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        .trend-up { background: #d4edda; color: #155724; }
+        .trend-down { background: #f8d7da; color: #721c24; }
+        .trend-stable { background: #d1ecf1; color: #0c5460; }
+        .salary-visual {
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            color: white;
+            margin: 1rem 0;
+        }
+        .employee-card {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .rating-badge {
+            background: #28a745;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+        }
+        .attrition-risk {
+            background: #dc3545;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+        }
+        .hr-blue {
+            color: #6c7b95;
+        }
+        .hr-brand {
+            background: #6c7b95;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            display: inline-block;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        .navigation-panel {
+            background: linear-gradient(180deg, #ff6b6b, #667eea, #764ba2, #43e97b);
+            border-radius: 15px;
+            padding: 15px;
+            color: white;
+            margin: 1rem 0;
+        }
+        .dashboard-section {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px 0;
+            border-left: 4px solid #6c7b95;
+        }
+    </style>
+</head>
 
 <body>
-    
-    <header class="header text-center">	    
-	    <h1 class="blog-name pt-lg-4 mb-0"><a class="no-text-decoration" href="index.html">Da'insight Space</a></h1>
+    <header class="header text-center">
+        <h1 class="blog-name pt-lg-4 mb-0"><a class="no-text-decoration" href="index.html">Da'insight Space</a></h1>
         
-	    <nav class="navbar navbar-expand-lg navbar-dark" >
-           
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-			<div id="navigation" class="collapse navbar-collapse flex-column" >
-				<div class="profile-section pt-3 pt-lg-0">
-				    <img class="profile-image mb-3 rounded-circle mx-auto" src="assets/images/blog/headshotImg.png" alt="image" >			
-					
-					<div class="bio mb-3">Hi, my name is Afolayan David Tolulope, a data analyst and machine learning expert.<br><a href="about.html">Find out more about me</a></div><!--//bio-->
-					<ul class="social-list list-inline py-3 mx-auto text-center" style="font-size:15px;">
-			            <li class="list-inline-item"><a href="https://x.com/Da_vid_AFO?t=COoXOfQ8KQDKOSzQ4nBHuw&s=09"><i class="fab fa-twitter"></i></a></li>
-		                    <li class="list-inline-item"><a href="https://www.linkedin.com/in/afolayan-tolulope/"><i class="fab fa-linkedin-in"></i></a></li>
-		                    <li class="list-inline-item"><a href="https://github.com/Tolu-DavidAfolayan/"><i class="fab fa-github-alt"></i></a></li>    
-		                    <li class="list-inline-item"><a href="https://wa.me/2347065080990"><i class="fab fa-whatsapp"></i></a></li>
-					<li class="list-inline-item last-item"><a href="https://www.kaggle.com/davidafolayan"><i class="fab fa-kaggle"></i></a></li>
-		                    <li class="list-inline-item last-item"><a href="https://www.instagram.com/td_afolayan/profilecard/?igsh=MTdzeWZtemJwZWoyaQ=="><i class="fab fa-instagram"></i></a></li>
-			        </ul><!--//social-list-->
-			        <hr> 
-				</div><!--//profile-section-->
-				
-				<ul class="navbar-nav flex-column text-start">
-						<li class="nav-item">
-							<a class="nav-link" href="index.html"><i class="fas fa-user fa-fw me-2"></i>About</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="Portfolio.html"><i class="fas fa-laptop-code fa-fw me-2"></i>Portfolio</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="resume.html"><i class="fas fa-file-alt fa-fw me-2"></i>Resume</a> 
-						</li>
-						<li class="nav-item">
-							<a class="nav-link active" href="case-study.html"><i class="fas fa-envelope-open-text fa-fw me-2"></i>Case Study</a>
-						</li>
-					</ul>
+            <div id="navigation" class="collapse navbar-collapse flex-column">
+                <div class="profile-section pt-3 pt-lg-0">
+                    <img class="profile-image mb-3 rounded-circle mx-auto" src="assets/images/blog/headshotImg.png" alt="image">
+                    
+                    <div class="bio mb-3">Hi, my name is Afolayan David Tolulope, a data analyst and machine learning expert.<br><a href="about.html">Find out more about me</a></div>
+                    <ul class="social-list list-inline py-3 mx-auto text-center" style="font-size:15px;">
+                        <li class="list-inline-item"><a href="https://x.com/Da_vid_AFO?t=COoXOfQ8KQDKOSzQ4nBHuw&s=09"><i class="fab fa-twitter"></i></a></li>
+                        <li class="list-inline-item"><a href="https://www.linkedin.com/in/afolayan-tolulope/"><i class="fab fa-linkedin-in"></i></a></li>
+                        <li class="list-inline-item"><a href="https://github.com/Tolu-DavidAfolayan/"><i class="fab fa-github-alt"></i></a></li>
+                        <li class="list-inline-item"><a href="https://wa.me/2347065080990"><i class="fab fa-whatsapp"></i></a></li>
+                        <li class="list-inline-item last-item"><a href="https://www.kaggle.com/davidafolayan"><i class="fab fa-kaggle"></i></a></li>
+                        <li class="list-inline-item last-item"><a href="https://www.instagram.com/td_afolayan/profilecard/?igsh=MTdzeWZtemJwZWoyaQ=="><i class="fab fa-instagram"></i></a></li>
+                    </ul>
+                    <hr>
+                </div>
+                
+                <ul class="navbar-nav flex-column text-start">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html"><i class="fas fa-user fa-fw me-2"></i>About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Portfolio.html"><i class="fas fa-laptop-code fa-fw me-2"></i>Portfolio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="resume.html"><i class="fas fa-file-alt fa-fw me-2"></i>Resume</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="case-study.html"><i class="fas fa-envelope-open-text fa-fw me-2"></i>Case Study</a>
+                    </li>
+                </ul>
 
-				<div class="my-2">
-                        <a class="btn btn-primary" href="contact.html" target="_blank"><i class="fas fa-paper-plane me-2"></i>Hire Me</a>
-                    </div>
-				<div class="dark-mode-toggle text-center w-100">
-						<hr class="mb-4">
-					    <h4 class="toggle-name mb-3 "><i class="fas fa-adjust me-1"></i>Dark Mode</h4>
-					    
-					    <input class="toggle" id="darkmode" type="checkbox">
-					    <label class="toggle-btn mx-auto mb-0" for="darkmode"></label>
-					    
-					</div><!--//dark-mode-toggle-->
-			</div>
-		</nav>
+                <div class="my-2">
+                    <a class="btn btn-primary" href="contact.html" target="_blank"><i class="fas fa-paper-plane me-2"></i>Hire Me</a>
+                </div>
+                <div class="dark-mode-toggle text-center w-100">
+                    <hr class="mb-4">
+                    <h4 class="toggle-name mb-3"><i class="fas fa-adjust me-1"></i>Dark Mode</h4>
+                    <input class="toggle" id="darkmode" type="checkbox">
+                    <label class="toggle-btn mx-auto mb-0" for="darkmode"></label>
+                </div>
+            </div>
+        </nav>
     </header>
 
-	<div class="main-wrapper"> 
-	<section class="cta-section theme-bg-light py-5">
-		<div class="container single-col-max-width">
-			<h2 class="heading text-center">Case Study: Gym Business Analytics & Performance Optimization</h2>
-			<div class="project-intro text-center">
-				<p class="mb-0 lead">
-					Comprehensive analysis of gym operations using SQL Server and data analytics to optimize member retention, 
-					revenue growth, and operational efficiency. Transformed raw membership data into actionable business insights 
-					through <strong>advanced SQL queries</strong> and <strong>KPI tracking</strong>.
-				</p>
-			</div>
-		</div><!--//container-->
-	</section>
+    <div class="main-wrapper">
+        <section class="cta-section theme-bg-light py-5">
+            <div class="container single-col-max-width">
+                <div class="hr-brand text-center mb-3">
+                    <i class="fas fa-users me-2"></i>HR Analytics Dashboard
+                </div>
+                <h2 class="heading text-center">Case Study: HR Analytics Dashboard & Workforce Intelligence System</h2>
+                <div class="project-intro text-center">
+                    <p class="mb-0 lead">
+                        Comprehensive HR analytics platform tracking <strong>1,470 total employees</strong> with advanced 
+                        workforce intelligence. Built multi-dashboard system monitoring <strong>16.12% attrition rate</strong>, 
+                        employee performance, demographics, and predictive analytics through <strong>data-driven HR insights</strong> 
+                        and <strong>strategic workforce planning</strong>.
+                    </p>
+                </div>
+            </div>
+        </section>
 
-	<section class="project px-3 py-5 p-md-5">
-		<div class="container">
+        <section class="project px-3 py-5 p-md-5">
+            <div class="container">
+                <div class="project-meta theme-bg-light p-4">
+                    <div class="row g-4 g-lg-5">
+                        <div class="col-md-12 text-center">
+                            <div class="hr-grid">
+                                <div class="hr-card employees-card">
+                                    <div><i class="fas fa-users me-2"></i>Total Employees</div>
+                                    <div style="font-size: 2rem;">1,470</div>
+                                    <small>Workforce across all departments</small>
+                                </div>
+                                <div class="hr-card active-card">
+                                    <div><i class="fas fa-user-check me-2"></i>Active Employees</div>
+                                    <div style="font-size: 2rem;">1,233</div>
+                                    <small>Currently engaged workforce</small>
+                                </div>
+                                <div class="hr-card inactive-card">
+                                    <div><i class="fas fa-user-minus me-2"></i>Inactive Employees</div>
+                                    <div style="font-size: 2rem;">237</div>
+                                    <small>Departures and transitions</small>
+                                </div>
+                                <div class="hr-card attrition-card">
+                                    <div><i class="fas fa-chart-line-down me-2"></i>Attrition Rate</div>
+                                    <div style="font-size: 2rem;">16.12%</div>
+                                    <small>Annual turnover rate</small>
+                                </div>
+                            </div>
+                            <p class="mt-2 text-muted"><small><em>HR Analytics Overview - Multi-Dashboard Workforce Intelligence</em></small></p>
+                        </div>
+                    </div>
+                </div>
 
-			<div class="project-sections py-5">
-				<div class="project-section mb-5">
-					<h3 class="project-section-title mb-3">Project Overview</h3>
-					<p>
-						This comprehensive gym business analytics project focused on transforming raw operational data into strategic 
-						business intelligence. Using <strong>SQL Server</strong> as the primary database engine, I designed and 
-						implemented a complete data infrastructure to track member demographics, payment patterns, fitness goals, 
-						and operational expenses.
-					</p>
-					<p>
-						The analysis revealed critical insights about member retention, revenue optimization opportunities, and 
-						demographic trends that directly impacted business strategy. Through advanced SQL queries and KPI development, 
-						the project delivered a 360-degree view of gym operations, enabling data-driven decision making.
-					</p>
-				</div><!--//project-section-->
+                <div class="project-sections py-5">
+                    <div class="project-section mb-5">
+                        <h3 class="project-section-title mb-3">Project Overview</h3>
+                        <p>
+                            This comprehensive HR Analytics Dashboard delivers end-to-end workforce intelligence through 
+                            integrated dashboards covering <strong>Overview & Summary</strong>, <strong>Demographics Analysis</strong>, 
+                            <strong>Performance Tracking</strong>, and <strong>Attrition Management</strong>. The system provides 
+                            real-time insights across departments with detailed employee lifecycle analysis and predictive 
+                            workforce planning capabilities.
+                        </p>
+                        <p>
+                            Analyzing workforce data across <strong>Technology, Sales, and Human Resources departments</strong>, 
+                            the dashboard reveals demographic patterns, performance trends, salary analytics, and geographic 
+                            distribution enabling data-driven HR strategic decisions for talent retention, compensation planning, 
+                            and organizational development.
+                        </p>
+                    </div>
 
-				<div class="project-section mb-3">
-					<h3 class="project-section-title">The Challenge</h3>
-					<p>The gym faced several operational and strategic challenges:</p>
-					<ul>
-						<li><strong>Data Fragmentation:</strong> Member, payment, and expense data scattered across multiple Excel sheets.</li>
-						<li><strong>Member Retention Issues:</strong> Unclear understanding of which demographics had highest retention rates.</li>
-						<li><strong>Revenue Optimization:</strong> Need to identify most profitable membership types and payment methods.</li>
-						<li><strong>Health Tracking:</strong> No systematic analysis of member BMI trends and fitness goal achievement.</li>
-						<li><strong>Operational Efficiency:</strong> Lack of expense tracking and profitability analysis.</li>
-						<li><strong>Manual Reporting:</strong> Time-intensive manual processes for generating business insights.</li>
-					</ul>
-				</div><!--//project-section-->
+                    <div class="project-section mb-3">
+                        <h3 class="project-section-title">The Challenge</h3>
+                        <p>Modern HR operations face complex analytical challenges requiring comprehensive workforce tracking:</p>
+                        <ul>
+                            <li><strong>Employee Lifecycle Management:</strong> Tracking 1,470 employees from hire to departure across multiple departments.</li>
+                            <li><strong>Attrition Analysis:</strong> 16.12% attrition rate requiring deep dive into departure patterns and retention strategies.</li>
+                            <li><strong>Performance Tracking:</strong> Individual employee performance monitoring with rating systems and career progression.</li>
+                            <li><strong>Demographic Intelligence:</strong> Age ranges (18-51), gender distribution, and diversity analytics across organizations.</li>
+                            <li><strong>Compensation Analysis:</strong> Salary trends, pay equity analysis, and compensation benchmarking by role and department.</li>
+                            <li><strong>Geographic Distribution:</strong> Multi-state workforce management with location-based performance insights.</li>
+                        </ul>
+                    </div>
 
-				<div class="project-section mb-4">
-					<h3 class="project-section-title">The Approach &amp; Solution</h3>
-					<p>
-						I implemented a comprehensive <strong>data engineering and analytics solution</strong> using modern SQL practices:
-					</p>
-					
-					<h4 class="mb-3"><i class="fas fa-database me-2"></i>1. Database Design & Architecture</h4>
-					<ul>
-						<li><strong>Data Migration:</strong> Imported Excel data into SQL Server with proper data type optimization.</li>
-						<li><strong>Data Cleaning:</strong> Removed duplicates, handled NULL values, and standardized formats.</li>
-						<li><strong>Schema Design:</strong> Created primary keys, foreign keys, and indexes for optimal performance.</li>
-						<li><strong>Data Validation:</strong> Implemented integrity constraints to ensure data quality.</li>
-					</ul>
+                    <div class="project-section mb-4">
+                        <h3 class="project-section-title">The Approach &amp; Solution</h3>
+                        <p>
+                            I developed a comprehensive <strong>HR intelligence ecosystem</strong> with specialized analytical dashboards:
+                        </p>
 
-					<h4 class="mb-3"><i class="fas fa-chart-line me-2"></i>2. Advanced Analytics Implementation</h4>
-					<ul>
-						<li><strong>Member Segmentation:</strong> Age-based analysis (Students, Working Class, Retired Personnel).</li>
-						<li><strong>Health Analytics:</strong> BMI categorization and obesity tracking using WHO standards.</li>
-						<li><strong>Revenue Analysis:</strong> Payment method performance and success rate tracking.</li>
-						<li><strong>Retention Modeling:</strong> Member lifecycle analysis and churn prediction indicators.</li>
-					</ul>
+                        <h4 class="mb-3"><i class="fas fa-chart-bar me-2"></i>1. Overview & Summary Dashboard</h4>
+                        <ul>
+                            <li><strong>Workforce Metrics:</strong> 1,470 total employees with 735 average, 1,233 active, and 237 inactive tracking.</li>
+                            <li><strong>Departmental Analysis:</strong> Human Resources, Sales, and Technology performance across job roles.</li>
+                            <li><strong>Temporal Trends:</strong> Employee count tracking from 2012-2022 with activity/inactivity patterns.</li>
+                            <li><strong>Organizational Health:</strong> Current workforce distribution and departmental growth analysis.</li>
+                        </ul>
 
-					<h4 class="mb-3"><i class="fas fa-tachometer-alt me-2"></i>3. KPI Development</h4>
-					<ul>
-						<li><strong>Financial KPIs:</strong> Revenue growth, ARPU (Average Revenue Per User), profit margins.</li>
-						<li><strong>Operational KPIs:</strong> Member retention rates, trainer utilization, membership distribution.</li>
-						<li><strong>Health KPIs:</strong> BMI improvement tracking, fitness goal achievement rates.</li>
-						<li><strong>Customer KPIs:</strong> New member acquisition, payment success rates, demographic trends.</li>
-					</ul>
-					
-					<div class="text-center mb-4">
-						<a class="btn btn-primary me-3" href="#" target="_blank">
-							<i class="fas fa-code me-2"></i>View SQL Queries
-						</a>
-						<a class="btn btn-outline-primary" href="#" target="_blank">
-							<i class="fab fa-github me-2"></i>GitHub Repository
-						</a>
-					</div>
-				</div><!--//project-section-->
+                        <h4 class="mb-3"><i class="fas fa-users me-2"></i>2. Demographics Dashboard</h4>
+                        <ul>
+                            <li><strong>Age Analysis:</strong> Age range 18-51 with detailed distribution showing workforce maturity (21K distance to work).</li>
+                            <li><strong>Diversity Metrics:</strong> Gender and marital status distribution with comprehensive demographic insights.</li>
+                            <li><strong>Salary Analytics:</strong> Ethnicity-based salary analysis showing compensation equity across diverse workforce.</li>
+                            <li><strong>Geographic Distribution:</strong> Multi-state employee distribution with education level tracking.</li>
+                        </ul>
 
-				<div class="project-section mb-2">
-					<h3 class="project-section-title mb-3">Key Results & Insights</h3>
-					<div class="metrics mb-4">
-						<div class="row">
-							<div class="metric col-6 col-xl-3 mb-3">
-								<div class="inner p-3 theme-bg-light">
-									<div class="metric-name">Member Retention</div>
-									<div class="metric-data mb-2">85.3%</div>
-									<div class="metric-desc">12-month retention rate for active members.</div>
-								</div>
-							</div>
-							<div class="metric col-6 col-xl-3 mb-3">
-								<div class="inner p-3 theme-bg-light">
-									<div class="metric-name">Revenue Growth</div>
-									<div class="metric-data mb-2">+18.7%</div>
-									<div class="metric-desc">Year-over-year revenue increase.</div>
-								</div>
-							</div>
-							<div class="metric col-6 col-xl-3 mb-3">
-								<div class="inner p-3 theme-bg-light">
-									<div class="metric-name">Payment Success</div>
-									<div class="metric-data mb-2">94.2%</div>
-									<div class="metric-desc">Overall payment processing success rate.</div>
-								</div>
-							</div>
-							<div class="metric col-6 col-xl-3 mb-3">
-								<div class="inner p-3 theme-bg-light">
-									<div class="metric-name">Health Goals</div>
-									<div class="metric-data mb-2">67%</div>
-									<div class="metric-desc">Members showing BMI improvement.</div>
-								</div>
-							</div>
-						</div><!--//row-->
-					</div><!--//metrics-->
+                        <div class="navigation-panel">
+                            <h5><i class="fas fa-compass me-2"></i>Multi-Dashboard Navigation</h5>
+                            <div class="row text-center">
+                                <div class="col-md-3">
+                                    <div><i class="fas fa-tachometer-alt" style="font-size: 2rem;"></i></div>
+                                    <small>Overview Dashboard</small>
+                                </div>
+                                <div class="col-md-3">
+                                    <div><i class="fas fa-chart-pie" style="font-size: 2rem;"></i></div>
+                                    <small>Demographics</small>
+                                </div>
+                                <div class="col-md-3">
+                                    <div><i class="fas fa-chart-line" style="font-size: 2rem;"></i></div>
+                                    <small>Performance Tracker</small>
+                                </div>
+                                <div class="col-md-3">
+                                    <div><i class="fas fa-user-times" style="font-size: 2rem;"></i></div>
+                                    <small>Attrition Analysis</small>
+                                </div>
+                            </div>
+                        </div>
 
-					<h4 class="mb-3"><i class="fas fa-lightbulb me-2"></i>Strategic Insights Discovered</h4>
-					<ul>
-						<li><strong>Demographics:</strong> Working-class members (26-59) represent 62% of membership with highest retention.</li>
-						<li><strong>Payment Preferences:</strong> Card payments dominate (45%), but online payments growing 23% annually.</li>
-						<li><strong>Health Trends:</strong> 34% of new members join for weight loss, showing strong demand for targeted programs.</li>
-						<li><strong>Revenue Optimization:</strong> Premium memberships generate 3.2x more revenue per member.</li>
-						<li><strong>Operational Efficiency:</strong> Trainer utilization varies 40%, indicating optimization opportunities.</li>
-						<li><strong>Seasonal Patterns:</strong> January and September show 35% higher new member acquisition.</li>
-					</ul>
+                        <div class="text-center mb-4">
+                            <a class="btn btn-primary me-3" href="#" target="_blank">
+                                <i class="fas fa-chart-bar me-2"></i>View HR Dashboard
+                            </a>
+                            <a class="btn btn-outline-primary" href="#" target="_blank">
+                                <i class="fab fa-github me-2"></i>Analytics Code
+                            </a>
+                        </div>
+                    </div>
 
-					<h4 class="mb-3"><i class="fas fa-rocket me-2"></i>Business Impact</h4>
-					<p>
-						The analytics implementation enabled the gym to:
-					</p>
-					<ul>
-						<li><strong>Increase Revenue:</strong> Optimized membership pricing strategies based on demographic analysis.</li>
-						<li><strong>Improve Retention:</strong> Identified at-risk member segments and implemented targeted retention programs.</li>
-						<li><strong>Enhance Operations:</strong> Balanced trainer workloads and optimized class schedules.</li>
-						<li><strong>Drive Growth:</strong> Focused marketing on high-value demographic segments.</li>
-						<li><strong>Health Outcomes:</strong> Tracked member fitness progress to improve program effectiveness.</li>
-					</ul>
-				</div><!--//project-section-->
+                    <div class="project-section mb-2">
+                        <h3 class="project-section-title mb-3">Workforce Intelligence & Performance Metrics</h3>
+                        <div class="metrics mb-4">
+                            <div class="row">
+                                <div class="metric col-6 col-xl-3 mb-3">
+                                    <div class="inner p-3 theme-bg-light">
+                                        <div class="metric-name">Total Workforce</div>
+                                        <div class="metric-data mb-2">1,470</div>
+                                        <div class="metric-desc">Employees across all departments and roles.</div>
+                                    </div>
+                                </div>
+                                <div class="metric col-6 col-xl-3 mb-3">
+                                    <div class="inner p-3 theme-bg-light">
+                                        <div class="metric-name">Average Salary</div>
+                                        <div class="metric-data mb-2">$68,508</div>
+                                        <div class="metric-desc">Annual compensation across all roles.</div>
+                                    </div>
+                                </div>
+                                <div class="metric col-6 col-xl-3 mb-3">
+                                    <div class="inner p-3 theme-bg-light">
+                                        <div class="metric-name">Overtime Workers</div>
+                                        <div class="metric-data mb-2">271</div>
+                                        <div class="metric-desc">Employees working extended hours.</div>
+                                    </div>
+                                </div>
+                                <div class="metric col-6 col-xl-3 mb-3">
+                                    <div class="inner p-3 theme-bg-light">
+                                        <div class="metric-name">Total Workforce</div>
+                                        <div class="metric-data mb-2">961</div>
+                                        <div class="metric-desc">Complete employee database.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-				<div class="project-section mb-4">
-					<h3 class="project-section-title">Technical Implementation</h3>
-					
-					<h4 class="mb-3"><i class="fas fa-tools me-2"></i>Technologies Used</h4>
-					<div class="row">
-						<div class="col-md-6 mb-3">
-							<ul class="list-unstyled">
-								<li><i class="fas fa-check-circle text-success me-2"></i><strong>SQL Server:</strong> Primary database engine</li>
-								<li><i class="fas fa-check-circle text-success me-2"></i><strong>T-SQL:</strong> Advanced query development</li>
-								<li><i class="fas fa-check-circle text-success me-2"></i><strong>SSMS:</strong> Database management and development</li>
-								<li><i class="fas fa-check-circle text-success me-2"></i><strong>Excel Integration:</strong> Data import and initial analysis</li>
-							</ul>
-						</div>
-						<div class="col-md-6 mb-3">
-							<ul class="list-unstyled">
-								<li><i class="fas fa-check-circle text-success me-2"></i><strong>Data Modeling:</strong> Relational database design</li>
-								<li><i class="fas fa-check-circle text-success me-2"></i><strong>ETL Processes:</strong> Data cleaning and transformation</li>
-								<li><i class="fas fa-check-circle text-success me-2"></i><strong>Performance Optimization:</strong> Indexing and query tuning</li>
-								<li><i class="fas fa-check-circle text-success me-2"></i><strong>Business Intelligence:</strong> KPI development and tracking</li>
-							</ul>
-						</div>
-					</div>
+                        <h4 class="mb-3"><i class="fas fa-building me-2"></i>Department Performance Analysis</h4>
+                        <div class="row mb-4">
+                            <div class="col-md-4">
+                                <div class="department-card">
+                                    <h6><i class="fas fa-laptop-code me-2"></i>Technology</h6>
+                                    <div style="font-size: 1.5rem;">65+ Roles</div>
+                                    <small>Software Engineers, Data Scientists, DevOps</small>
+                                    <div class="mt-2">
+                                        <span class="performance-indicator trend-up">8.25% Attrition</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="department-card">
+                                    <h6><i class="fas fa-chart-line me-2"></i>Sales</h6>
+                                    <div style="font-size: 1.5rem;">45+ Roles</div>
+                                    <small>Sales Representatives, Executives, Managers</small>
+                                    <div class="mt-2">
+                                        <span class="performance-indicator trend-down">33.33% Attrition</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="department-card">
+                                    <h6><i class="fas fa-users-cog me-2"></i>Human Resources</h6>
+                                    <div style="font-size: 1.5rem;">25+ Roles</div>
+                                    <small>HR Managers, Recruiters, Coordinators</small>
+                                    <div class="mt-2">
+                                        <span class="performance-indicator trend-stable">17.39% Attrition</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-					<h4 class="mb-3"><i class="fas fa-code me-2"></i>Key SQL Features Implemented</h4>
-					<ul>
-						<li><strong>Complex Joins:</strong> Multi-table analysis across Users, Payments, and Expenses.</li>
-						<li><strong>Window Functions:</strong> ROW_NUMBER(), PARTITION BY for advanced analytics.</li>
-						<li><strong>CTEs:</strong> Common Table Expressions for complex data transformations.</li>
-						<li><strong>Aggregation:</strong> GROUP BY, HAVING, and statistical functions.</li>
-						<li><strong>Data Validation:</strong> CASE statements and conditional logic for data categorization.</li>
-						<li><strong>Performance Optimization:</strong> Indexed views and query optimization.</li>
-					</ul>
-				</div><!--//project-section-->
-			</div>
-		</div>
-	</section>
+                        <h4 class="mb-3"><i class="fas fa-star me-2"></i>Employee Performance Insights</h4>
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <div class="dashboard-section">
+                                    <h6>Performance Tracker Features</h6>
+                                    <ul class="small">
+                                        <li>Individual employee profiles with photos and details</li>
+                                        <li>Relationship satisfaction and job satisfaction tracking</li>
+                                        <li>Manager evaluation trends with rating systems</li>
+                                        <li>Environmental satisfaction and work-life balance metrics</li>
+                                        <li>Yearly employee ratings and training engagement</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="employee-card">
+                                    <div>
+                                        <strong>Joyce Goor</strong>
+                                        <div class="small text-muted">Technology Department | Software Engineer</div>
+                                        <div class="small">Female | CA | Age 30</div>
+                                    </div>
+                                    <div>
+                                        <span class="rating-badge">Excellent</span>
+                                        <div class="small mt-1">Last Review: 02/27/2023</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-<section class="promo-section theme-bg-light py-5 text-center">
-	<div class="container single-col-max-width">
-		<h2 class="title">Looking for a data analyst for your business?</h2>
-		<p>I specialize in transforming raw business data into actionable insights through advanced SQL development, database design, and analytics. Let's discuss how data analytics can drive your business growth.</p>
-		<div class="text-center">
-			<a class="btn btn-primary" href="contact.html" target="_blank">
-				<i class="fas fa-paper-plane me-2"></i>Let's Work Together
-			</a>
-		</div>
-	</div><!--//container-->
-</section><!--//promo-section-->
+                        <h4 class="mb-3"><i class="fas fa-chart-pie me-2"></i>Demographic Intelligence</h4>
+                        <ul>
+                            <li><strong>Age Distribution:</strong> 18-51 age range with majority in prime working years (20s-40s).</li>
+                            <li><strong>Gender Balance:</strong> Comprehensive gender and marital status tracking across departments.</li>
+                            <li><strong>Geographic Spread:</strong> Multi-state presence with employees in CA, NY, IL, and other states.</li>
+                            <li><strong>Education Levels:</strong> Bachelor's, Master's, High School, and Doctorate degree holders.</li>
+                            <li><strong>Salary Equity:</strong> Ethnicity-based compensation analysis ensuring pay equity.</li>
+                            <li><strong>Work Patterns:</strong> 271 overtime employees indicating high engagement levels.</li>
+                        </ul>
 
-<footer class="footer text-center py-4">
-	<small class="copyright">Template Copyright &copy; 
-		<a href="https://themes.3rdwavemedia.com/" target="_blank">3rd Wave Media</a>
-	</small>
-</footer>
-</div><!--//main-wrapper-->
+                        <h4 class="mb-3"><i class="fas fa-exclamation-triangle me-2"></i>Attrition Analysis & Risk Management</h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="insight-card">
+                                    <h6><i class="fas fa-chart-line-down me-2"></i>High-Risk Departments</h6>
+                                    <p class="mb-0">Sales department shows 33.33% attrition rate, requiring immediate intervention and retention strategy development.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="insight-card">
+                                    <h6><i class="fas fa-map-marked-alt me-2"></i>Geographic Patterns</h6>
+                                    <p class="mb-0">Regional employee movement patterns indicate geographic-based attrition trends requiring location-specific retention efforts.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="insight-card">
+                                    <h6><i class="fas fa-clock me-2"></i>Tenure Analysis</h6>
+                                    <p class="mb-0">Years at company analysis (0-10 years) reveals critical retention periods requiring targeted intervention strategies.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="insight-card">
+                                    <h6><i class="fas fa-business-time me-2"></i>Work-Life Balance</h6>
+                                    <p class="mb-0">Overtime impact analysis shows correlation between extended hours and attrition risk across departments.</p>
+                                </div>
+                            </div>
+                        </div>
 
-    
-    <!-- *****CONFIGURE STYLE (REMOVE ON YOUR PRODUCTION SITE)****** -->  
-	<div id="config-panel" class="config-panel config-panel-hide d-none d-lg-block">
-		<div class="panel-inner">
-			<a id="config-trigger" class="config-trigger text-center" href="#"><i class="fas fa-cog mx-auto" data-fa-transform="down-6" ></i></a>
-			<h5 class="panel-title">Choose Colour</h5>
-			<ul id="color-options" class="list-inline mb-0">
-				<li class="theme-1 active list-inline-item"><a data-style="assets/css/theme.css" href="#"></a></li>
-				<li class="theme-2  list-inline-item"><a data-style="assets/css/theme-1.css" href="#"></a></li>
-				<li class="theme-3  list-inline-item"><a data-style="assets/css/theme-2.css" href="#"></a></li>
-				<li class="theme-4  list-inline-item"><a data-style="assets/css/theme-3.css" href="#"></a></li>
-				<li class="theme-5  list-inline-item"><a data-style="assets/css/theme-4.css" href="#"></a></li>
-				<li class="theme-6  list-inline-item"><a data-style="assets/css/theme-5.css" href="#"></a></li>
-				<li class="theme-7  list-inline-item"><a data-style="assets/css/theme-6.css" href="#"></a></li>
-				<li class="theme-8  list-inline-item"><a data-style="assets/css/theme-7.css" href="#"></a></li>
-				<li class="theme-9  list-inline-item"><a data-style="assets/css/theme-8.css" href="#"></a></li>
-				<li class="theme-9  list-inline-item"><a data-style="assets/css/theme-9.css" href="#"></a></li>
-			</ul>
-			<a id="config-close" class="close" href="#"><i class="fa fa-times-circle"></i></a>
-		</div><!--//panel-inner-->
-	</div><!--//configure-panel-->
+                        <h4 class="mb-3"><i class="fas fa-rocket me-2"></i>Strategic HR Recommendations</h4>
+                        <div class="salary-visual">
+                            <i class="fas fa-lightbulb" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                            <h5>Data-Driven HR Strategy</h5>
+                            <div class="row text-center">
+                                <div class="col-md-4">
+                                    <div style="font-size: 1.5rem; font-weight: bold;">Sales Focus</div>
+                                    <small>Address 33.33% attrition rate</small>
+                                </div>
+                                <div class="col-md-4">
+                                    <div style="font-size: 1.5rem; font-weight: bold;">Performance</div>
+                                    <small>Enhance tracking systems</small>
+                                </div>
+                                <div class="col-md-4">
+                                    <div style="font-size: 1.5rem; font-weight: bold;">Retention</div>
+                                    <small>Improve overall retention</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-    <!-- Javascript -->          
-    <script src="assets/plugins/popper.min.js"></script> 
-    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script> 
+                    <div class="project-section mb-4">
+                        <h3 class="project-section-title">Dashboard Architecture & Technical Implementation</h3>
+                        
+                        <h4 class="mb-3"><i class="fas fa-tools me-2"></i>HR Analytics Technology Stack</h4>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <ul class="list-unstyled">
+                                    <li><i class="fas fa-check-circle text-success me-2"></i><strong>Power BI/Tableau:</strong> Multi-dashboard HR intelligence platform</li>
+                                    <li><i class="fas fa-check-circle text-success me-2"></i><strong>Employee Tracking:</strong> Individual profile management and performance monitoring</li>
+                                    <li><i class="fas fa-check-circle text-success me-2"></i><strong>Demographic Analytics:</strong> Age, gender, and diversity intelligence</li>
+                                    <li><i class="fas fa-check-circle text-success me-2"></i><strong>Geographic Mapping:</strong> Multi-state workforce distribution analysis</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <ul class="list-unstyled">
+                                    <li><i class="fas fa-check-circle text-success me-2"></i><strong>Performance KPIs:</strong> Rating systems and evaluation tracking</li>
+                                    <li><i class="fas fa-check-circle text-success me-2"></i><strong>Attrition Analytics:</strong> Departure pattern analysis and risk assessment</li>
+                                    <li><i class="fas fa-check-circle text-success me-2"></i><strong>Compensation Intelligence:</strong> Salary analysis and pay equity monitoring</li>
+                                    <li><i class="fas fa-check-circle text-success me-2"></i><strong>Predictive Modeling:</strong> Future workforce planning and trend analysis</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <h4 class="mb-3"><i class="fas fa-database me-2"></i>Data Integration & Architecture</h4>
+                        <ul>
+                            <li><strong>Employee Database:</strong> Comprehensive 1,470 employee records with demographic and performance data.</li>
+                            <li><strong>Performance Metrics:</strong> Individual rating systems, satisfaction scores, and evaluation tracking.</li>
+                            <li><strong>Attrition Analytics:</strong> Historical departure data and predictive risk modeling.</li>
+                            <li><strong>Compensation Data:</strong> Salary analytics, pay equity analysis, and compensation benchmarking.</li>
+                            <li><strong>Geographic Intelligence:</strong> Multi-state distribution with location-based performance insights.</li>
+                            <li><strong>Temporal Analytics:</strong> Historical trend analysis from 2012-2022 with forecasting capabilities.</li>
+                        </ul>
+
+                        <h4 class="mb-3"><i class="fas fa-chart-pie me-2"></i>Specialized Dashboard Functions</h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="dashboard-section">
+                                    <h6>Overview Dashboard</h6>
+                                    <ul class="small">
+                                        <li>Real-time workforce metrics and KPIs</li>
+                                        <li>Department distribution and role analysis</li>
+                                        <li>Employee status tracking (active/inactive)</li>
+                                        <li>Historical workforce trends</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="dashboard-section">
+                                    <h6>Demographics Dashboard</h6>
+                                    <ul class="small">
+                                        <li>Age distribution and workforce maturity analysis</li>
+                                        <li>Gender and marital status distribution</li>
+                                        <li>Salary equity analysis by ethnicity</li>
+                                        <li>Geographic and education level tracking</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="dashboard-section">
+                                    <h6>Performance Tracker Dashboard</h6>
+                                    <ul class="small">
+                                        <li>Individual employee performance profiles</li>
+                                        <li>Satisfaction metrics (job, relationship, environment)</li>
+                                        <li>Manager evaluation and rating systems</li>
+                                        <li>Training engagement and development tracking</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="dashboard-section">
+                                    <h6>Attrition Dashboard</h6>
+                                    <ul class="small">
+                                        <li>Department-wise attrition rate analysis</li>
+                                        <li>Travel frequency and business impact</li>
+                                        <li>Role-based exit insights and patterns</li>
+                                        <li>Regional employee movement tracking</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-section mb-4">
+                        <h3 class="project-section-title">Business Impact & Workforce Optimization</h3>
+                        
+                        <h4 class="mb-3"><i class="fas fa-lightbulb me-2"></i>Critical HR Intelligence</h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="alert alert-warning">
+                                    <h6><i class="fas fa-exclamation-triangle me-2"></i>Sales Department Risk</h6>
+                                    <p class="mb-0">
+                                        <strong>33.33% attrition rate in Sales</strong> represents critical business risk 
+                                        requiring immediate intervention through retention programs and compensation review.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="alert alert-success">
+                                    <h6><i class="fas fa-users me-2"></i>Technology Stability</h6>
+                                    <p class="mb-0">
+                                        <strong>Technology department's 8.25% attrition</strong> indicates strong retention 
+                                        and employee satisfaction in critical technical roles.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h4 class="mb-3"><i class="fas fa-chart-line me-2"></i>Strategic Workforce Insights</h4>
+                        <ul>
+                            <li><strong>Retention Strategy:</strong> Overall 16.12% attrition rate suggests need for company-wide retention improvement.</li>
+                            <li><strong>Performance Excellence:</strong> Individual tracking enables targeted development and recognition programs.</li>
+                            <li><strong>Demographic Balance:</strong> Age range 18-51 provides good generational mix requiring tailored engagement strategies.</li>
+                            <li><strong>Compensation Equity:</strong> Salary analysis by ethnicity ensures fair pay practices and regulatory compliance.</li>
+                            <li><strong>Geographic Optimization:</strong> Multi-state presence requires location-specific HR policies and benefits.</li>
+                            <li><strong>Department Focus:</strong> Technology retention success model can be applied to Sales and HR departments.</li>
+                        </ul>
+
+                        <h4 class="mb-3"><i class="fas fa-cogs me-2"></i>Operational Excellence Outcomes</h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6>Performance Management Results</h6>
+                                <ul class="small">
+                                    <li>Individual employee tracking with photo profiles</li>
+                                    <li>Satisfaction metrics across multiple dimensions</li>
+                                    <li>Manager evaluation trends showing improvement areas</li>
+                                    <li>Training engagement measuring development ROI</li>
+                                    <li>Environmental satisfaction and work-life balance</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h6>Predictive Analytics Implementation</h6>
+                                <ul class="small">
+                                    <li>Attrition risk modeling by department and role</li>
+                                    <li>Performance trajectory predictions</li>
+                                    <li>Compensation planning and budget forecasting</li>
+                                    <li>Workforce planning and hiring predictions</li>
+                                    <li>Succession planning and career development</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <h4 class="mb-3"><i class="fas fa-bullseye me-2"></i>Measurable Business Impact</h4>
+                        <div class="row text-center">
+                            <div class="col-md-3">
+                                <div class="hr-card employees-card mb-3">
+                                    <div style="font-size: 1.5rem;">84%</div>
+                                    <small>Employee Retention Rate</small>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="hr-card active-card mb-3">
+                                    <div style="font-size: 1.5rem;">$68,508</div>
+                                    <small>Average Salary Benchmark</small>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="hr-card inactive-card mb-3">
+                                    <div style="font-size: 1.5rem;">271</div>
+                                    <small>Engaged Overtime Workers</small>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="hr-card attrition-card mb-3">
+                                    <div style="font-size: 1.5rem;">100%</div>
+                                    <small>Data-Driven Decisions</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="promo-section theme-bg-light py-5 text-center">
+            <div class="container single-col-max-width">
+                <h2 class="title">Looking for an HR analytics expert for your organization?</h2>
+                <p>I specialize in creating comprehensive HR intelligence systems that optimize workforce management, reduce attrition, and drive employee engagement. From performance tracking to predictive analytics, let's transform your HR data into strategic advantage through advanced dashboard development and workforce intelligence.</p>
+                <div class="text-center">
+                    <a class="btn btn-primary" href="contact.html" target="_blank">
+                        <i class="fas fa-paper-plane me-2"></i>Let's Work Together
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer text-center py-4">
+            <small class="copyright">Template Copyright &copy;
+                <a href="https://themes.3rdwavemedia.com/" target="_blank">3rd Wave Media</a>
+            </small>
+        </footer>
+    </div>
+
+    <!-- *****CONFIGURE STYLE (REMOVE ON YOUR PRODUCTION SITE)****** -->
+    <div id="config-panel" class="config-panel config-panel-hide d-none d-lg-block">
+        <div class="panel-inner">
+            <a id="config-trigger" class="config-trigger text-center" href="#"><i class="fas fa-cog mx-auto" data-fa-transform="down-6"></i></a>
+            <h5 class="panel-title">Choose Colour</h5>
+            <ul id="color-options" class="list-inline mb-0">
+                <li class="theme-1 active list-inline-item"><a data-style="assets/css/theme.css" href="#"></a></li>
+                <li class="theme-2 list-inline-item"><a data-style="assets/css/theme-1.css" href="#"></a></li>
+                <li class="theme-3 list-inline-item"><a data-style="assets/css/theme-2.css" href="#"></a></li>
+                <li class="theme-4 list-inline-item"><a data-style="assets/css/theme-3.css" href="#"></a></li>
+                <li class="theme-5 list-inline-item"><a data-style="assets/css/theme-4.css" href="#"></a></li>
+                <li class="theme-6 list-inline-item"><a data-style="assets/css/theme-5.css" href="#"></a></li>
+                <li class="theme-7 list-inline-item"><a data-style="assets/css/theme-6.css" href="#"></a></li>
+                <li class="theme-8 list-inline-item"><a data-style="assets/css/theme-7.css" href="#"></a></li>
+                <li class="theme-9 list-inline-item"><a data-style="assets/css/theme-8.css" href="#"></a></li>
+                <li class="theme-9 list-inline-item"><a data-style="assets/css/theme-9.css" href="#"></a></li>
+            </ul>
+            <a id="config-close" class="close" href="#"><i class="fa fa-times-circle"></i></a>
+        </div>
+    </div>
+
+    <!-- Javascript -->
+    <script src="assets/plugins/popper.min.js"></script>
+    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
     
     <!-- Dark Mode -->
-	<script src="assets/plugins/js-cookie.min.js"></script>
-	<script src="assets/js/dark-mode.js"></script>
-
-    <!-- Style Switcher (REMOVE ON YOUR PRODUCTION SITE) -->
-    <script src="assets/js/demo/style-switcher.js"></script>     
+    <script src="assets/plugins/js-cookie.min.js"></script>
+    <script src="assets/js/dark-mode.js"></script>
     
+    <!-- Style Switcher (REMOVE ON YOUR PRODUCTION SITE) -->
+    <script src="assets/js/demo/style-switcher.js"></script>
 
 </body>
 </html>
