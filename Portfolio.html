@@ -19,6 +19,14 @@
     
     <!-- Theme CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/theme-4.css">
+
+	<!-- URL Management Script -->
+    <script>
+        // Update URL to show clean path
+        if (window.location.pathname === '/' || window.location.pathname === '/Portfolio.html') {
+            window.history.replaceState({}, document.title, '/Portfolio');
+        }
+    </script>
     
 
 </head> 
