@@ -20,7 +20,194 @@
     
     <!-- Theme CSS -->
     <link id="theme-style" rel="stylesheet" href="assets/css/theme.css">
-    
+
+	<!-- Custom spacing reduction styles -->
+    <style>
+        /* CSS Reset and Font Normalization */
+        * {
+            box-sizing: border-box;
+        }
+        
+        html {
+            font-size: 14px !important; /* Force base font size */
+            -webkit-text-size-adjust: 100% !important;
+            -moz-text-size-adjust: 100% !important;
+            -ms-text-size-adjust: 100% !important;
+            text-size-adjust: 100% !important;
+        }
+        
+        body {
+            font-size: 0.875rem !important; /* 14px equivalent */
+            line-height: 1.5 !important;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+            -webkit-font-smoothing: antialiased !important;
+            -moz-osx-font-smoothing: grayscale !important;
+        }
+        
+        /* Specific font size controls */
+        h1, .blog-name {
+            font-size: 1.75rem !important; /* 28px */
+        }
+        
+        h2, .section-title {
+            font-size: 1.5rem !important; /* 24px */
+        }
+        
+        h3 {
+            font-size: 1.25rem !important; /* 20px */
+        }
+        
+        h4 {
+            font-size: 1.125rem !important; /* 18px */
+        }
+        
+        h5, .item-title {
+            font-size: 1rem !important; /* 16px */
+        }
+        
+        h6 {
+            font-size: 0.875rem !important; /* 14px */
+        }
+        
+        p, .item-desc, .card-text, .bio {
+            font-size: 0.875rem !important; /* 14px */
+            line-height: 1.5 !important;
+        }
+        
+        .tagline {
+            font-size: 1rem !important; /* 16px */
+        }
+        
+        .section-intro {
+            font-size: 0.9rem !important; /* 14.4px */
+        }
+        
+        .nav-link {
+            font-size: 0.875rem !important; /* 14px */
+        }
+        
+        .btn {
+            font-size: 0.875rem !important; /* 14px */
+        }
+        
+        .tools-list {
+            font-size: 0.75rem !important; /* 12px */
+            line-height: 1.3 !important;
+        }
+        
+        .social-list {
+            font-size: 0.9375rem !important; /* 15px - as specified in your original code */
+        }
+        
+        /* Reduce general section padding */
+        .about-me-section,
+        .overview-section,
+        .featured-section {
+            padding: 1rem 0.75rem !important;
+        }
+        
+        @media (min-width: 992px) {
+            .about-me-section,
+            .overview-section,
+            .featured-section {
+                padding: 2rem 0.75rem !important;
+            }
+        }
+        
+        /* Reduce header padding */
+        .header {
+            padding-bottom: 0.5rem;
+        }
+        
+        /* Reduce profile section spacing */
+        .profile-section {
+            padding-top: 1rem !important;
+        }
+        
+        .bio {
+            margin-bottom: 1rem !important;
+        }
+        
+        /* Reduce navigation spacing */
+        .social-list {
+            padding: 1rem 0 !important;
+            margin-bottom: 0.5rem !important;
+        }
+        
+        /* Reduce main content margins */
+        .profile-teaser {
+            margin-bottom: 1rem;
+        }
+        
+        .tagline {
+            margin-bottom: 1rem !important;
+        }
+        
+        .name {
+            margin-bottom: 0.5rem !important;
+        }
+        
+        /* Reduce section intro margins */
+        .section-intro {
+            margin-bottom: 2rem !important;
+        }
+        
+        .section-title {
+            margin-bottom: 1rem !important;
+        }
+        
+        /* Reduce item spacing in skills section */
+        .item {
+            margin-bottom: 1rem;
+        }
+        
+        .item-inner {
+            padding: 0.75rem;
+        }
+        
+        .item-title {
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Reduce featured projects spacing */
+        .project-card {
+            margin-bottom: 1.5rem !important;
+        }
+        
+        .card-body {
+            padding: 1rem;
+        }
+        
+        /* Reduce container margins */
+        .container hr {
+            margin: 1rem 0;
+        }
+        
+        /* Reduce button margins */
+        .btn {
+            margin-bottom: 1rem;
+        }
+        
+        /* Reduce footer padding */
+        .footer {
+            padding: 2rem 0 !important;
+        }
+        
+        /* Tools list spacing */
+        .tools-list {
+            font-size: 0.85rem;
+            color: #6c757d;
+            font-style: italic;
+            margin-top: 0.2rem;
+            line-height: 1.2;
+        }
+        
+        .icon-colored {
+            font-size: 1rem;
+            margin-right: 0.2rem;
+        }
+    </style>
+	
     <style>
         .metric-data {
             font-size: 2rem;
