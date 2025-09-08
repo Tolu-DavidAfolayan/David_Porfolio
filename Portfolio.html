@@ -19,7 +19,193 @@
     
     <!-- Theme CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/theme-4.css">
-    
+
+	<!-- Custom spacing reduction styles -->
+    <style>
+        /* CSS Reset and Font Normalization */
+        * {
+            box-sizing: border-box;
+        }
+        
+        html {
+            font-size: 14px !important; /* Force base font size */
+            -webkit-text-size-adjust: 100% !important;
+            -moz-text-size-adjust: 100% !important;
+            -ms-text-size-adjust: 100% !important;
+            text-size-adjust: 100% !important;
+        }
+        
+        body {
+            font-size: 0.875rem !important; /* 14px equivalent */
+            line-height: 1.5 !important;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+            -webkit-font-smoothing: antialiased !important;
+            -moz-osx-font-smoothing: grayscale !important;
+        }
+        
+        /* Specific font size controls */
+        h1, .blog-name {
+            font-size: 1.75rem !important; /* 28px */
+        }
+        
+        h2, .section-title {
+            font-size: 1.5rem !important; /* 24px */
+        }
+        
+        h3 {
+            font-size: 1.25rem !important; /* 20px */
+        }
+        
+        h4 {
+            font-size: 1.125rem !important; /* 18px */
+        }
+        
+        h5, .item-title {
+            font-size: 1rem !important; /* 16px */
+        }
+        
+        h6 {
+            font-size: 0.875rem !important; /* 14px */
+        }
+        
+        p, .item-desc, .card-text, .bio {
+            font-size: 0.875rem !important; /* 14px */
+            line-height: 1.5 !important;
+        }
+        
+        .tagline {
+            font-size: 1rem !important; /* 16px */
+        }
+        
+        .section-intro {
+            font-size: 0.9rem !important; /* 14.4px */
+        }
+        
+        .nav-link {
+            font-size: 0.875rem !important; /* 14px */
+        }
+        
+        .btn {
+            font-size: 0.875rem !important; /* 14px */
+        }
+        
+        .tools-list {
+            font-size: 0.75rem !important; /* 12px */
+            line-height: 1.3 !important;
+        }
+        
+        .social-list {
+            font-size: 0.9375rem !important; /* 15px - as specified in your original code */
+        }
+        
+        /* Reduce general section padding */
+        .about-me-section,
+        .overview-section,
+        .featured-section {
+            padding: 1rem 0.75rem !important;
+        }
+        
+        @media (min-width: 992px) {
+            .about-me-section,
+            .overview-section,
+            .featured-section {
+                padding: 2rem 0.75rem !important;
+            }
+        }
+        
+        /* Reduce header padding */
+        .header {
+            padding-bottom: 0.5rem;
+        }
+        
+        /* Reduce profile section spacing */
+        .profile-section {
+            padding-top: 1rem !important;
+        }
+        
+        .bio {
+            margin-bottom: 1rem !important;
+        }
+        
+        /* Reduce navigation spacing */
+        .social-list {
+            padding: 1rem 0 !important;
+            margin-bottom: 0.5rem !important;
+        }
+        
+        /* Reduce main content margins */
+        .profile-teaser {
+            margin-bottom: 1rem;
+        }
+        
+        .tagline {
+            margin-bottom: 1rem !important;
+        }
+        
+        .name {
+            margin-bottom: 0.5rem !important;
+        }
+        
+        /* Reduce section intro margins */
+        .section-intro {
+            margin-bottom: 2rem !important;
+        }
+        
+        .section-title {
+            margin-bottom: 1rem !important;
+        }
+        
+        /* Reduce item spacing in skills section */
+        .item {
+            margin-bottom: 1rem;
+        }
+        
+        .item-inner {
+            padding: 0.75rem;
+        }
+        
+        .item-title {
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Reduce featured projects spacing */
+        .project-card {
+            margin-bottom: 1.5rem !important;
+        }
+        
+        .card-body {
+            padding: 1rem;
+        }
+        
+        /* Reduce container margins */
+        .container hr {
+            margin: 1rem 0;
+        }
+        
+        /* Reduce button margins */
+        .btn {
+            margin-bottom: 1rem;
+        }
+        
+        /* Reduce footer padding */
+        .footer {
+            padding: 2rem 0 !important;
+        }
+        
+        /* Tools list spacing */
+        .tools-list {
+            font-size: 0.85rem;
+            color: #6c757d;
+            font-style: italic;
+            margin-top: 0.2rem;
+            line-height: 1.2;
+        }
+        
+        .icon-colored {
+            font-size: 1rem;
+            margin-right: 0.2rem;
+        }
+    </style>
 
 </head> 
 
@@ -38,7 +224,7 @@
 				<div class="profile-section pt-3 pt-lg-0">
 				    <img class="profile-image mb-3 rounded-circle mx-auto" src="assets/images/blog/headshotImg.png" alt="image" >			
 					
-					<div class="bio mb-3">Hi, my name is Afolayan David Tolulope, a data analyst and machine learning expert.<br><a href="about.html">Find out more about me</a></div><!--//bio-->
+					<div class="bio mb-3">Hi, my name is Afolayan David Tolulope, a data analyst and machine learning expert.</div><!--//bio-->
 					<ul class="social-list list-inline py-3 mx-auto text-center" style="font-size:15px;">
 			            <li class="list-inline-item"><a href="https://x.com/Da_vid_AFO?t=COoXOfQ8KQDKOSzQ4nBHuw&s=09"><i class="fab fa-twitter"></i></a></li>
 		                    <li class="list-inline-item"><a href="https://www.linkedin.com/in/afolayan-tolulope/"><i class="fab fa-linkedin-in"></i></a></li>
@@ -63,7 +249,7 @@
 					</ul>
 
 				<div class="my-2">
-                        <a class="btn btn-primary" href="contact.html" target="_blank"><i class="fas fa-paper-plane me-2"></i>Hire Me</a>
+                        <a class="btn btn-primary" href="mailto:david4afolayan@gmail.com" target="_blank"><i class="fas fa-paper-plane me-2"></i>Hire Me</a>
                     </div>		
 				<div class="dark-mode-toggle text-center w-100">
 						<hr class="mb-4">
@@ -86,7 +272,7 @@
 			    <p>Welcome to my blog. Subscribe and get my latest blog post in your inbox.</p>
 			    
 			    </div>
-			    <a class="btn btn-primary" href="contact.html" target="_blank"><i class="fas fa-paper-plane me-2"></i>Hire Me</a>
+			    <a class="btn btn-primary" href="mailto:david4afolayan@gmail.com" target="_blank"><i class="fas fa-paper-plane me-2"></i>Hire Me</a>
 			    
 			    
 		    </div><!--//container-->
@@ -94,14 +280,13 @@
 	    <section class="projects-list px-3 py-5 p-md-5">
 		    <div class="container">
 			    <div class="text-center">
-				    <ul id="filters" class="filters mb-5 mx-auto   ps-0">
-		                <li class="type active mb-3 mb-lg-0" data-filter="*">All</li>
-		                <li class="type  mb-3 mb-lg-0" data-filter=".machinelearning">Machine Learning</li>
-		                <li class="type  mb-3 mb-lg-0" data-filter=".powerbi">PowerBi</li>
-		                <li class="type  mb-3 mb-lg-0" data-filter=".excel">Excel</li>
-		                <li class="type  mb-3 mb-lg-0" data-filter=".sql">SQL</li>
-		            </ul><!--//filters-->
-			    </div>
+    <ul id="filters" class="filters mb-5 mx-auto ps-0">
+        <li class="type active mb-3 mb-lg-0" data-filter="*">All</li>
+        <li class="type mb-3 mb-lg-0" data-filter=".machinelearning">Machine Learning/Python</li>
+        <li class="type mb-3 mb-lg-0" data-filter=".datavisualization">Excel/PowerBI</li>
+        <li class="type mb-3 mb-lg-0" data-filter=".database">SQL/Database</li>
+    </ul><!--//filters-->
+</div>
 	            
 			    <div class="project-cards row isotope">
 					<div class="isotope-item col-md-6 mb-5 machinelearning">
@@ -152,7 +337,7 @@
 							</div><!--//link-mask-->
 						</div><!--//card-->
 					</div><!--//col-->
-					<div class="isotope-item col-md-6 mb-5 powerbi">
+					<div class="isotope-item col-md-6 mb-5 datavisualization">
 						<div class="card project-card">
 							<div class="row">
 								<div class="col-12 col-xl-5 card-img-holder">
@@ -177,32 +362,32 @@
 						</div><!--//card-->
 					</div><!--//col-->
 					
-<div class="isotope-item col-md-6 mb-5 machinelearning">	
-						<div class="card project-card">
-							<div class="row">
-								<div class="col-12 col-xl-5 card-img-holder">
-									<img src="assets/images/blog/airline.png" class="card-img" alt="image" style="margin-top:40px;">
-								</div>
-								<div class="col-12 col-xl-7">
-									<div class="card-body">
-										<h5 class="card-title"><a href="Airline-Satisfaction-case-study.html" class="theme-link">Airline Satisfaction</a></h5>
-										<p class="card-text">This comprehensive airline satisfaction prediction project leveraged machine learning to analyze 129,880 passenger records and identify the key drivers of customer satisfaction. Using advanced feature engineering and multiple ML algorithms, I developed a predictive model that achieved exceptional performance in classifying passenger satisfaction levelsThe analysis uncovered surprising insights about which factors truly drive airline satisfaction, revealing that digital experience and service quality significantly outweigh traditional operational metrics like flight delays...</p>
-										<p class="card-text"><small class="text-muted">Predictive Insights from Airline Satisfaction</small></p>
-									</div>
-								</div>
-							</div>
-							<div class="link-mask">
-								<a class="link-mask-link" href="Airline-Satisfaction-case-study.html"></a>
-								<div class="link-mask-text">
-									<a class="btn btn-secondary" href="Airline-Satisfaction-case-study.html">
-										<i class="fas fa-eye me-2"></i>View Case Study
-									</a>
-								</div>
-							</div><!--//link-mask-->
-						</div><!--//card-->
-					</div><!--//col-->
+<div class="isotope-item col-md-6 mb-5 machinelearning">    
+                        <div class="card project-card">
+                            <div class="row">
+                                <div class="col-12 col-xl-5 card-img-holder">
+                                    <img src="assets/images/blog/airline.png" class="card-img" alt="image" style="margin-top:40px;">
+                                </div>
+                                <div class="col-12 col-xl-7">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><a href="Airline-Satisfaction-case-study.html" class="theme-link">Airline Satisfaction</a></h5>
+                                        <p class="card-text">This comprehensive airline satisfaction prediction project leveraged machine learning to analyze 129,880 passenger records and identify the key drivers of customer satisfaction. Using advanced feature engineering and multiple ML algorithms, I developed a predictive model that achieved exceptional performance in classifying passenger satisfaction levelsThe analysis uncovered surprising insights about which factors truly drive airline satisfaction, revealing that digital experience and service quality significantly outweigh traditional operational metrics like flight delays...</p>
+                                        <p class="card-text"><small class="text-muted">Predictive Insights from Airline Satisfaction</small></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="link-mask">
+                                <a class="link-mask-link" href="Airline-Satisfaction-case-study.html"></a>
+                                <div class="link-mask-text">
+                                    <a class="btn btn-secondary" href="Airline-Satisfaction-case-study.html">
+                                        <i class="fas fa-eye me-2"></i>View Case Study
+                                    </a>
+                                </div>
+                            </div><!--//link-mask-->
+                        </div><!--//card-->
+                    </div><!--//col-->
 					
-					<div class="isotope-item col-md-6 mb-5 powerbi">
+					<div class="isotope-item col-md-6 mb-5 datavisualization">
 						<div class="card project-card">
 							<div class="row">
 								<div class="col-12 col-xl-5 card-img-holder">
@@ -226,7 +411,7 @@
 							</div><!--//link-mask-->
 						</div><!--//card-->
 					</div><!--//col-->
-					<div class="isotope-item col-md-6 mb-5 powerbi">
+					<div class="isotope-item col-md-6 mb-5 datavisualization">
 						<div class="card project-card">
 							<div class="row">
 								<div class="col-12 col-xl-5 card-img-holder">
@@ -250,7 +435,7 @@
 							</div><!--//link-mask-->
 						</div><!--//card-->
 					</div><!--//col-->
-					<div class="isotope-item col-md-6 mb-5 powerbi">
+					<div class="isotope-item col-md-6 mb-5 datavisualization">
 						<div class="card project-card">
 							<div class="row">
 								<div class="col-12 col-xl-5 card-img-holder">
@@ -274,7 +459,7 @@
 							</div><!--//link-mask-->
 						</div><!--//card-->
 					</div><!--//col-->
-					<div class="isotope-item col-md-6 mb-5 sql">
+					<div class="isotope-item col-md-6 mb-5 database">
 						<div class="card project-card">
 							<div class="row">
 								<div class="col-12 col-xl-5 card-img-holder">
@@ -298,7 +483,7 @@
 							</div><!--//link-mask-->
 						</div><!--//card-->
 					</div><!--//col-->
-					<div class="isotope-item col-md-6 mb-5 sql">
+					<div class="isotope-item col-md-6 mb-5 database">
 						<div class="card project-card">
 							<div class="row">
 								<div class="col-12 col-xl-5 card-img-holder">
@@ -307,7 +492,7 @@
 								<div class="col-12 col-xl-7">
 									<div class="card-body">
 										<h5 class="card-title"><a href="Gym-Business-case-study.html" class="theme-link">Gym Business</a></h5>
-										<p class="card-text">This comprehensive gym business analytics project focused on transforming raw operational data into strategic business intelligence. Using SQL Server as the primary database engine, I designed and implemented a complete data infrastructure to track member demographics, payment patterns, fitness goals, and operational expenses... </p>
+										<p class="card-text">This comprehensive gym business analytics project focused on transforming raw operational data into strategic business intelligence. Using SQL Server as the primary database engine, I designed and implemented a complete data infrastructure to track member demographics, payment patterns, fitness goals, and operational expenses. The analysis revealed critical insights about member retention, revenue optimization opportunities, and... </p>
 										<p class="card-text"><small class="text-muted">Key Business Takeaways</small></p>
 									</div>
 								</div>
@@ -323,16 +508,16 @@
 						</div><!--//card-->
 					</div><!--//col-->
 
-					<div class="isotope-item col-md-6 mb-5 sql">
+					<div class="isotope-item col-md-6 mb-5 datavisualization">
 						<div class="card project-card">
 							<div class="row">
 								<div class="col-12 col-xl-5 card-img-holder">
-									<img src="assets/images/blog/gyyy.png" class="card-img" alt="image">
+									<img src="assets/images/blog/HRR.png" class="card-img" alt="image">
 								</div>
 								<div class="col-12 col-xl-7">
 									<div class="card-body">
 										<h5 class="card-title"><a href="HR-case-study.html" class="theme-link">HR Analytics</a></h5>
-										<p class="card-text">This comprehensive gym business analytics project focused on transforming raw operational data into strategic business intelligence. Using SQL Server as the primary database engine, I designed and implemented a complete data infrastructure to track member demographics, payment patterns, fitness goals, and operational expenses... </p>
+										<p class="card-text">This comprehensive HR Analytics Dashboard delivers end-to-end workforce intelligence through integrated dashboards covering Demographics Analysis, Performance Tracking, and Attrition Management. The system provides real-time insights across departments with detailed employee lifecycle analysis... </p>
 										<p class="card-text"><small class="text-muted">Key Business Takeaways</small></p>
 									</div>
 								</div>
@@ -353,8 +538,26 @@
 	    </section>
 	    
 	    <footer class="footer text-center py-4">
-			<small class="copyright">Da'insight Space &copy; <a href="david4afolayan@gmail.com" target="_blank">Click to Email Us Today</a></small>
-		</footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <p class="mb-2">
+          <strong>Da'insight Space</strong> - Transforming Data into Strategic Insights
+        </p>
+        <p class="mb-2">
+          <a href="mailto:hello@davidafolayan.com.ng" class="text-decoration-none">
+            <i class="fas fa-envelope me-2"></i>hello@davidafolayan.com.ng
+          </a>
+        </p>
+        <small class="copyright text-muted">
+          &copy; 2025 Da'insight Space. All rights reserved. | 
+          <a href="mailto:hello@davidafolayan.com.ng" class="text-muted">Contact Us</a>
+        </small>
+      </div>
+    </div>
+  </div>
+</footer>
+
     
     </div><!--//main-wrapper-->
 

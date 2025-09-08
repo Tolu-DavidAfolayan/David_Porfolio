@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en"> 
+<html lang="en">
 <head>
-    <title>Hi, I'm David Afolayan</title>
+    <title>Pizza Sales Analytics - David Afolayan</title>
     
     <!-- Meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Blog Template">
-    <meta name="author" content="Xiaoying Riley at 3rd Wave Media">    
+    <meta name="description" content="Pizza Sales Analytics Case Study">
+    <meta name="author" content="David Afolayan">    
     <link rel="shortcut icon" href="favicon.ico"> 
     
     <!-- FontAwesome JS-->
@@ -19,8 +19,247 @@
     
     <!-- Theme CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/theme.css">
-    
 
+	<!-- Custom spacing reduction styles -->
+    <style>
+        /* CSS Reset and Font Normalization */
+        * {
+            box-sizing: border-box;
+        }
+        
+        html {
+            font-size: 14px !important;
+            -webkit-text-size-adjust: 100% !important;
+            -moz-text-size-adjust: 100% !important;
+            -ms-text-size-adjust: 100% !important;
+            text-size-adjust: 100% !important;
+        }
+        
+        body {
+            font-size: 0.875rem !important;
+            line-height: 1.5 !important;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+            -webkit-font-smoothing: antialiased !important;
+            -moz-osx-font-smoothing: grayscale !important;
+        }
+        
+        /* Specific font size controls */
+        h1, .blog-name {
+            font-size: 1.75rem !important;
+        }
+        
+        h2, .section-title {
+            font-size: 1.5rem !important;
+        }
+        
+        h3 {
+            font-size: 1.25rem !important;
+        }
+        
+        h4 {
+            font-size: 1.125rem !important;
+        }
+        
+        h5, .item-title {
+            font-size: 1rem !important;
+        }
+        
+        h6 {
+            font-size: 0.875rem !important;
+        }
+        
+        p, .item-desc, .card-text, .bio {
+            font-size: 0.875rem !important;
+            line-height: 1.5 !important;
+        }
+        
+        .tagline {
+            font-size: 1rem !important;
+        }
+        
+        .section-intro {
+            font-size: 0.9rem !important;
+        }
+        
+        .nav-link {
+            font-size: 0.875rem !important;
+        }
+        
+        .btn {
+            font-size: 0.875rem !important;
+        }
+        
+        .tools-list {
+            font-size: 0.75rem !important;
+            line-height: 1.3 !important;
+        }
+        
+        .social-list {
+            font-size: 0.9375rem !important;
+        }
+        
+        /* Reduce general section padding */
+        .about-me-section,
+        .overview-section,
+        .featured-section {
+            padding: 1rem 0.75rem !important;
+        }
+        
+        @media (min-width: 992px) {
+            .about-me-section,
+            .overview-section,
+            .featured-section {
+                padding: 2rem 0.75rem !important;
+            }
+        }
+        
+        /* Reduce header padding */
+        .header {
+            padding-bottom: 0.5rem;
+        }
+        
+        /* Reduce profile section spacing */
+        .profile-section {
+            padding-top: 1rem !important;
+        }
+        
+        .bio {
+            margin-bottom: 1rem !important;
+        }
+        
+        /* Reduce navigation spacing */
+        .social-list {
+            padding: 1rem 0 !important;
+            margin-bottom: 0.5rem !important;
+        }
+        
+        /* Reduce main content margins */
+        .profile-teaser {
+            margin-bottom: 1rem;
+        }
+        
+        .tagline {
+            margin-bottom: 1rem !important;
+        }
+        
+        .name {
+            margin-bottom: 0.5rem !important;
+        }
+        
+        /* Reduce section intro margins */
+        .section-intro {
+            margin-bottom: 2rem !important;
+        }
+        
+        .section-title {
+            margin-bottom: 1rem !important;
+        }
+        
+        /* Reduce item spacing in skills section */
+        .item {
+            margin-bottom: 1rem;
+        }
+        
+        .item-inner {
+            padding: 0.75rem;
+        }
+        
+        .item-title {
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Reduce featured projects spacing */
+        .project-card {
+            margin-bottom: 1.5rem !important;
+        }
+        
+        .card-body {
+            padding: 1rem;
+        }
+        
+        /* Reduce container margins */
+        .container hr {
+            margin: 1rem 0;
+        }
+        
+        /* Reduce button margins */
+        .btn {
+            margin-bottom: 1rem;
+        }
+        
+        /* Reduce footer padding */
+        .footer {
+            padding: 2rem 0 !important;
+        }
+        
+        /* Tools list spacing */
+        .tools-list {
+            font-size: 0.85rem;
+            color: #6c757d;
+            font-style: italic;
+            margin-top: 0.2rem;
+            line-height: 1.2;
+        }
+        
+        .icon-colored {
+            font-size: 1rem;
+            margin-right: 0.2rem;
+        }
+    </style>
+    
+    <style>
+        .metric-data {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #d63031;
+        }
+        .insight-card {
+            background: linear-gradient(135deg, #e17055 0%, #d63031 100%);
+            color: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .feature-bar {
+            background: linear-gradient(90deg, #d63031, #fd7e14, #fdcb6e);
+            height: 8px;
+            border-radius: 4px;
+            margin: 5px 0;
+        }
+        .pizza-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .pizza-metric-cell {
+            padding: 20px;
+            text-align: center;
+            border-radius: 12px;
+            font-weight: bold;
+            color: white;
+        }
+        .revenue-cell { background: linear-gradient(135deg, #d63031, #e17055); }
+        .orders-cell { background: linear-gradient(135deg, #fd7e14, #fdcb6e); }
+        .avg-order-cell { background: linear-gradient(135deg, #2d3436, #636e72); }
+        .pizzas-cell { background: linear-gradient(135deg, #00b894, #55efc4); }
+        .sql-code {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+        .code-keyword { color: #66d9ef; }
+        .code-string { color: #a6e22e; }
+        .code-function { color: #fd971f; }
+        .code-comment { color: #75715e; font-style: italic; }
+    </style>
+    
 </head> 
 
 <body>
@@ -28,322 +267,539 @@
     <header class="header text-center">	    
 	    <h1 class="blog-name pt-lg-4 mb-0"><a class="no-text-decoration" href="index.html">Da'insight Space</a></h1>
         
-	    <nav class="navbar navbar-expand-lg navbar-dark" >
+	    <nav class="navbar navbar-expand-lg navbar-dark">
            
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 
-			<div id="navigation" class="collapse navbar-collapse flex-column" >
+			<div id="navigation" class="collapse navbar-collapse flex-column">
 				<div class="profile-section pt-3 pt-lg-0">
-				    <img class="profile-image mb-3 rounded-circle mx-auto" src="assets/images/blog/headshotImg.png" alt="image" >			
+				    <img class="profile-image mb-3 rounded-circle mx-auto" src="assets/images/blog/headshotImg.png" alt="image">			
 					
-					<div class="bio mb-3">Hi, my name is Afolayan David Tolulope, a data analyst and machine learning expert.<br><a href="about.html">Find out more about me</a></div><!--//bio-->
+					<div class="bio mb-3">Hi, my name is Afolayan David Tolulope, a data analyst and machine learning expert.</div>
 					<ul class="social-list list-inline py-3 mx-auto text-center" style="font-size:15px;">
 			            <li class="list-inline-item"><a href="https://x.com/Da_vid_AFO?t=COoXOfQ8KQDKOSzQ4nBHuw&s=09"><i class="fab fa-twitter"></i></a></li>
-		                    <li class="list-inline-item"><a href="https://www.linkedin.com/in/afolayan-tolulope/"><i class="fab fa-linkedin-in"></i></a></li>
-		                    <li class="list-inline-item"><a href="https://github.com/Tolu-DavidAfolayan/"><i class="fab fa-github-alt"></i></a></li>    
-		                    <li class="list-inline-item"><a href="https://wa.me/2347065080990"><i class="fab fa-whatsapp"></i></a></li>
-					<li class="list-inline-item last-item"><a href="https://www.kaggle.com/davidafolayan"><i class="fab fa-kaggle"></i></a></li>
-		                    <li class="list-inline-item last-item"><a href="https://www.instagram.com/td_afolayan/profilecard/?igsh=MTdzeWZtemJwZWoyaQ=="><i class="fab fa-instagram"></i></a></li>
-			        </ul><!--//social-list-->
+		                <li class="list-inline-item"><a href="https://www.linkedin.com/in/afolayan-tolulope/"><i class="fab fa-linkedin-in"></i></a></li>
+		                <li class="list-inline-item"><a href="https://github.com/Tolu-DavidAfolayan/"><i class="fab fa-github-alt"></i></a></li>    
+		                <li class="list-inline-item"><a href="https://wa.me/2347065080990"><i class="fab fa-whatsapp"></i></a></li>
+					    <li class="list-inline-item last-item"><a href="https://www.kaggle.com/davidafolayan"><i class="fab fa-kaggle"></i></a></li>
+		                <li class="list-inline-item last-item"><a href="https://www.instagram.com/td_afolayan/profilecard/?igsh=MTdzeWZtemJwZWoyaQ=="><i class="fab fa-instagram"></i></a></li>
+			        </ul>
 			        <hr> 
-				</div><!--//profile-section-->
+				</div>
 				
 				<ul class="navbar-nav flex-column text-start">
-						<li class="nav-item">
-							<a class="nav-link" href="index.html"><i class="fas fa-user fa-fw me-2"></i>About</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="Portfolio.html"><i class="fas fa-laptop-code fa-fw me-2"></i>Portfolio</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="resume.html"><i class="fas fa-file-alt fa-fw me-2"></i>Resume</a> 
-						</li>
-						<li class="nav-item">
-							<a class="nav-link active" href="case-study.html"><i class="fas fa-envelope-open-text fa-fw me-2"></i>Case Study</a>
-						</li>
-					</ul>
+					<li class="nav-item">
+						<a class="nav-link" href="index.html"><i class="fas fa-user fa-fw me-2"></i>About</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="Portfolio.html"><i class="fas fa-laptop-code fa-fw me-2"></i>Portfolio</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="resume.html"><i class="fas fa-file-alt fa-fw me-2"></i>Resume</a> 
+					</li>
+					<li class="nav-item">
+						<a class="nav-link active" href="case-study.html"><i class="fas fa-envelope-open-text fa-fw me-2"></i>Case Study</a>
+					</li>
+				</ul>
 
 				<div class="my-2">
-                        <a class="btn btn-primary" href="contact.html" target="_blank"><i class="fas fa-paper-plane me-2"></i>Hire Me</a>
-                    </div>
+                    <a class="btn btn-primary" href="mailto:david4afolayan@gmail.com" target="_blank"><i class="fas fa-paper-plane me-2"></i>Hire Me</a>
+                </div>
 				<div class="dark-mode-toggle text-center w-100">
-						<hr class="mb-4">
-					    <h4 class="toggle-name mb-3 "><i class="fas fa-adjust me-1"></i>Dark Mode</h4>
-					    
-					    <input class="toggle" id="darkmode" type="checkbox">
-					    <label class="toggle-btn mx-auto mb-0" for="darkmode"></label>
-					    
-					</div><!--//dark-mode-toggle-->
+					<hr class="mb-4">
+				    <h4 class="toggle-name mb-3"><i class="fas fa-adjust me-1"></i>Dark Mode</h4>
+				    <input class="toggle" id="darkmode" type="checkbox">
+				    <label class="toggle-btn mx-auto mb-0" for="darkmode"></label>
+				</div>
 			</div>
 		</nav>
     </header>
 
-	<div class="main-wrapper"> 
-	<section class="cta-section theme-bg-light py-5">
-		<div class="container single-col-max-width">
-			<h2 class="heading text-center">Case Study: Pizza Sales Analysis Dashboard</h2>
-			<div class="project-intro text-center">
-				<p class="mb-0 lead">
-					Comprehensive pizza sales analysis dashboard built with SQL and Power BI. 
-					Total revenue of <strong>$817,860</strong> across <strong>21,350 orders</strong> with detailed insights into customer behavior, product performance, and sales trends.
-				</p>
+	<div class="main-wrapper">
+		<section class="cta-section theme-bg-light py-5">
+			<div class="container single-col-max-width">
+				<h2 class="heading text-center">Case Study: Pizza Sales Analytics Dashboard</h2>
+				<div class="project-intro text-center">
+					<p class="mb-0 lead">
+						Comprehensive pizza sales analysis dashboard built with SQL and Power BI.
+						Advanced data analytics revealing <strong>$817,860 total revenue</strong> across <strong>21,350 orders</strong>
+						with detailed insights into customer behavior, product performance, and <strong>seasonal trends</strong>.
+					</p>
+				</div>
 			</div>
-		</div><!--//container-->
-	</section>
+		</section>
 
-	<section class="project px-3 py-5 p-md-5">
-		<div class="container">
-			<div class="project-sections py-5">
-				<div class="project-section mb-5">
-					<h3 class="project-section-title mb-3">Project Overview</h3>
-					<p>
-						This project involved creating a comprehensive pizza sales analytics dashboard using SQL for data extraction and Power BI for visualization. 
-						The analysis covered revenue performance, customer ordering patterns, product popularity, and time-based sales trends. 
-					</p>
-					<p>
-						Key metrics revealed <strong>$817,860 total revenue</strong> from <strong>21,350 orders</strong>, with an average order value of <strong>$38.31</strong>. 
-						The dashboard provides actionable insights for inventory management, marketing strategies, and operational optimization.
-					</p>
-				</div><!--//project-section-->
+		<section class="project px-3 py-5 p-md-5">
+			<div class="container">
+				<div class="project-meta theme-bg-light p-4">
+					<div class="row g-4 g-lg-5">
+						<div class="col-md-12 text-center">
+							<div class="pizza-metrics mb-3">
+								<div class="pizza-metric-cell revenue-cell">
+									<div>Total Revenue</div>
+									<div style="font-size: 1.8rem;">$817,860</div>
+									<small>100% Sales Coverage</small>
+								</div>
+								<div class="pizza-metric-cell orders-cell">
+									<div>Total Orders</div>
+									<div style="font-size: 1.8rem;">21,350</div>
+									<small>Customer Transactions</small>
+								</div>
+								<div class="pizza-metric-cell avg-order-cell">
+									<div>Avg Order Value</div>
+									<div style="font-size: 1.8rem;">$38.31</div>
+									<small>Per Transaction</small>
+								</div>
+								<div class="pizza-metric-cell pizzas-cell">
+									<div>Total Pizzas</div>
+									<div style="font-size: 1.8rem;">49,574</div>
+									<small>Units Sold</small>
+								</div>
+							</div>
+							<p class="mt-2 text-muted"><small><em>Complete Pizza Sales Performance Dashboard</em></small></p>
+						</div>
+					</div>
+				</div>
 
-				<div class="project-section mb-3">
-					<h3 class="project-section-title">The Challenge</h3>
-					<p>The pizza restaurant needed to understand:</p>
-					<ul>
-						<li>Overall sales performance and revenue trends</li>
-						<li>Which pizza types and sizes generate the most revenue</li>
-						<li>Customer ordering patterns throughout different time periods</li>
-						<li>Top and bottom-performing products for inventory optimization</li>
-						<li>Sales distribution across different categories and sizes</li>
-					</ul>
-				</div><!--//project-section-->
+				<div class="project-sections py-5">
+					<div class="project-section mb-5">
+						<h3 class="project-section-title mb-3">Project Overview</h3>
+						<p>
+							This comprehensive pizza sales analytics project leveraged SQL Server and Power BI to analyze
+							<strong>49,574 individual pizza sales</strong> and identify key business performance indicators.
+							Using advanced SQL querying and interactive dashboard development, I created a complete
+							business intelligence solution that provides actionable insights for restaurant management.
+						</p>
+						<p>
+							The analysis uncovered critical patterns in customer behavior, revealing that <strong>Classic pizzas</strong>
+							drive 47% of total revenue while <strong>Friday</strong> consistently shows peak performance.
+							This data-driven approach enables strategic decision-making for inventory optimization,
+							staff scheduling, and marketing campaign targeting.
+						</p>
+					</div>
 
-				<div class="project-section mb-4">
-					<h3 class="project-section-title">The Approach &amp; Solution</h3>
-					<p>
-						The solution combined <strong>SQL data analysis</strong> with <strong>Power BI visualization</strong>:
-					</p>
-					<ul>
-						<li><strong>Data Extraction</strong> → Used SQL Server to query pizza sales database with complex aggregations</li>
-						<li><strong>KPI Development</strong> → Created key performance indicators for revenue, orders, and customer metrics</li>
-						<li><strong>Trend Analysis</strong> → Analyzed daily and monthly patterns using date functions</li>
-						<li><strong>Dashboard Design</strong> → Built interactive Power BI dashboard with pizza-themed color palette</li>
-					</ul>
-					
-					<div class="text-center mb-4">
-			<a class="btn btn-primary" href="contact.html" target="_blank">
-				<i class="fas fa-paper-plane me-2"></i>View Dashboard
-			</a>
-		</div>
-				</div><!--//project-section-->
+					<div class="project-section mb-3">
+						<h3 class="project-section-title">The Business Challenge</h3>
+						<p>The pizza restaurant needed comprehensive insights into:</p>
+						<ul>
+							<li><strong>Revenue Performance:</strong> Total sales, average order values, and growth trends.</li>
+							<li><strong>Product Analytics:</strong> Which pizza types and sizes generate the highest revenue.</li>
+							<li><strong>Customer Patterns:</strong> Daily and monthly ordering behaviors and preferences.</li>
+							<li><strong>Operational Insights:</strong> Peak hours, staff scheduling optimization, and inventory needs.</li>
+							<li><strong>Category Analysis:</strong> Performance comparison across Classic, Supreme, Veggie, and Chicken categories.</li>
+							<li><strong>Size Distribution:</strong> Revenue breakdown by Small, Medium, Large, and XL pizzas.</li>
+						</ul>
+					</div>
 
-				<div class="project-section mb-4">
-					<h3 class="project-section-title mb-3">SQL Queries & Analysis</h3>
-					<p>Here are the key SQL queries used to extract insights from the pizza sales data:</p>
+					<div class="project-section mb-4">
+						<h3 class="project-section-title">The Approach & Solution</h3>
+						<p>
+							I implemented a comprehensive <strong>SQL-driven analytics pipeline</strong> with interactive visualization:
+						</p>
+						
+						<h4 class="mb-3"><i class="fas fa-database me-2"></i>1. Advanced SQL Analytics</h4>
+						<ul>
+							<li><strong>Data Aggregation:</strong> Complex queries for KPIs, trends, and performance metrics.</li>
+							<li><strong>Time-Series Analysis:</strong> Daily and monthly trend identification using date functions.</li>
+							<li><strong>Product Performance:</strong> Top and bottom performers by revenue, quantity, and orders.</li>
+							<li><strong>Statistical Analysis:</strong> Percentage calculations and ranking algorithms.</li>
+						</ul>
+						
+						<h4 class="mb-3"><i class="fas fa-chart-line me-2"></i>2. Interactive Dashboard Development</h4>
+						<ul>
+							<li><strong>Power BI Integration:</strong> Connected SQL Server to Power BI for real-time visualization.</li>
+							<li><strong>KPI Scorecards:</strong> Dynamic metrics with drill-down capabilities.</li>
+							<li><strong>Trend Visualizations:</strong> Time-based charts showing daily and monthly patterns.</li>
+							<li><strong>Category Analysis:</strong> Pie charts and bar graphs for product performance comparison.</li>
+						</ul>
 
-					<div class="code-section mb-4">
-						<h5>1. Key Performance Indicators (KPIs)</h5>
-						<div class="mb-3">
-							<h6>Total Revenue</h6>
-							<pre style="background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto;"><code>SELECT 
-    FORMAT(SUM(total_price), 'N2') AS Total_Revenue
-FROM [Pizza Sales].[dbo].[pizza_sales];</code></pre>
+						<div class="insight-card">
+							<h5><i class="fas fa-trophy me-2"></i>Key Discovery</h5>
+							<p class="mb-0">
+								<strong>Classic category dominates with 47% revenue share!</strong>
+								Thai Chicken Pizza leads individual performance while Large pizzas
+								generate the highest per-unit revenue, revealing optimal product focus areas.
+							</p>
 						</div>
 
-						<div class="mb-3">
-							<h6>Average Order Value</h6>
-							<pre style="background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto;"><code>SELECT 
-    Format(SUM(total_price) / COUNT(DISTINCT order_id), 'N2') AS Avg_order_Value 
-FROM pizza_sales;</code></pre>
-						</div>
-
-						<div class="mb-3">
-							<h6>Total Pizza Sold</h6>
-							<pre style="background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto;"><code>SELECT 
-    SUM(quantity) AS Total_pizza_sold 
-FROM pizza_sales;</code></pre>
-						</div>
-
-						<div class="mb-3">
-							<h6>Total Orders</h6>
-							<pre style="background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto;"><code>SELECT 
-    COUNT(DISTINCT order_id) AS Total_Orders 
-FROM pizza_sales;</code></pre>
-						</div>
-
-						<div class="mb-3">
-							<h6>Average Pizzas per Order</h6>
-							<pre style="background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto;"><code>SELECT 
-    CAST(CAST(SUM(quantity) AS DECIMAL(10,2)) /
-    CAST(COUNT(DISTINCT order_id) AS DECIMAL(10,2)) AS DECIMAL(10,2))
-    AS Avg_Pizzas_per_order
-FROM pizza_sales;</code></pre>
+						<div class="text-center mb-4">
+							<a class="btn btn-primary me-3" href="https://app.powerbi.com/view?r=eyJrIjoiYjAyYmVkNDItYzg2Ni00YWYxLWI2NDYtZmE4NDlhZjE1MDZiIiwidCI6ImUwYzQxYWY5LWZiNTMtNDBjZC1hN2IzLTI4N2NlNzg0NzAzMCJ9" target="_blank">
+								<i class="fas fa-chart-pie me-2"></i>View Interactive Dashboard
+							</a>
+							<a class="btn btn-outline-primary" href="https://github.com/Tolu-DavidAfolayan/Pizza-Sale-Analytics" target="_blank">
+								<i class="fab fa-github me-2"></i>SQL Analysis Files
+							</a>
 						</div>
 					</div>
 
-					<div class="code-section mb-4">
-						<h5>2. Daily and Monthly Trends</h5>
-						<div class="mb-3">
-							<h6>Daily Trends for Orders and Revenue</h6>
-							<pre style="background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto;"><code>SELECT 
-    DATENAME(WEEKDAY, order_date) AS order_day,
-    COUNT(DISTINCT order_id) AS total_orders,
-    Format(SUM(total_price), 'N2') AS total_revenue
-FROM pizza_sales
-GROUP BY DATENAME(WEEKDAY, order_date), DATEPART(WEEKDAY, order_date)
-ORDER BY DATEPART(WEEKDAY, order_date);</code></pre>
+					<div class="project-section mb-4">
+						<h3 class="project-section-title mb-3">SQL Queries & Business Intelligence</h3>
+						<p>Here are the key SQL queries that power the analytics dashboard:</p>
+
+						<h4 class="mb-3"><i class="fas fa-chart-bar me-2"></i>1. Key Performance Indicators</h4>
+						
+						<div class="mb-4">
+							<h6>Total Revenue Analysis</h6>
+							<div class="sql-code">
+<span class="code-keyword">SELECT</span> 
+    <span class="code-function">FORMAT</span>(<span class="code-function">SUM</span>(total_price), <span class="code-string">'N2'</span>) <span class="code-keyword">AS</span> Total_Revenue
+<span class="code-keyword">FROM</span> [Pizza Sales].[dbo].[pizza_sales];
+
+<span class="code-comment">-- Result: $817,860.05</span>
+							</div>
 						</div>
 
-						<div class="mb-3">
-							<h6>Monthly Trends for Orders and Revenue</h6>
-							<pre style="background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto;"><code>SELECT 
-    DATENAME(MONTH, order_date) AS Month_Name,
-    COUNT(DISTINCT order_id) AS total_orders,
-    Format(SUM(total_price), 'N2') AS total_revenue
-FROM pizza_sales
-GROUP BY DATENAME(MONTH, order_date), DATEPART(MONTH, order_date)
-ORDER BY DATEPART(MONTH, order_date);</code></pre>
-						</div>
-					</div>
+						<div class="mb-4">
+							<h6>Average Order Value Calculation</h6>
+							<div class="sql-code">
+<span class="code-keyword">SELECT</span> 
+    <span class="code-function">Format</span>(<span class="code-function">SUM</span>(total_price) / <span class="code-function">COUNT</span>(<span class="code-keyword">DISTINCT</span> order_id), <span class="code-string">'N2'</span>) <span class="code-keyword">AS</span> Avg_order_Value 
+<span class="code-keyword">FROM</span> pizza_sales;
 
-					<div class="code-section mb-4">
-						<h5>3. Category and Size Analysis</h5>
-						<div class="mb-3">
-							<h6>Revenue Percentage by Pizza Category</h6>
-							<pre style="background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto;"><code>SELECT 
+<span class="code-comment">-- Result: $38.31 average per order</span>
+							</div>
+						</div>
+
+						<div class="mb-4">
+							<h6>Total Pizza Units Sold</h6>
+							<div class="sql-code">
+<span class="code-keyword">SELECT</span> 
+    <span class="code-function">SUM</span>(quantity) <span class="code-keyword">AS</span> Total_pizza_sold 
+<span class="code-keyword">FROM</span> pizza_sales;
+
+<span class="code-comment">-- Result: 49,574 pizzas sold</span>
+							</div>
+						</div>
+
+						<h4 class="mb-3"><i class="fas fa-calendar-alt me-2"></i>2. Temporal Trend Analysis</h4>
+						
+						<div class="mb-4">
+							<h6>Daily Performance Trends</h6>
+							<div class="sql-code">
+<span class="code-keyword">SELECT</span> 
+    <span class="code-function">DATENAME</span>(<span class="code-keyword">WEEKDAY</span>, order_date) <span class="code-keyword">AS</span> order_day,
+    <span class="code-function">COUNT</span>(<span class="code-keyword">DISTINCT</span> order_id) <span class="code-keyword">AS</span> total_orders,
+    <span class="code-function">Format</span>(<span class="code-function">SUM</span>(total_price), <span class="code-string">'N2'</span>) <span class="code-keyword">AS</span> total_revenue
+<span class="code-keyword">FROM</span> pizza_sales
+<span class="code-keyword">GROUP BY</span> <span class="code-function">DATENAME</span>(<span class="code-keyword">WEEKDAY</span>, order_date), <span class="code-function">DATEPART</span>(<span class="code-keyword">WEEKDAY</span>, order_date)
+<span class="code-keyword">ORDER BY</span> <span class="code-function">DATEPART</span>(<span class="code-keyword">WEEKDAY</span>, order_date);
+
+<span class="code-comment">-- Shows Friday as peak performance day</span>
+							</div>
+						</div>
+
+						<div class="mb-4">
+							<h6>Monthly Revenue Patterns</h6>
+							<div class="sql-code">
+<span class="code-keyword">SELECT</span> 
+    <span class="code-function">DATENAME</span>(<span class="code-keyword">MONTH</span>, order_date) <span class="code-keyword">AS</span> Month_Name,
+    <span class="code-function">COUNT</span>(<span class="code-keyword">DISTINCT</span> order_id) <span class="code-keyword">AS</span> total_orders,
+    <span class="code-function">Format</span>(<span class="code-function">SUM</span>(total_price), <span class="code-string">'N2'</span>) <span class="code-keyword">AS</span> total_revenue
+<span class="code-keyword">FROM</span> pizza_sales
+<span class="code-keyword">GROUP BY</span> <span class="code-function">DATENAME</span>(<span class="code-keyword">MONTH</span>, order_date), <span class="code-function">DATEPART</span>(<span class="code-keyword">MONTH</span>, order_date)
+<span class="code-keyword">ORDER BY</span> <span class="code-function">DATEPART</span>(<span class="code-keyword">MONTH</span>, order_date);
+
+<span class="code-comment">-- July shows highest monthly performance</span>
+							</div>
+						</div>
+
+						<h4 class="mb-3"><i class="fas fa-pizza-slice me-2"></i>3. Product Performance Analytics</h4>
+						
+						<div class="mb-4">
+							<h6>Top Revenue-Generating Pizzas</h6>
+							<div class="sql-code">
+<span class="code-keyword">SELECT TOP</span> 5 
+    pizza_name, 
+    <span class="code-function">Format</span>(<span class="code-function">SUM</span>(total_price),<span class="code-string">'N2'</span>) <span class="code-keyword">AS</span> Total_Revenue
+<span class="code-keyword">FROM</span> pizza_sales
+<span class="code-keyword">GROUP BY</span> pizza_name
+<span class="code-keyword">ORDER BY</span> Total_Revenue <span class="code-keyword">DESC</span>;
+
+<span class="code-comment">-- Thai Chicken Pizza leads revenue generation</span>
+							</div>
+						</div>
+
+						<div class="mb-4">
+							<h6>Category Revenue Distribution</h6>
+							<div class="sql-code">
+<span class="code-keyword">SELECT</span> 
     pizza_category, 
-    CAST(SUM(total_price) AS DECIMAL(10,2)) as total_revenue,
-    CAST(SUM(total_price) * 100 / (SELECT SUM(total_price) from pizza_sales) AS DECIMAL(10,2)) AS PCT
-FROM pizza_sales
-GROUP BY pizza_category;</code></pre>
-						</div>
+    <span class="code-function">CAST</span>(<span class="code-function">SUM</span>(total_price) <span class="code-keyword">AS</span> <span class="code-keyword">DECIMAL</span>(10,2)) <span class="code-keyword">as</span> total_revenue,
+    <span class="code-function">CAST</span>(<span class="code-function">SUM</span>(total_price) * 100 / (<span class="code-keyword">SELECT</span> <span class="code-function">SUM</span>(total_price) <span class="code-keyword">from</span> pizza_sales) 
+         <span class="code-keyword">AS</span> <span class="code-keyword">DECIMAL</span>(10,2)) <span class="code-keyword">AS</span> PCT
+<span class="code-keyword">FROM</span> pizza_sales
+<span class="code-keyword">GROUP BY</span> pizza_category;
 
-						<div class="mb-3">
-							<h6>Revenue Percentage by Pizza Size</h6>
-							<pre style="background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto;"><code>SELECT 
-    pizza_size, 
-    CAST(SUM(total_price) AS DECIMAL(10,2)) as total_revenue,
-    CAST(SUM(total_price) * 100 / (SELECT SUM(total_price) from pizza_sales) AS DECIMAL(10,2)) AS PCT
-FROM pizza_sales
-GROUP BY pizza_size
-ORDER BY pizza_size;</code></pre>
+<span class="code-comment">-- Classic category dominates with 47% market share</span>
+							</div>
 						</div>
 					</div>
 
-					<div class="code-section mb-4">
-						<h5>4. Product Performance Analysis</h5>
-						<div class="mb-3">
-							<h6>Top 5 Pizzas by Revenue</h6>
-							<pre style="background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto;"><code>SELECT TOP 5 
-    pizza_name, 
-    Format(SUM(total_price),'N2') AS Total_Revenue
-FROM pizza_sales
-GROUP BY pizza_name
-ORDER BY Total_Revenue DESC;</code></pre>
+					<div class="project-section mb-2">
+						<h3 class="project-section-title mb-3">Analytics Results & Business Impact</h3>
+						<div class="metrics mb-4">
+							<div class="row">
+								<div class="metric col-6 col-xl-3 mb-3">
+									<div class="inner p-3 theme-bg-light">
+										<div class="metric-name">Revenue Growth</div>
+										<div class="metric-data mb-2">$817K+</div>
+										<div class="metric-desc">Total sales performance tracked</div>
+									</div>
+								</div>
+								<div class="metric col-6 col-xl-3 mb-3">
+									<div class="inner p-3 theme-bg-light">
+										<div class="metric-name">Order Volume</div>
+										<div class="metric-data mb-2">21,350</div>
+										<div class="metric-desc">Individual transactions analyzed</div>
+									</div>
+								</div>
+								<div class="metric col-6 col-xl-3 mb-3">
+									<div class="inner p-3 theme-bg-light">
+										<div class="metric-name">Product Insights</div>
+										<div class="metric-data mb-2">4 Categories</div>
+										<div class="metric-desc">Complete performance ranking</div>
+									</div>
+								</div>
+								<div class="metric col-6 col-xl-3 mb-3">
+									<div class="inner p-3 theme-bg-light">
+										<div class="metric-name">Time Analytics</div>
+										<div class="metric-data mb-2">12 Months</div>
+										<div class="metric-desc">Seasonal trend identification</div>
+									</div>
+								</div>
+							</div>
 						</div>
 
-						<div class="mb-3">
-							<h6>Top 5 Pizzas by Quantity</h6>
-							<pre style="background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto;"><code>SELECT TOP 5 
-    pizza_name, 
-    SUM(quantity) AS Total_Pizza_Sold
-FROM pizza_sales
-GROUP BY pizza_name
-ORDER BY Total_Pizza_Sold DESC;</code></pre>
+						<h4 class="mb-3"><i class="fas fa-star me-2"></i>Top Performance Insights</h4>
+						<div class="row mb-4">
+							<div class="col-md-6">
+								<div class="mb-3">
+									<strong>1. Classic Category (47% Revenue)</strong>
+									<div class="feature-bar" style="width: 100%;"></div>
+								</div>
+								<div class="mb-3">
+									<strong>2. Supreme Category (25.5% Revenue)</strong>
+									<div class="feature-bar" style="width: 54%;"></div>
+								</div>
+								<div class="mb-3">
+									<strong>3. Thai Chicken Pizza (Top Individual)</strong>
+									<div class="feature-bar" style="width: 85%;"></div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="mb-3">
+									<strong>4. Large Size Preference</strong>
+									<div class="feature-bar" style="width: 70%;"></div>
+								</div>
+								<div class="mb-3">
+									<strong>5. Friday Peak Performance</strong>
+									<div class="feature-bar" style="width: 90%;"></div>
+								</div>
+								<div class="mb-3">
+									<strong>6. July Monthly Leader</strong>
+									<div class="feature-bar" style="width: 65%;"></div>
+								</div>
+							</div>
 						</div>
 
-						<div class="mb-3">
-							<h6>Top 5 Pizzas by Total Orders</h6>
-							<pre style="background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto;"><code>SELECT TOP 5 
-    pizza_name, 
-    COUNT(DISTINCT order_id) AS Total_Orders
-FROM pizza_sales
-GROUP BY pizza_name
-ORDER BY Total_Orders DESC;</code></pre>
-						</div>
-					</div>
-				</div><!--//project-section-->
+						<h4 class="mb-3"><i class="fas fa-lightbulb me-2"></i>Strategic Business Insights</h4>
+						<ul>
+							<li><strong>Product Focus:</strong> Classic pizzas drive nearly half of all revenue - prioritize this category.</li>
+							<li><strong>Size Strategy:</strong> Large pizzas offer optimal revenue per unit - promote size upgrades.</li>
+							<li><strong>Peak Operations:</strong> Friday shows consistent peak performance - staff accordingly.</li>
+							<li><strong>Seasonal Planning:</strong> July peaks suggest summer marketing opportunities.</li>
+							<li><strong>Menu Optimization:</strong> Thai Chicken Pizza's success indicates flavor preference trends.</li>
+							<li><strong>Inventory Management:</strong> Data-driven ordering based on category performance percentages.</li>
+						</ul>
 
-				<div class="project-section mb-2">
-					<h3 class="project-section-title mb-3">The Results</h3>
-					<div class="metrics mb-4">
+						<h4 class="mb-3"><i class="fas fa-rocket me-2"></i>Implementation Impact & ROI</h4>
 						<div class="row">
-							<div class="metric col-6 col-xl-3 mb-3">
-								<div class="inner p-3 theme-bg-light">
-									<div class="metric-name">Total Revenue</div>
-									<div class="metric-data mb-2">$817,860</div>
-									<div class="metric-desc">Comprehensive sales performance</div>
+							<div class="col-md-6">
+								<div class="insight-card">
+									<h6><i class="fas fa-chart-line me-2"></i>Revenue Optimization</h6>
+									<p class="mb-0">Focus marketing budget on Classic category promotion and Large size upselling for maximum ROI impact.</p>
 								</div>
 							</div>
-							<div class="metric col-6 col-xl-3 mb-3">
-								<div class="inner p-3 theme-bg-light">
-									<div class="metric-name">Total Orders</div>
-									<div class="metric-data mb-2">21,350</div>
-									<div class="metric-desc">Customer transactions analyzed</div>
+							<div class="col-md-6">
+								<div class="insight-card">
+									<h6><i class="fas fa-users me-2"></i>Operational Efficiency</h6>
+									<p class="mb-0">Optimize Friday staffing and inventory levels based on consistent peak performance patterns.</p>
 								</div>
 							</div>
-							<div class="metric col-6 col-xl-3 mb-3">
-								<div class="inner p-3 theme-bg-light">
-									<div class="metric-name">Avg Order Value</div>
-									<div class="metric-data mb-2">$38.31</div>
-									<div class="metric-desc">Customer spending per order</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="insight-card">
+									<h6><i class="fas fa-bullseye me-2"></i>Menu Engineering</h6>
+									<p class="mb-0">Promote Thai Chicken Pizza and expand Classic category offerings based on performance data.</p>
 								</div>
 							</div>
-							<div class="metric col-6 col-xl-3 mb-3">
-								<div class="inner p-3 theme-bg-light">
-									<div class="metric-name">Total Pizzas</div>
-									<div class="metric-data mb-2">49,574</div>
-									<div class="metric-desc">Individual pizzas sold</div>
+							<div class="col-md-6">
+								<div class="insight-card">
+									<h6><i class="fas fa-calendar-check me-2"></i>Strategic Planning</h6>
+									<p class="mb-0">Leverage July peak season insights for annual marketing calendar and inventory procurement.</p>
 								</div>
 							</div>
-						</div><!--//row-->
-					</div><!--//metrics-->
-					<p>
-						Key insights discovered through the analysis:
-					</p>
-					<ul>
-						<li><strong>Classic category</strong> drives 47% of total revenue</li>
-						<li><strong>Large pizzas</strong> generate the highest revenue per unit</li>
-						<li><strong>Friday</strong> shows peak daily performance</li>
-						<li><strong>Thai Chicken Pizza</strong> leads in revenue generation</li>
-						<li><strong>July</strong> recorded the highest monthly sales</li>
-					</ul>
-					<p>
-						The dashboard enables data-driven decisions for menu optimization, inventory management, 
-						staff scheduling, and marketing campaign targeting. The SQL queries provide a reusable 
-						framework for ongoing business intelligence and performance monitoring.
-					</p>
-				</div><!--//project-section-->
+						</div>
+					</div>
+
+					<div class="project-section mb-4">
+						<h3 class="project-section-title">Technical Implementation</h3>
+						
+						<h4 class="mb-3"><i class="fas fa-tools me-2"></i>Technologies & Methods</h4>
+						<div class="row">
+							<div class="col-md-6 mb-3">
+								<ul class="list-unstyled">
+									<li><i class="fas fa-check-circle text-success me-2"></i><strong>SQL Server:</strong> Primary database engine</li>
+									<li><i class="fas fa-check-circle text-success me-2"></i><strong>T-SQL:</strong> Advanced query development</li>
+									<li><i class="fas fa-check-circle text-success me-2"></i><strong>Power BI:</strong> Interactive dashboard creation</li>
+									<li><i class="fas fa-check-circle text-success me-2"></i><strong>DAX:</strong> Advanced calculations and measures</li>
+								</ul>
+							</div>
+							<div class="col-md-6 mb-3">
+								<ul class="list-unstyled">
+									<li><i class="fas fa-check-circle text-success me-2"></i><strong>Data Modeling:</strong> Optimized star schema design</li>
+									<li><i class="fas fa-check-circle text-success me-2"></i><strong>ETL Process:</strong> Automated data refresh</li>
+									<li><i class="fas fa-check-circle text-success me-2"></i><strong>KPI Development:</strong> Business metric calculations</li>
+									<li><i class="fas fa-check-circle text-success me-2"></i><strong>Visualization Design:</strong> User-friendly interface</li>
+								</ul>
+							</div>
+						</div>
+						
+						<h4 class="mb-3"><i class="fas fa-database me-2"></i>Advanced SQL Techniques Used</h4>
+						<ul>
+							<li><strong>Aggregate Functions:</strong> SUM, COUNT, AVG for comprehensive KPI calculations.</li>
+							<li><strong>Date Functions:</strong> DATENAME, DATEPART for temporal analysis and trend identification.</li>
+							<li><strong>Window Functions:</strong> ROW_NUMBER, RANK for top/bottom performance analysis.</li>
+							<li><strong>Formatting Functions:</strong> FORMAT for currency and percentage display optimization.</li>
+							<li><strong>Grouping & Ordering:</strong> Complex GROUP BY and ORDER BY for data aggregation.</li>
+							<li><strong>Percentage Calculations:</strong> Mathematical operations for market share analysis.</li>
+						</ul>
+						
+						<h4 class="mb-3"><i class="fas fa-chart-bar me-2"></i>Dashboard Features</h4>
+						<div class="alert alert-info">
+							<h6><i class="fas fa-star me-2"></i>Interactive Capabilities</h6>
+							<p class="mb-0">
+								The Power BI dashboard includes <strong>drill-down functionality</strong>, interactive filters,
+								and real-time data refresh capabilities. Users can filter by date ranges, pizza categories,
+								and sizes while maintaining responsive performance across all visualizations.
+							</p>
+						</div>
+					</div>
+
+					<div class="project-section mb-4">
+						<h3 class="project-section-title">Business Intelligence Insights</h3>
+						
+						<h4 class="mb-3"><i class="fas fa-chart-pie me-2"></i>Category Performance Breakdown</h4>
+						<div class="row mb-4">
+							<div class="col-md-3 text-center mb-3">
+								<div class="p-3 rounded" style="background: linear-gradient(135deg, #d63031, #e17055);">
+									<h6 class="text-white">Classic</h6>
+									<div class="text-white" style="font-size: 2rem; font-weight: bold;">47%</div>
+									<small class="text-white">Market Leader</small>
+								</div>
+							</div>
+							<div class="col-md-3 text-center mb-3">
+								<div class="p-3 rounded" style="background: linear-gradient(135deg, #fd7e14, #fdcb6e);">
+									<h6 class="text-white">Supreme</h6>
+									<div class="text-white" style="font-size: 2rem; font-weight: bold;">25.5%</div>
+									<small class="text-white">Strong Second</small>
+								</div>
+							</div>
+							<div class="col-md-3 text-center mb-3">
+								<div class="p-3 rounded" style="background: linear-gradient(135deg, #00b894, #55efc4);">
+									<h6 class="text-white">Veggie</h6>
+									<div class="text-white" style="font-size: 2rem; font-weight: bold;">13.8%</div>
+									<small class="text-white">Niche Market</small>
+								</div>
+							</div>
+							<div class="col-md-3 text-center mb-3">
+								<div class="p-3 rounded" style="background: linear-gradient(135deg, #2d3436, #636e72);">
+									<h6 class="text-white">Chicken</h6>
+									<div class="text-white" style="font-size: 2rem; font-weight: bold;">13.7%</div>
+									<small class="text-white">Growth Potential</small>
+								</div>
+							</div>
+						</div>
+						
+						<h4 class="mb-3"><i class="fas fa-clock me-2"></i>Temporal Insights</h4>
+						<ul>
+							<li><strong>Peak Day:</strong> Friday consistently shows highest daily performance across all metrics.</li>
+							<li><strong>Weekend Patterns:</strong> Saturday maintains strong performance while Sunday drops significantly.</li>
+							<li><strong>Monthly Leader:</strong> July emerges as the strongest revenue month.</li>
+							<li><strong>Seasonal Trends:</strong> Summer months show increased customer activity and higher order values.</li>
+							<li><strong>Weekly Consistency:</strong> Mid-week (Tuesday-Thursday) shows steady baseline performance.</li>
+						</ul>
+						
+						<h4 class="mb-3"><i class="fas fa-trophy me-2"></i>Product Performance Rankings</h4>
+						<p>The analysis revealed unexpected insights about individual pizza performance:</p>
+						<div class="row">
+							<div class="col-md-6">
+								<h6>Top Revenue Generators:</h6>
+								<ul class="list-unstyled">
+									<li>1. <strong>Thai Chicken Pizza</strong> - Premium pricing success</li>
+									<li>2. <strong>Barbecue Chicken Pizza</strong> - Consistent popularity</li>
+									<li>3. <strong>California Chicken Pizza</strong> - Regional favorite</li>
+									<li>4. <strong>Classic Deluxe Pizza</strong> - Traditional choice</li>
+									<li>5. <strong>Spicy Italian Pizza</strong> - Flavor innovation</li>
+								</ul>
+							</div>
+							<div class="col-md-6">
+								<h6>Size Distribution Insights:</h6>
+								<ul class="list-unstyled">
+									<li><strong>Large (45.9%):</strong> Clear customer preference</li>
+									<li><strong>Medium (30.5%):</strong> Budget-conscious choice</li>
+									<li><strong>Small (21.8%):</strong> Individual portions</li>
+									<li><strong>XL (1.8%):</strong> Premium/sharing option</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
-		</div>
-	</section>
+		</section>
 
-<section class="promo-section theme-bg-light py-5 text-center">
-	<div class="container single-col-max-width">
-		<h2 class="title">Want me to help with your project?</h2>
-		<p>If you take on freelance work, you can use this section to prompt any potential clients to get in touch with you with their project requirements.</p>
-		<div class="text-center">
-			<a class="btn btn-primary" href="contact.html" target="_blank">
-				<i class="fas fa-paper-plane me-2"></i>Hire Me
-			</a>
-		</div>
-	</div><!--//container-->
-</section><!--//promo-section-->
+		<section class="promo-section theme-bg-light py-5 text-center">
+			<div class="container single-col-max-width">
+				<h2 class="title">Looking for a business intelligence expert for your restaurant?</h2>
+				<p>I specialize in creating comprehensive analytics solutions that optimize operations, boost revenue, and drive strategic decision-making. From sales forecasting to customer behavior analysis, let's transform your restaurant data into competitive advantage through advanced SQL development and interactive dashboard creation.</p>
+				<div class="text-center">
+					<a class="btn btn-primary" href="mailto:david4afolayan@gmail.com" target="_blank">
+						<i class="fas fa-paper-plane me-2"></i>Let's Work Together
+					</a>
+				</div>
+			</div>
+		</section>
 
-<footer class="footer text-center py-4">
-	<small class="copyright">Template Copyright &copy; 
-		<a href="https://themes.3rdwavemedia.com/" target="_blank">3rd Wave Media</a>
-	</small>
-</footer>
-</div><!--//main-wrapper-->
+		<footer class="footer text-center py-4">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<p class="mb-2">
+							<strong>Da'insight Space</strong> - Transforming Data into Strategic Insights
+						</p>
+						<p class="mb-2">
+							<a href="mailto:hello@davidafolayan.com.ng" class="text-decoration-none">
+								<i class="fas fa-envelope me-2"></i>hello@davidafolayan.com.ng
+							</a>
+						</p>
+						<small class="copyright text-muted">
+							&copy; 2025 Da'insight Space. All rights reserved. | 
+							<a href="mailto:hello@davidafolayan.com.ng" class="text-muted">Contact Us</a>
+						</small>
+					</div>
+				</div>
+			</div>
+		</footer>
 
-    
-    <!-- *****CONFIGURE STYLE (REMOVE ON YOUR PRODUCTION SITE)****** -->  
+	</div>
+
+	<!-- *****CONFIGURE STYLE (REMOVE ON YOUR PRODUCTION SITE)****** -->  
 	<div id="config-panel" class="config-panel config-panel-hide d-none d-lg-block">
 		<div class="panel-inner">
-			<a id="config-trigger" class="config-trigger text-center" href="#"><i class="fas fa-cog mx-auto" data-fa-transform="down-6" ></i></a>
+			<a id="config-trigger" class="config-trigger text-center" href="#"><i class="fas fa-cog mx-auto" data-fa-transform="down-6"></i></a>
 			<h5 class="panel-title">Choose Colour</h5>
 			<ul id="color-options" class="list-inline mb-0">
 				<li class="theme-1 active list-inline-item"><a data-style="assets/css/theme.css" href="#"></a></li>
@@ -358,20 +814,19 @@ ORDER BY Total_Orders DESC;</code></pre>
 				<li class="theme-9  list-inline-item"><a data-style="assets/css/theme-9.css" href="#"></a></li>
 			</ul>
 			<a id="config-close" class="close" href="#"><i class="fa fa-times-circle"></i></a>
-		</div><!--//panel-inner-->
-	</div><!--//configure-panel-->
+		</div>
+	</div>
 
-    <!-- Javascript -->          
-    <script src="assets/plugins/popper.min.js"></script> 
-    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script> 
-    
-    <!-- Dark Mode -->
+	<!-- Javascript -->          
+	<script src="assets/plugins/popper.min.js"></script> 
+	<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script> 
+	
+	<!-- Dark Mode -->
 	<script src="assets/plugins/js-cookie.min.js"></script>
 	<script src="assets/js/dark-mode.js"></script>
 
-    <!-- Style Switcher (REMOVE ON YOUR PRODUCTION SITE) -->
-    <script src="assets/js/demo/style-switcher.js"></script>     
-    
+	<!-- Style Switcher (REMOVE ON YOUR PRODUCTION SITE) -->
+	<script src="assets/js/demo/style-switcher.js"></script>     
 
 </body>
 </html>
