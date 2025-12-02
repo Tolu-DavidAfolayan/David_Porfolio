@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Airline Satisfaction Analytics - David Afolayan</title>
+    <title>Sentiment Analysis of Tweets - David Afolayan</title>
     
     <!-- Meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Airline Customer Satisfaction Analytics Case Study">
+    <meta name="description" content="Interactive Sentiment Analysis Dashboard for US Airline Tweets">
     <meta name="author" content="David Afolayan">
     
     <link rel="shortcut icon" href="favicon.ico">
@@ -21,7 +21,7 @@
     <!-- Theme CSS -->
     <link id="theme-style" rel="stylesheet" href="assets/css/theme.css">
 
-	<!-- Custom spacing reduction styles -->
+    <!-- Custom spacing reduction styles -->
     <style>
         /* CSS Reset and Font Normalization */
         * {
@@ -29,7 +29,7 @@
         }
         
         html {
-            font-size: 14px !important; /* Force base font size */
+            font-size: 14px !important;
             -webkit-text-size-adjust: 100% !important;
             -moz-text-size-adjust: 100% !important;
             -ms-text-size-adjust: 100% !important;
@@ -37,69 +37,55 @@
         }
         
         body {
-            font-size: 0.875rem !important; /* 14px equivalent */
+            font-size: 0.875rem !important;
             line-height: 1.5 !important;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
             -webkit-font-smoothing: antialiased !important;
             -moz-osx-font-smoothing: grayscale !important;
         }
         
-        /* Specific font size controls */
         h1, .blog-name {
-            font-size: 1.75rem !important; /* 28px */
+            font-size: 1.75rem !important;
         }
         
         h2, .section-title {
-            font-size: 1.5rem !important; /* 24px */
+            font-size: 1.5rem !important;
         }
         
         h3 {
-            font-size: 1.25rem !important; /* 20px */
+            font-size: 1.25rem !important;
         }
         
         h4 {
-            font-size: 1.125rem !important; /* 18px */
+            font-size: 1.125rem !important;
         }
         
         h5, .item-title {
-            font-size: 1rem !important; /* 16px */
-        }
-        
-        h6 {
-            font-size: 0.875rem !important; /* 14px */
+            font-size: 1rem !important;
         }
         
         p, .item-desc, .card-text, .bio {
-            font-size: 0.875rem !important; /* 14px */
+            font-size: 0.875rem !important;
             line-height: 1.5 !important;
         }
         
         .tagline {
-            font-size: 1rem !important; /* 16px */
-        }
-        
-        .section-intro {
-            font-size: 0.9rem !important; /* 14.4px */
+            font-size: 1rem !important;
         }
         
         .nav-link {
-            font-size: 0.875rem !important; /* 14px */
+            font-size: 0.875rem !important;
         }
         
         .btn {
-            font-size: 0.875rem !important; /* 14px */
-        }
-        
-        .tools-list {
-            font-size: 0.75rem !important; /* 12px */
-            line-height: 1.3 !important;
+            font-size: 0.875rem !important;
         }
         
         .social-list {
-            font-size: 0.9375rem !important; /* 15px - as specified in your original code */
+            font-size: 0.9375rem !important;
         }
         
-        /* Reduce general section padding */
+        /* Reduce section padding */
         .about-me-section,
         .overview-section,
         .featured-section {
@@ -114,12 +100,10 @@
             }
         }
         
-        /* Reduce header padding */
         .header {
             padding-bottom: 0.5rem;
         }
         
-        /* Reduce profile section spacing */
         .profile-section {
             padding-top: 1rem !important;
         }
@@ -128,26 +112,11 @@
             margin-bottom: 1rem !important;
         }
         
-        /* Reduce navigation spacing */
         .social-list {
             padding: 1rem 0 !important;
             margin-bottom: 0.5rem !important;
         }
         
-        /* Reduce main content margins */
-        .profile-teaser {
-            margin-bottom: 1rem;
-        }
-        
-        .tagline {
-            margin-bottom: 1rem !important;
-        }
-        
-        .name {
-            margin-bottom: 0.5rem !important;
-        }
-        
-        /* Reduce section intro margins */
         .section-intro {
             margin-bottom: 2rem !important;
         }
@@ -156,94 +125,75 @@
             margin-bottom: 1rem !important;
         }
         
-        /* Reduce item spacing in skills section */
-        .item {
-            margin-bottom: 1rem;
-        }
-        
-        .item-inner {
-            padding: 0.75rem;
-        }
-        
-        .item-title {
-            margin-bottom: 0.5rem;
-        }
-        
-        /* Reduce featured projects spacing */
-        .project-card {
-            margin-bottom: 1.5rem !important;
-        }
-        
-        .card-body {
-            padding: 1rem;
-        }
-        
-        /* Reduce container margins */
-        .container hr {
-            margin: 1rem 0;
-        }
-        
-        /* Reduce button margins */
-        .btn {
-            margin-bottom: 1rem;
-        }
-        
-        /* Reduce footer padding */
         .footer {
             padding: 2rem 0 !important;
         }
-        
-        /* Tools list spacing */
-        .tools-list {
-            font-size: 0.85rem;
-            color: #6c757d;
-            font-style: italic;
-            margin-top: 0.2rem;
-            line-height: 1.2;
+
+        /* Custom styles for dashboard embed */
+        .dashboard-embed {
+            position: relative;
+            width: 100%;
+            height: 900px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            background: #f8f9fa;
         }
         
-        .icon-colored {
-            font-size: 1rem;
-            margin-right: 0.2rem;
+        .dashboard-embed iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
         }
-    </style>
-    
-    <style>
-        .metric-data {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #2c5aa0;
-        }
-        .insight-card {
+
+        .feature-card {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border-radius: 12px;
             padding: 1.5rem;
             margin-bottom: 1rem;
+            height: 100%;
         }
-        .feature-bar {
-            background: linear-gradient(90deg, #4CAF50, #FFC107, #FF5722);
-            height: 8px;
-            border-radius: 4px;
-            margin: 5px 0;
+
+        .feature-card h5 {
+            color: white !important;
+            margin-bottom: 0.75rem;
         }
-        .confusion-matrix {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            max-width: 400px;
-            margin: 0 auto;
+
+        .feature-card p {
+            color: rgba(255,255,255,0.9) !important;
+            margin-bottom: 0;
         }
-        .matrix-cell {
-            padding: 15px;
+
+        .tech-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin: 0.25rem;
+        }
+
+        .stats-card {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
             text-align: center;
-            border-radius: 8px;
-            font-weight: bold;
         }
-        .true-negative { background: #1f77b4; color: white; }
-        .false-positive { background: #ff7f0e; color: white; }
-        .false-negative { background: #d62728; color: white; }
-        .true-positive { background: #2ca02c; color: white; }
+
+        .stats-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 0.5rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-embed {
+                height: 700px;
+            }
+        }
     </style>
 </head>
 
@@ -260,7 +210,7 @@
                 <div class="profile-section pt-3 pt-lg-0">
                     <img class="profile-image mb-3 rounded-circle mx-auto" src="assets/images/blog/My Picture.jpg" alt="image">
                     
-					<div class="bio mb-3">Hi, my name is Afolayan David Tolulope, a data analyst and machine learning expert.</div><!--//bio-->
+                    <div class="bio mb-3">Hi, my name is Afolayan David Tolulope, a data analyst and machine learning expert.</div>
                     <ul class="social-list list-inline py-3 mx-auto text-center" style="font-size:15px;">
                         <li class="list-inline-item"><a href="https://x.com/Da_vid_AFO?t=COoXOfQ8KQDKOSzQ4nBHuw&s=09"><i class="fab fa-twitter"></i></a></li>
                         <li class="list-inline-item"><a href="https://www.linkedin.com/in/afolayan-tolulope/"><i class="fab fa-linkedin-in"></i></a></li>
@@ -283,7 +233,7 @@
                         <a class="nav-link" href="resume.html"><i class="fas fa-file-alt fa-fw me-2"></i>Resume</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="case-study.html"><i class="fas fa-envelope-open-text fa-fw me-2"></i>Case Study</a>
+                        <a class="nav-link" href="case-study.html"><i class="fas fa-envelope-open-text fa-fw me-2"></i>Case Study</a>
                     </li>
                 </ul>
 
@@ -303,12 +253,12 @@
     <div class="main-wrapper">
         <section class="cta-section theme-bg-light py-5">
             <div class="container single-col-max-width">
-                <h2 class="heading text-center">Case Study: Airline Customer Satisfaction Prediction & Analytics</h2>
+                <h2 class="heading text-center">🐦 Sentiment Analysis of Tweets about US Airlines</h2>
                 <div class="project-intro text-center">
                     <p class="mb-0 lead">
-                        Advanced machine learning analysis of airline customer satisfaction using Python and scikit-learn.
-                        Built predictive models achieving <strong>96% accuracy</strong> to identify key satisfaction drivers
-                        and optimize passenger experience through <strong>data-driven insights</strong> and <strong>feature importance analysis</strong>.
+                        Interactive dashboard analyzing <strong>14,640+ airline tweets</strong> with real-time visualizations,
+                        sentiment breakdowns, word clouds, and airline comparisons. Built with <strong>Streamlit</strong> 
+                        and <strong>Python</strong> for dynamic data exploration.
                     </p>
                 </div>
             </div>
@@ -316,350 +266,190 @@
 
         <section class="project px-3 py-5 p-md-5">
             <div class="container">
-                <div class="project-meta theme-bg-light p-4">
-                    <div class="row g-4 g-lg-5">
-                        <div class="col-md-12 text-center">
-                            <div class="confusion-matrix mb-4">
-                                <div class="matrix-cell true-negative">
-                                    <div>True Negative</div>
-                                    <div style="font-size: 1.5rem;">14,342</div>
-                                    <small>97.63%</small>
-                                </div>
-                                <div class="matrix-cell false-positive">
-                                    <div>False Positive</div>
-                                    <div style="font-size: 1.5rem;">348</div>
-                                    <small>2.37%</small>
-                                </div>
-                                <div class="matrix-cell false-negative">
-                                    <div>False Negative</div>
-                                    <div style="font-size: 1.5rem;">692</div>
-                                    <small>6.13%</small>
-                                </div>
-                                <div class="matrix-cell true-positive">
-                                    <div>True Positive</div>
-                                    <div style="font-size: 1.5rem;">10,594</div>
-                                    <small>93.87%</small>
-                                </div>
-                            </div>
-                            <p class="mt-2 text-muted"><small><em>Model Confusion Matrix - 96% Overall Accuracy</em></small></p>
+                <!-- Project Stats -->
+                <div class="row mb-5">
+                    <div class="col-md-4 mb-3">
+                        <div class="stats-card">
+                            <div><i class="fas fa-comments" style="font-size: 2rem;"></i></div>
+                            <div class="stats-number">14,640+</div>
+                            <div>Tweets Analyzed</div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="stats-card" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                            <div><i class="fas fa-plane" style="font-size: 2rem;"></i></div>
+                            <div class="stats-number">6</div>
+                            <div>Airlines Covered</div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="stats-card" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+                            <div><i class="fas fa-chart-line" style="font-size: 2rem;"></i></div>
+                            <div class="stats-number">5</div>
+                            <div>Interactive Features</div>
                         </div>
                     </div>
                 </div>
 
-                <div class="project-sections py-5">
-                    <div class="project-section mb-5">
-                        <h3 class="project-section-title mb-3">Project Overview</h3>
-                        <p>
-                            This comprehensive airline satisfaction prediction project leveraged machine learning to analyze
-                            <strong>129,880 passenger records</strong> and identify the key drivers of customer satisfaction.
-                            Using advanced feature engineering and multiple ML algorithms, I developed a predictive model
-                            that achieved exceptional performance in classifying passenger satisfaction levels.
-                        </p>
-                        <p>
-                            The analysis uncovered surprising insights about which factors truly drive airline satisfaction,
-                            revealing that digital experience and service quality significantly outweigh traditional operational
-                            metrics like flight delays. This data-driven approach enables airlines to optimize resource
-                            allocation and improve customer experience strategically.
-                        </p>
-                    </div>
-
-                    <div class="project-section mb-3">
-                        <h3 class="project-section-title">The Challenge</h3>
-                        <p>Airlines face complex challenges in understanding and predicting customer satisfaction:</p>
-                        <ul>
-                            <li><strong>Multi-dimensional Data:</strong> 25+ variables across demographics, services, and operational metrics.</li>
-                            <li><strong>Imbalanced Classes:</strong> 56.6% neutral/dissatisfied vs 43.4% satisfied passengers.</li>
-                            <li><strong>Feature Selection:</strong> Identifying which of dozens of factors actually drive satisfaction.</li>
-                            <li><strong>Prediction Accuracy:</strong> Need for reliable real-time satisfaction prediction.</li>
-                            <li><strong>Business Insights:</strong> Translating complex ML results into actionable business strategies.</li>
-                            <li><strong>Resource Optimization:</strong> Understanding where to invest for maximum satisfaction impact.</li>
-                        </ul>
-                    </div>
-
-                    <div class="project-section mb-4">
-                        <h3 class="project-section-title">The Approach &amp; Solution</h3>
-                        <p>
-                            I implemented a comprehensive <strong>machine learning pipeline</strong> using industry best practices:
-                        </p>
-
-                        <h4 class="mb-3"><i class="fas fa-brain me-2"></i>1. Machine Learning Pipeline</h4>
-                        <ul>
-                            <li><strong>Data Preprocessing:</strong> Handled missing values, encoded categorical variables, feature scaling.</li>
-                            <li><strong>Feature Engineering:</strong> Created derived features and encoded 25+ variables optimally.</li>
-                            <li><strong>Model Selection:</strong> Compared Random Forest, Gradient Boosting, and Logistic Regression.</li>
-                            <li><strong>Hyperparameter Tuning:</strong> Optimized model parameters for best performance.</li>
-                        </ul>
-
-                        <h4 class="mb-3"><i class="fas fa-chart-bar me-2"></i>2. Advanced Analytics</h4>
-                        <ul>
-                            <li><strong>Feature Importance Analysis:</strong> Identified top satisfaction drivers using tree-based methods.</li>
-                            <li><strong>Correlation Analysis:</strong> Mapped relationships between service ratings and satisfaction.</li>
-                            <li><strong>Demographic Segmentation:</strong> Analyzed satisfaction patterns across customer segments.</li>
-                            <li><strong>Performance Validation:</strong> Comprehensive model evaluation with confusion matrices.</li>
-                        </ul>
-
-                        <div class="insight-card">
-                            <h5><i class="fas fa-lightbulb me-2"></i>Key Discovery</h5>
-                            <p class="mb-0">
-                                <strong>Digital experience matters more than operational excellence!</strong> 
-                                Online boarding and WiFi service are the top predictors of satisfaction, 
-                                while flight delays have minimal impact on customer sentiment.
-                            </p>
-                        </div>
-
-                        <div class="text-center mb-4">
-                            <a class="btn btn-primary me-3" href="https://github.com/Tolu-DavidAfolayan/AIRLINE-SATISFACTION-PREDICTOR/blob/main/%F0%9F%9B%AB%20SIMPLE%20AIRLINE%20SATISFACTION%20PREDICTOR%20WITH%20PLOT.ipynb" target="_blank">
-                                <i class="fab fa-python me-2"></i>View Python Code
-                            </a>
-                            <a class="btn btn-outline-primary" href="https://github.com/Tolu-DavidAfolayan/AIRLINE-SATISFACTION-PREDICTOR" target="_blank">
-                                <i class="fab fa-github me-2"></i>GitHub Repository
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="project-section mb-2">
-                        <h3 class="project-section-title mb-3">Model Performance & Results</h3>
-                        <div class="metrics mb-4">
-                            <div class="row">
-                                <div class="metric col-6 col-xl-3 mb-3">
-                                    <div class="inner p-3 theme-bg-light">
-                                        <div class="metric-name">Model Accuracy</div>
-                                        <div class="metric-data mb-2">96.00%</div>
-                                        <div class="metric-desc">Random Forest classifier performance.</div>
-                                    </div>
-                                </div>
-                                <div class="metric col-6 col-xl-3 mb-3">
-                                    <div class="inner p-3 theme-bg-light">
-                                        <div class="metric-name">Precision Score</div>
-                                        <div class="metric-data mb-2">96.82%</div>
-                                        <div class="metric-desc">True positive prediction rate.</div>
-                                    </div>
-                                </div>
-                                <div class="metric col-6 col-xl-3 mb-3">
-                                    <div class="inner p-3 theme-bg-light">
-                                        <div class="metric-name">Recall Score</div>
-                                        <div class="metric-data mb-2">93.87%</div>
-                                        <div class="metric-desc">Sensitivity to satisfied customers.</div>
-                                    </div>
-                                </div>
-                                <div class="metric col-6 col-xl-3 mb-3">
-                                    <div class="inner p-3 theme-bg-light">
-                                        <div class="metric-name">F1-Score</div>
-                                        <div class="metric-data mb-2">95.32%</div>
-                                        <div class="metric-desc">Balanced precision-recall metric.</div>
-                                    </div>
-                                </div>
+                <!-- Key Features -->
+                <div class="mb-5">
+                    <h3 class="mb-4 text-center">✨ Dashboard Features</h3>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <div class="feature-card">
+                                <h5><i class="fas fa-chart-pie me-2"></i>Sentiment Distribution</h5>
+                                <p>Visualize positive, neutral, and negative tweet breakdown with interactive histograms and pie charts.</p>
                             </div>
                         </div>
-
-                        <h4 class="mb-3"><i class="fas fa-trophy me-2"></i>Top Satisfaction Predictors</h4>
-                        <div class="row mb-4">
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <strong>1. Online Boarding (16.81%)</strong>
-                                    <div class="feature-bar" style="width: 100%;"></div>
-                                </div>
-                                <div class="mb-3">
-                                    <strong>2. In-flight WiFi Service (13.44%)</strong>
-                                    <div class="feature-bar" style="width: 80%;"></div>
-                                </div>
-                                <div class="mb-3">
-                                    <strong>3. Type of Travel (10.97%)</strong>
-                                    <div class="feature-bar" style="width: 65%;"></div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <strong>4. Travel Class (9.82%)</strong>
-                                    <div class="feature-bar" style="width: 58%;"></div>
-                                </div>
-                                <div class="mb-3">
-                                    <strong>5. Technology Score (5.82%)</strong>
-                                    <div class="feature-bar" style="width: 35%;"></div>
-                                </div>
-                                <div class="mb-3">
-                                    <strong>6. Comfort Score (5.00%)</strong>
-                                    <div class="feature-bar" style="width: 30%;"></div>
-                                </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="feature-card" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                                <h5><i class="fas fa-cloud me-2"></i>Word Cloud Analysis</h5>
+                                <p>Generate beautiful word clouds showing the most frequent terms for each sentiment category.</p>
                             </div>
                         </div>
-
-                        <h4 class="mb-3"><i class="fas fa-chart-line me-2"></i>Strategic Insights Discovered</h4>
-                        <ul>
-                            <li><strong>Digital Experience Rules:</strong> Online boarding and WiFi combine for 30% of prediction power.</li>
-                            <li><strong>Service Over Operations:</strong> Service ratings matter 10x more than flight delay metrics.</li>
-                            <li><strong>Business vs Leisure:</strong> Travel type significantly impacts satisfaction expectations.</li>
-                            <li><strong>Class Differentiation:</strong> Premium class experience drives higher satisfaction rates.</li>
-                            <li><strong>Age Factor:</strong> Demographic variables have surprisingly low predictive power (1.88%).</li>
-                            <li><strong>Technology Integration:</strong> Tech-savvy passengers have different satisfaction drivers.</li>
-                        </ul>
-
-                        <h4 class="mb-3"><i class="fas fa-rocket me-2"></i>Business Impact & Recommendations</h4>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="insight-card">
-                                    <h6><i class="fas fa-wifi me-2"></i>Digital Infrastructure Priority</h6>
-                                    <p class="mb-0">Invest heavily in online boarding systems and in-flight WiFi - these are the strongest satisfaction drivers.</p>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="insight-card">
-                                    <h6><i class="fas fa-users me-2"></i>Service Quality Focus</h6>
-                                    <p class="mb-0">Prioritize service training over delay reduction - service scores predict satisfaction better than punctuality.</p>
-                                </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="feature-card" style="background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);">
+                                <h5><i class="fas fa-clock me-2"></i>Time-Based Patterns</h5>
+                                <p>Explore tweet activity by hour of day with location distribution and raw data access.</p>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="insight-card">
-                                    <h6><i class="fas fa-target me-2"></i>Targeted Interventions</h6>
-                                    <p class="mb-0">Use model predictions to identify at-risk passengers and proactively address their concerns.</p>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="insight-card">
-                                    <h6><i class="fas fa-chart-pie me-2"></i>Resource Allocation</h6>
-                                    <p class="mb-0">Reallocate budget from delay mitigation to digital experience and premium service improvements.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="project-section mb-4">
-                        <h3 class="project-section-title">Technical Implementation</h3>
-
-                        <h4 class="mb-3"><i class="fas fa-tools me-2"></i>Technologies & Algorithms</h4>
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <ul class="list-unstyled">
-                                    <li><i class="fas fa-check-circle text-success me-2"></i><strong>Python:</strong> Primary programming language</li>
-                                    <li><i class="fas fa-check-circle text-success me-2"></i><strong>Scikit-learn:</strong> Machine learning framework</li>
-                                    <li><i class="fas fa-check-circle text-success me-2"></i><strong>Pandas & NumPy:</strong> Data manipulation and analysis</li>
-                                    <li><i class="fas fa-check-circle text-success me-2"></i><strong>Matplotlib & Seaborn:</strong> Data visualization</li>
-                                </ul>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <ul class="list-unstyled">
-                                    <li><i class="fas fa-check-circle text-success me-2"></i><strong>Random Forest:</strong> Best performing algorithm (96%)</li>
-                                    <li><i class="fas fa-check-circle text-success me-2"></i><strong>Gradient Boosting:</strong> Secondary model (95.1%)</li>
-                                    <li><i class="fas fa-check-circle text-success me-2"></i><strong>Logistic Regression:</strong> Baseline model (87.76%)</li>
-                                    <li><i class="fas fa-check-circle text-success me-2"></i><strong>Feature Engineering:</strong> Categorical encoding and scaling</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <h4 class="mb-3"><i class="fas fa-code me-2"></i>Advanced ML Techniques</h4>
-                        <ul>
-                            <li><strong>Ensemble Methods:</strong> Random Forest with 100+ decision trees for robust predictions.</li>
-                            <li><strong>Feature Importance:</strong> Calculated predictive power of each variable.</li>
-                            <li><strong>Cross-Validation:</strong> Rigorous model validation to prevent overfitting.</li>
-                            <li><strong>Class Balancing:</strong> Handled imbalanced dataset (56.6% vs 43.4% distribution).</li>
-                            <li><strong>Hyperparameter Optimization:</strong> Grid search for optimal model parameters.</li>
-                            <li><strong>Model Comparison:</strong> Systematic evaluation of multiple algorithms.</li>
-                        </ul>
-
-                        <h4 class="mb-3"><i class="fas fa-surprise me-2"></i>Counterintuitive Findings</h4>
-                        <div class="alert alert-info">
-                            <h6><i class="fas fa-exclamation-triangle me-2"></i>Surprising Discovery</h6>
-                            <p class="mb-0">
-                                <strong>Flight delays have minimal impact on satisfaction!</strong> Departure delays (0.45%), 
-                                arrival delays (0.58%), and total delays (0.57%) rank among the least important features. 
-                                This challenges conventional airline thinking and suggests focusing on service quality 
-                                over punctuality optimization.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="project-section mb-4">
-                        <h3 class="project-section-title">Data Insights & Model Interpretability</h3>
-                        
-                        <h4 class="mb-3"><i class="fas fa-users me-2"></i>Customer Demographics</h4>
-                        <div class="row mb-4">
-                            <div class="col-md-4">
-                                <div class="text-center p-3 theme-bg-light rounded">
-                                    <h5>Customer Split</h5>
-                                    <div class="metric-data" style="font-size: 1.5rem;">56.6% | 43.4%</div>
-                                    <small>Neutral/Dissatisfied vs Satisfied</small>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="text-center p-3 theme-bg-light rounded">
-                                    <h5>Customer Type</h5>
-                                    <div class="metric-data" style="font-size: 1.5rem;">82% | 18%</div>
-                                    <small>Returning vs First-time</small>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="text-center p-3 theme-bg-light rounded">
-                                    <h5>Travel Purpose</h5>
-                                    <div class="metric-data" style="font-size: 1.5rem;">Business Heavy</div>
-                                    <small>Business travel dominates dataset</small>
-                                </div>
-                            </div>
-                        </div>
-
-                        <h4 class="mb-3"><i class="fas fa-award me-2"></i>Model Performance Comparison</h4>
-                        <div class="row">
-                            <div class="col-md-4 text-center mb-3">
-                                <div class="p-3 rounded" style="background: linear-gradient(135deg, #ff6b6b, #ee5a24);">
-                                    <h6 class="text-white">Random Forest</h6>
-                                    <div class="text-white" style="font-size: 2rem; font-weight: bold;">96.00%</div>
-                                    <small class="text-white">🏆 Best Performance</small>
-                                </div>
-                            </div>
-                            <div class="col-md-4 text-center mb-3">
-                                <div class="p-3 rounded" style="background: linear-gradient(135deg, #26d0ce, #1dd1a1);">
-                                    <h6 class="text-white">Gradient Boosting</h6>
-                                    <div class="text-white" style="font-size: 2rem; font-weight: bold;">95.10%</div>
-                                    <small class="text-white">🥈 Second Place</small>
-                                </div>
-                            </div>
-                            <div class="col-md-4 text-center mb-3">
-                                <div class="p-3 rounded" style="background: linear-gradient(135deg, #74b9ff, #0984e3);">
-                                    <h6 class="text-white">Logistic Regression</h6>
-                                    <div class="text-white" style="font-size: 2rem; font-weight: bold;">87.76%</div>
-                                    <small class="text-white">🥉 Baseline Model</small>
-                                </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="feature-card" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); color: #333 !important;">
+                                <h5 style="color: #333 !important;"><i class="fas fa-balance-scale me-2"></i>Airline Comparison</h5>
+                                <p style="color: #333 !important;">Compare sentiment across US Airways, United, American, Southwest, Delta, and Virgin America.</p>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <!-- Technology Stack -->
+                <div class="mb-5 text-center">
+                    <h3 class="mb-3">🛠️ Built With</h3>
+                    <div>
+                        <span class="tech-badge" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                            <i class="fab fa-python me-1"></i>Python
+                        </span>
+                        <span class="tech-badge" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                            <i class="fas fa-stream me-1"></i>Streamlit
+                        </span>
+                        <span class="tech-badge" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                            <i class="fas fa-chart-area me-1"></i>Plotly
+                        </span>
+                        <span class="tech-badge" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+                            <i class="fas fa-table me-1"></i>Pandas
+                        </span>
+                        <span class="tech-badge" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                            <i class="fas fa-cloud me-1"></i>WordCloud
+                        </span>
+                        <span class="tech-badge" style="background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);">
+                            <i class="fas fa-chart-bar me-1"></i>Matplotlib
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Interactive Dashboard Embed -->
+                <div class="mb-5">
+                    <h3 class="mb-4 text-center">🚀 Live Interactive Dashboard</h3>
+                    <p class="text-center mb-4">
+                        Explore the dashboard below or 
+                        <a href="https://sentiment-analysis-dashboards.streamlit.app/" target="_blank" class="fw-bold">
+                            open in full screen <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </p>
+                    <div class="dashboard-embed">
+                        <iframe 
+                            src="https://sentiment-analysis-dashboards.streamlit.app/?embedded=true" 
+                            allowfullscreen
+                            loading="lazy">
+                        </iframe>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="text-center mb-5">
+                    <a class="btn btn-primary btn-lg me-3 mb-2" href="https://sentiment-analysis-dashboards.streamlit.app/" target="_blank">
+                        <i class="fas fa-external-link-alt me-2"></i>Open Full Dashboard
+                    </a>
+                    <a class="btn btn-outline-primary btn-lg mb-2" href="https://github.com/YOUR_USERNAME/sentiment-analysis-dashboard" target="_blank">
+                        <i class="fab fa-github me-2"></i>View Source Code
+                    </a>
+                </div>
+
+                <!-- Project Details -->
+                <div class="project-section mb-5">
+                    <h3 class="project-section-title mb-3">📊 Project Insights</h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5>Dataset Overview</h5>
+                            <ul>
+                                <li><strong>Total Tweets:</strong> 14,640</li>
+                                <li><strong>Airlines:</strong> US Airways, United, American, Southwest, Delta, Virgin America</li>
+                                <li><strong>Sentiment Categories:</strong> Positive, Neutral, Negative</li>
+                                <li><strong>Time Range:</strong> February 2015</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h5>Key Findings</h5>
+                            <ul>
+                                <li>📉 <strong>56.6%</strong> of tweets express negative sentiment</li>
+                                <li>😊 <strong>16.7%</strong> show positive sentiment</li>
+                                <li>😐 <strong>26.7%</strong> are neutral</li>
+                                <li>⏰ Peak tweet activity between 6 PM - 10 PM</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- How to Use -->
+                <div class="project-section mb-5">
+                    <h3 class="project-section-title mb-3">💡 How to Use the Dashboard</h3>
+                    <div class="alert alert-info">
+                        <h6><i class="fas fa-info-circle me-2"></i>Dashboard Navigation</h6>
+                        <ol class="mb-0">
+                            <li><strong>Sentiment Distribution:</strong> Toggle between histogram and pie chart views</li>
+                            <li><strong>Random Tweets:</strong> Select a sentiment to view random sample tweets</li>
+                            <li><strong>Time Analysis:</strong> Use the slider to explore tweets by hour of day</li>
+                            <li><strong>Airline Comparison:</strong> Select multiple airlines to compare their sentiment breakdown</li>
+                            <li><strong>Word Clouds:</strong> Switch between positive, neutral, and negative to see common words</li>
+                        </ol>
+                    </div>
+                </div>
+
             </div>
         </section>
 
         <section class="promo-section theme-bg-light py-5 text-center">
             <div class="container single-col-max-width">
-                <h2 class="title">Looking for a machine learning expert for your business?</h2>
-                <p>I specialize in building predictive models and extracting actionable insights from complex datasets. From customer satisfaction prediction to revenue optimization, let's unlock the power of your data through advanced analytics and machine learning.</p>
+                <h2 class="title">Need a Data Dashboard for Your Business?</h2>
+                <p>I specialize in building interactive dashboards and data visualizations that transform raw data into actionable insights. From sentiment analysis to business intelligence, let's create a solution tailored to your needs.</p>
                 <div class="text-center">
                     <a class="btn btn-primary" href="mailto:david4afolayan@gmail.com" target="_blank">
-                        <i class="fas fa-paper-plane me-2"></i>Let's Work Together
+                        <i class="fas fa-paper-plane me-2"></i>Let's Discuss Your Project
                     </a>
                 </div>
             </div>
         </section>
 
         <footer class="footer text-center py-4">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <p class="mb-2">
-          <strong>Da'insight Space</strong> - Transforming Data into Strategic Insights
-        </p>
-        <p class="mb-2">
-          <a href="mailto:hello@davidafolayan.com.ng" class="text-decoration-none">
-            <i class="fas fa-envelope me-2"></i>hello@davidafolayan.com.ng
-          </a>
-        </p>
-        <small class="copyright text-muted">
-          &copy; 2025 Da'insight Space. All rights reserved. | 
-          <a href="mailto:hello@davidafolayan.com.ng" class="text-muted">Contact Us</a>
-        </small>
-      </div>
-    </div>
-  </div>
-</footer>
-
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p class="mb-2">
+                            <strong>Da'insight Space</strong> - Transforming Data into Strategic Insights
+                        </p>
+                        <p class="mb-2">
+                            <a href="mailto:hello@davidafolayan.com.ng" class="text-decoration-none">
+                                <i class="fas fa-envelope me-2"></i>hello@davidafolayan.com.ng
+                            </a>
+                        </p>
+                        <small class="copyright text-muted">
+                            &copy; 2025 Da'insight Space. All rights reserved. | 
+                            <a href="mailto:hello@davidafolayan.com.ng" class="text-muted">Contact Us</a>
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </div>
 
     <!-- *****CONFIGURE STYLE (REMOVE ON YOUR PRODUCTION SITE)****** -->
